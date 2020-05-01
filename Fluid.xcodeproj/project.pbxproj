@@ -3,19 +3,38 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3D227CF1245B4F17007FCF2E /* TaskCellFrontView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D227CF0245B4F17007FCF2E /* TaskCellFrontView.swift */; };
+		3D227CF3245B4F24007FCF2E /* TaskCellBackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D227CF2245B4F24007FCF2E /* TaskCellBackView.swift */; };
 		3D3148962455D4E40022447E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3148952455D4E40022447E /* AppDelegate.swift */; };
 		3D3148982455D4E40022447E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3148972455D4E40022447E /* SceneDelegate.swift */; };
 		3D31489A2455D4E40022447E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3148992455D4E40022447E /* ContentView.swift */; };
 		3D31489C2455D4E60022447E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D31489B2455D4E60022447E /* Assets.xcassets */; };
 		3D31489F2455D4E60022447E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D31489E2455D4E60022447E /* Preview Assets.xcassets */; };
 		3D3148A22455D4E60022447E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D3148A02455D4E60022447E /* LaunchScreen.storyboard */; };
+		3D3148AE2455D5580022447E /* Int-Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3148AD2455D5580022447E /* Int-Ext.swift */; };
+		3D3148B02455D77C0022447E /* MyTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3148AF2455D77C0022447E /* MyTimer.swift */; };
+		3D3148B62455E3E60022447E /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 3D3148B52455E3E60022447E /* Lottie */; };
+		3D3148B82455E5FF0022447E /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3148B72455E5FF0022447E /* LottieView.swift */; };
+		3D3148BA2455E6680022447E /* TimerCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3148B92455E6680022447E /* TimerCardView.swift */; };
+		3D56B7B6245782E50042BB0F /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D56B7B5245782E50042BB0F /* WelcomeView.swift */; };
+		3D775040245A075A00144355 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D77503F245A075A00144355 /* Constants.swift */; };
+		3D775042245A085D00144355 /* FileManager-Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D775041245A085D00144355 /* FileManager-Ext.swift */; };
+		3D775045245A128F00144355 /* TaskCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D775044245A128F00144355 /* TaskCellView.swift */; };
+		3D775047245A149000144355 /* UIApplication-Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D775046245A149000144355 /* UIApplication-Ext.swift */; };
+		3D7DC169245896FB00F58087 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D7DC168245896FB00F58087 /* Task.swift */; };
+		3D904A1F2457691A000A4989 /* ProgressBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D904A1E2457691A000A4989 /* ProgressBarView.swift */; };
+		3D904A2224577C63000A4989 /* clock-simple-animated.json in Resources */ = {isa = PBXBuildFile; fileRef = 3D904A2124577C63000A4989 /* clock-simple-animated.json */; };
+		3D9B0465245B62A200268783 /* PreviewMockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9B0464245B62A200268783 /* PreviewMockData.swift */; };
+		3D9B0467245B79DB00268783 /* Array-Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9B0466245B79DB00268783 /* Array-Ext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3D227CF0245B4F17007FCF2E /* TaskCellFrontView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCellFrontView.swift; sourceTree = "<group>"; };
+		3D227CF2245B4F24007FCF2E /* TaskCellBackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCellBackView.swift; sourceTree = "<group>"; };
 		3D3148922455D4E40022447E /* Fluid.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fluid.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D3148952455D4E40022447E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3D3148972455D4E40022447E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -24,6 +43,20 @@
 		3D31489E2455D4E60022447E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		3D3148A12455D4E60022447E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3D3148A32455D4E60022447E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3D3148AD2455D5580022447E /* Int-Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int-Ext.swift"; sourceTree = "<group>"; };
+		3D3148AF2455D77C0022447E /* MyTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTimer.swift; sourceTree = "<group>"; };
+		3D3148B72455E5FF0022447E /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
+		3D3148B92455E6680022447E /* TimerCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerCardView.swift; sourceTree = "<group>"; };
+		3D56B7B5245782E50042BB0F /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
+		3D77503F245A075A00144355 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		3D775041245A085D00144355 /* FileManager-Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager-Ext.swift"; sourceTree = "<group>"; };
+		3D775044245A128F00144355 /* TaskCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCellView.swift; sourceTree = "<group>"; };
+		3D775046245A149000144355 /* UIApplication-Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication-Ext.swift"; sourceTree = "<group>"; };
+		3D7DC168245896FB00F58087 /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
+		3D904A1E2457691A000A4989 /* ProgressBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBarView.swift; sourceTree = "<group>"; };
+		3D904A2124577C63000A4989 /* clock-simple-animated.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "clock-simple-animated.json"; sourceTree = "<group>"; };
+		3D9B0464245B62A200268783 /* PreviewMockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewMockData.swift; sourceTree = "<group>"; };
+		3D9B0466245B79DB00268783 /* Array-Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array-Ext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,12 +64,31 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3D3148B62455E3E60022447E /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3D227CF4245B535F007FCF2E /* TaskCellView */ = {
+			isa = PBXGroup;
+			children = (
+				3D775044245A128F00144355 /* TaskCellView.swift */,
+				3D227CF5245B536F007FCF2E /* ComponentViews */,
+			);
+			path = TaskCellView;
+			sourceTree = "<group>";
+		};
+		3D227CF5245B536F007FCF2E /* ComponentViews */ = {
+			isa = PBXGroup;
+			children = (
+				3D227CF0245B4F17007FCF2E /* TaskCellFrontView.swift */,
+				3D227CF2245B4F24007FCF2E /* TaskCellBackView.swift */,
+			);
+			path = ComponentViews;
+			sourceTree = "<group>";
+		};
 		3D3148892455D4E40022447E = {
 			isa = PBXGroup;
 			children = (
@@ -56,11 +108,12 @@
 		3D3148942455D4E40022447E /* Fluid */ = {
 			isa = PBXGroup;
 			children = (
-				3D3148952455D4E40022447E /* AppDelegate.swift */,
-				3D3148972455D4E40022447E /* SceneDelegate.swift */,
-				3D3148992455D4E40022447E /* ContentView.swift */,
-				3D31489B2455D4E60022447E /* Assets.xcassets */,
-				3D3148A02455D4E60022447E /* LaunchScreen.storyboard */,
+				3D3148AC2455D5220022447E /* Views */,
+				3D3148AB2455D5190022447E /* Extensions */,
+				3D3148AA2455D5120022447E /* Model */,
+				3D3148A92455D5000022447E /* Utilities */,
+				3D904A2024577C40000A4989 /* Animations */,
+				3D775043245A098400144355 /* Support */,
 				3D3148A32455D4E60022447E /* Info.plist */,
 				3D31489D2455D4E60022447E /* Preview Content */,
 			);
@@ -73,6 +126,115 @@
 				3D31489E2455D4E60022447E /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		3D3148A92455D5000022447E /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				3D3148AF2455D77C0022447E /* MyTimer.swift */,
+				3D77503F245A075A00144355 /* Constants.swift */,
+				3D9B0464245B62A200268783 /* PreviewMockData.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		3D3148AA2455D5120022447E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				3D7DC168245896FB00F58087 /* Task.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		3D3148AB2455D5190022447E /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				3D3148AD2455D5580022447E /* Int-Ext.swift */,
+				3D775041245A085D00144355 /* FileManager-Ext.swift */,
+				3D775046245A149000144355 /* UIApplication-Ext.swift */,
+				3D9B0466245B79DB00268783 /* Array-Ext.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		3D3148AC2455D5220022447E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				3DB1CEBE245A246900D25BF4 /* MAIN */,
+				3D227CF4245B535F007FCF2E /* TaskCellView */,
+				3D56B7B4245782D50042BB0F /* WelcomeView */,
+				3D3148B12455E2140022447E /* TimerCardView */,
+				3D3148B32455E22B0022447E /* SharedViews */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		3D3148B12455E2140022447E /* TimerCardView */ = {
+			isa = PBXGroup;
+			children = (
+				3D3148B92455E6680022447E /* TimerCardView.swift */,
+				3D3148B22455E21F0022447E /* ComponentViews */,
+			);
+			path = TimerCardView;
+			sourceTree = "<group>";
+		};
+		3D3148B22455E21F0022447E /* ComponentViews */ = {
+			isa = PBXGroup;
+			children = (
+				3D904A1E2457691A000A4989 /* ProgressBarView.swift */,
+			);
+			path = ComponentViews;
+			sourceTree = "<group>";
+		};
+		3D3148B32455E22B0022447E /* SharedViews */ = {
+			isa = PBXGroup;
+			children = (
+				3D3148B72455E5FF0022447E /* LottieView.swift */,
+			);
+			path = SharedViews;
+			sourceTree = "<group>";
+		};
+		3D56B7B4245782D50042BB0F /* WelcomeView */ = {
+			isa = PBXGroup;
+			children = (
+				3D56B7B5245782E50042BB0F /* WelcomeView.swift */,
+			);
+			path = WelcomeView;
+			sourceTree = "<group>";
+		};
+		3D775043245A098400144355 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				3D31489B2455D4E60022447E /* Assets.xcassets */,
+				3D3148952455D4E40022447E /* AppDelegate.swift */,
+				3D3148972455D4E40022447E /* SceneDelegate.swift */,
+				3D3148A02455D4E60022447E /* LaunchScreen.storyboard */,
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
+		3D904A2024577C40000A4989 /* Animations */ = {
+			isa = PBXGroup;
+			children = (
+				3D904A2124577C63000A4989 /* clock-simple-animated.json */,
+			);
+			path = Animations;
+			sourceTree = "<group>";
+		};
+		3DB1CEBE245A246900D25BF4 /* MAIN */ = {
+			isa = PBXGroup;
+			children = (
+				3D3148992455D4E40022447E /* ContentView.swift */,
+				3DB1CEBF245A247700D25BF4 /* ComponentViews */,
+			);
+			path = MAIN;
+			sourceTree = "<group>";
+		};
+		3DB1CEBF245A247700D25BF4 /* ComponentViews */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ComponentViews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -91,6 +253,9 @@
 			dependencies = (
 			);
 			name = Fluid;
+			packageProductDependencies = (
+				3D3148B52455E3E60022447E /* Lottie */,
+			);
 			productName = Fluid;
 			productReference = 3D3148922455D4E40022447E /* Fluid.app */;
 			productType = "com.apple.product-type.application";
@@ -119,6 +284,9 @@
 				Base,
 			);
 			mainGroup = 3D3148892455D4E40022447E;
+			packageReferences = (
+				3D3148B42455E3E60022447E /* XCRemoteSwiftPackageReference "lottie-ios" */,
+			);
 			productRefGroup = 3D3148932455D4E40022447E /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -134,6 +302,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3D3148A22455D4E60022447E /* LaunchScreen.storyboard in Resources */,
+				3D904A2224577C63000A4989 /* clock-simple-animated.json in Resources */,
 				3D31489F2455D4E60022447E /* Preview Assets.xcassets in Resources */,
 				3D31489C2455D4E60022447E /* Assets.xcassets in Resources */,
 			);
@@ -146,9 +315,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3D3148BA2455E6680022447E /* TimerCardView.swift in Sources */,
 				3D3148962455D4E40022447E /* AppDelegate.swift in Sources */,
+				3D775045245A128F00144355 /* TaskCellView.swift in Sources */,
+				3D7DC169245896FB00F58087 /* Task.swift in Sources */,
+				3D3148AE2455D5580022447E /* Int-Ext.swift in Sources */,
 				3D3148982455D4E40022447E /* SceneDelegate.swift in Sources */,
+				3D9B0465245B62A200268783 /* PreviewMockData.swift in Sources */,
+				3D56B7B6245782E50042BB0F /* WelcomeView.swift in Sources */,
+				3D3148B02455D77C0022447E /* MyTimer.swift in Sources */,
+				3D904A1F2457691A000A4989 /* ProgressBarView.swift in Sources */,
 				3D31489A2455D4E40022447E /* ContentView.swift in Sources */,
+				3D775047245A149000144355 /* UIApplication-Ext.swift in Sources */,
+				3D775042245A085D00144355 /* FileManager-Ext.swift in Sources */,
+				3D9B0467245B79DB00268783 /* Array-Ext.swift in Sources */,
+				3D227CF1245B4F17007FCF2E /* TaskCellFrontView.swift in Sources */,
+				3D3148B82455E5FF0022447E /* LottieView.swift in Sources */,
+				3D227CF3245B4F24007FCF2E /* TaskCellBackView.swift in Sources */,
+				3D775040245A075A00144355 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -342,6 +526,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		3D3148B42455E3E60022447E /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-ios";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.1.8;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		3D3148B52455E3E60022447E /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3D3148B42455E3E60022447E /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 3D31488A2455D4E40022447E /* Project object */;
 }
