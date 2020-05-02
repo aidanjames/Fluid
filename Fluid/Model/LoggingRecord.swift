@@ -19,9 +19,10 @@ class LoggingRecord: Codable {
         return Int(time)
     }
     
-    init(taskID: UUID, startTime: Date, endTime: Date? = nil) {
+    
+    init(taskID: UUID, endTime: Date? = nil) {
         self.taskID = taskID
-        self.startTime = startTime
+        self.startTime = Date()
         self.endTime = endTime
     }
 }

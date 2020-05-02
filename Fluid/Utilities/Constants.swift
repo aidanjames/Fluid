@@ -28,6 +28,7 @@ enum Images {
 
 enum FMKeys {
     static let allTasks = "allTasks"
+    static let currentTask = "currentTask"
 }
 
 

@@ -10,18 +10,18 @@ import SwiftUI
 
 struct TaskCellBackView: View {
     
+    @ObservedObject var tasks: TasksViewModel
     var task: Task
-    var allTasks: TasksViewModel
-    @Binding var currentSelectedTask: Task?
+    
     @Binding var showingFront: Bool
     
     
     var body: some View {
         HStack {
             Button(action: {
-                self.delete()
+                self.tasks.delete(task: self.task)
             }) {
-                SFSymbols.trashButton.foregroundColor(currentSelectedTask == nil ? .red : .gray).font(.largeTitle).padding(5)
+                SFSymbols.trashButton.foregroundColor(tasks.currentSelectedTask == nil ? .red : .gray).font(.largeTitle).padding(5)
             }
             Spacer()
             Button("Done") {
@@ -30,17 +30,11 @@ struct TaskCellBackView: View {
         }
     }
     
-    func delete() {
-        if let index = allTasks.allTasks.firstIndex(where: { $0.id == self.task.id }) {
-            self.allTasks.allTasks.remove(at: index)
-            FileManager.default.writeData(self.allTasks.allTasks, to: FMKeys.allTasks)
-        }
-    }
 }
 
 struct TaskCellView_Back_Previews: PreviewProvider {
     static var previews: some View {
-        TaskCellBackView(task: PreviewMockData.task, allTasks: PreviewMockData.tasks, currentSelectedTask: .constant(nil), showingFront: .constant(false))
+        TaskCellBackView(tasks: PreviewMockData.tasks, task: PreviewMockData.task, showingFront: .constant(false))
             .padding()
             .previewLayout(.sizeThatFits)
     }

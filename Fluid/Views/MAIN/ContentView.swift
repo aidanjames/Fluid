@@ -10,26 +10,20 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @ObservedObject var tasks = TasksViewModel()
-    @State private var currentSelectedTask: Task?
-    
+    @ObservedObject var tasks = TasksViewModel()    
     
     var body: some View {
         ZStack {
             Color.blue.opacity(0.2).edgesIgnoringSafeArea(.all)
             VStack {
-                HStack {
-                    SFSymbols.hamburgerMenu.font(.title).foregroundColor(.blue).padding(.horizontal)
-                    Spacer()
-                }
-                TimerCardView(tasks: tasks, currentSelectedTask: $currentSelectedTask)
+                TimerCardView(tasks: tasks)
                     .padding()
                     .shadow(radius: 5, x: 5, y: 5)
                 Spacer()
                 Text("Recent tasks")
                 ScrollView {
                     ForEach(tasks.allTasks) { task in
-                        TaskCellView(allTasks: self.tasks, task: task, currentSelectedTask: self.$currentSelectedTask)
+                        TaskCellView(tasks: self.tasks, task: task)
                         .shadow(radius: 5, x: 5, y: 5)
                     }
                     Spacer()

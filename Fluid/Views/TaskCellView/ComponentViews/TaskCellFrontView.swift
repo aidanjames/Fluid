@@ -11,17 +11,17 @@ import SwiftUI
 struct TaskCellFrontView: View {
     
     var task: Task
-    var allTasks: TasksViewModel
-    @Binding var currentSelectedTask: Task?
+    @ObservedObject var tasks: TasksViewModel
     @Binding var showingFront: Bool
     
     var body: some View {
         HStack {
             VStack(alignment: .leading) {
                 Text(task.name).font(.body).bold().padding(.bottom, 5)
-                Text("Today: \(task.totalTimeInSeconds.secondsToHoursMins())").foregroundColor(.secondary)
-                Text("This weeek: \(task.totalTimeInSeconds.secondsToHoursMins())").foregroundColor(.secondary)
-                Text("All time: \(task.totalTimeInSeconds.secondsToHoursMins())").foregroundColor(.secondary)
+                Text("Today: \(task.getSecondsRecordedToday().secondsToHoursMins())").foregroundColor(.secondary)
+                Text("This week: \(task.getSecondsRecordedThisWeek().secondsToHoursMins())").foregroundColor(.secondary)
+                Text("This month: \(task.getSecondsRecordedThisMonth().secondsToHoursMins())").foregroundColor(.secondary)
+                Text("All time: \(task.getSecondsRecordedAllTime().secondsToHoursMins())").foregroundColor(.secondary)
             }.font(.footnote)
             
             
@@ -30,16 +30,18 @@ struct TaskCellFrontView: View {
                 withAnimation { self.showingFront.toggle() }
             }) {
                 SFSymbols.moreButton
-                    .foregroundColor(currentSelectedTask == nil ? .blue : .gray)
+                    .foregroundColor(tasks.currentSelectedTask == nil ? .blue : .gray)
                     .font(.largeTitle).padding(5)
             }
             Button(action: {
-                self.currentSelectedTask = self.task
-                if let index = self.allTasks.allTasks.firstIndex(where: { $0.id == self.task.id }) {
-                    withAnimation { self.allTasks.allTasks.move(from: index, to: 0) }
+                self.tasks.currentSelectedTask = self.task
+                MyTimer.shared.startTimer()
+                self.tasks.startLoggingForCurrentTask()
+                if let index = self.tasks.allTasks.firstIndex(where: { $0.id == self.task.id }) {
+                    withAnimation { self.tasks.allTasks.move(from: index, to: 0) }
                 }
             }) {
-                SFSymbols.playButton.foregroundColor(currentSelectedTask == nil ? .green : .gray).font(.largeTitle).padding(5)
+                SFSymbols.playButton.foregroundColor(tasks.currentSelectedTask == nil ? .green : .gray).font(.largeTitle).padding(5)
             }
         }
     }
@@ -47,7 +49,7 @@ struct TaskCellFrontView: View {
 
 struct TaskCellView_Front_Previews: PreviewProvider {
     static var previews: some View {
-        TaskCellFrontView(task: PreviewMockData.task, allTasks: PreviewMockData.tasks, currentSelectedTask: .constant(nil), showingFront: .constant(true))
+        TaskCellFrontView(task: PreviewMockData.task, tasks: PreviewMockData.tasks, showingFront: .constant(true))
             .padding()
             .previewLayout(.sizeThatFits)
     }

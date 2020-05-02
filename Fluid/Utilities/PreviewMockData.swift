@@ -10,8 +10,8 @@ import Foundation
 
 enum PreviewMockData {
     
-    static let task = Task(name: "Meeting", loggingHistory: [LoggingRecord(taskID: UUID(), startTime: Date(), endTime: Date().addingTimeInterval(6000))])
-    static let loggingRecord = LoggingRecord(taskID: UUID(), startTime: Date(), endTime: Date().addingTimeInterval(19))
+    static let task = Task(name: "Meeting", loggingHistory: [LoggingRecord(taskID: UUID(), endTime: Date().addingTimeInterval(6000))])
+    static let loggingRecord = LoggingRecord(taskID: UUID(), endTime: Date().addingTimeInterval(19))
     static let tasks = TasksViewModel(tasks: [task])
     
 }
