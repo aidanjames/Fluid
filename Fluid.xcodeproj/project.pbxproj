@@ -135,6 +135,7 @@
 		3D3148A92455D5000022447E /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				3D3148B72455E5FF0022447E /* LottieView.swift */,
 				3D3148AF2455D77C0022447E /* MyTimer.swift */,
 				3D77503F245A075A00144355 /* Constants.swift */,
 				3D9B0464245B62A200268783 /* PreviewMockData.swift */,
@@ -167,9 +168,9 @@
 			isa = PBXGroup;
 			children = (
 				3DB1CEBE245A246900D25BF4 /* MAIN */,
+				3D3148B12455E2140022447E /* TimerCardView */,
 				3D227CF4245B535F007FCF2E /* TaskCellView */,
 				3D56B7B4245782D50042BB0F /* WelcomeView */,
-				3D3148B12455E2140022447E /* TimerCardView */,
 				3D3148B32455E22B0022447E /* SharedViews */,
 			);
 			path = Views;
@@ -195,7 +196,6 @@
 		3D3148B32455E22B0022447E /* SharedViews */ = {
 			isa = PBXGroup;
 			children = (
-				3D3148B72455E5FF0022447E /* LottieView.swift */,
 			);
 			path = SharedViews;
 			sourceTree = "<group>";

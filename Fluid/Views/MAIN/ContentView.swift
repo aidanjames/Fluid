@@ -19,7 +19,7 @@ struct ContentView: View {
             Color.blue.opacity(0.2).edgesIgnoringSafeArea(.all)
             VStack {
                 HStack {
-                    Image(systemName: SFSymbols.hamburgerMenu).font(.title).foregroundColor(.blue).padding(.horizontal)
+                    SFSymbols.hamburgerMenu.font(.title).foregroundColor(.blue).padding(.horizontal)
                     Spacer()
                 }
                 TimerCardView(tasks: tasks, currentSelectedTask: $currentSelectedTask)

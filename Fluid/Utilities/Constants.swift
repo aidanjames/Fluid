@@ -9,11 +9,11 @@
 import SwiftUI
 
 enum SFSymbols {
-    static let trashButton = "trash"
-    static let stopButton = "stop.circle.fill"
-    static let playButton = "play.circle.fill"
-    static let moreButton = "ellipsis.circle"
-    static let hamburgerMenu = "line.horizontal.3"
+    static let trashButton = Image(systemName: "trash")
+    static let stopButton = Image(systemName: "stop.circle.fill")
+    static let playButton = Image(systemName: "play.circle.fill")
+    static let moreButton = Image(systemName: "ellipsis.circle")
+    static let hamburgerMenu = Image(systemName: "line.horizontal.3")
 }
 
 

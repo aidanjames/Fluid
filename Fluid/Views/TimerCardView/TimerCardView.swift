@@ -45,14 +45,13 @@ struct TimerCardView: View {
                         .padding(.top)
                         Spacer()
                         Button(action: { self.buttonPressed() }) {
-                            Image(systemName: timer.isCounting ? SFSymbols.stopButton : SFSymbols.playButton)
+                            (timer.isCounting ? SFSymbols.stopButton : SFSymbols.playButton)
                                 .font(.largeTitle)
                                 .foregroundColor(buttonDisabled ? .gray : timer.isCounting ? .red : .green)
                                 .padding(.horizontal, 25)
                         }.disabled(buttonDisabled)
                     }
                     HStack {
-//                        LottieView(filename: LottieAnimations.tickingClock).frame(width: 50, height: 50).padding(0)
                         Text(timer.counter.secondsToHoursMinsSecs()).font(.body).padding(.trailing, 25).padding(.vertical)
                     }
                 }

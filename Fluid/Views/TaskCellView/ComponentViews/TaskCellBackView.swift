@@ -21,7 +21,7 @@ struct TaskCellBackView: View {
             Button(action: {
                 self.delete()
             }) {
-                Image(systemName: SFSymbols.trashButton).foregroundColor(currentSelectedTask == nil ? .red : .gray).font(.largeTitle).padding(5)
+                SFSymbols.trashButton.foregroundColor(currentSelectedTask == nil ? .red : .gray).font(.largeTitle).padding(5)
             }
             Spacer()
             Button("Done") {

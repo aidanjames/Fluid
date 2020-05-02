@@ -29,7 +29,9 @@ struct TaskCellFrontView: View {
             Button(action: {
                 withAnimation { self.showingFront.toggle() }
             }) {
-                Image(systemName: SFSymbols.moreButton).foregroundColor(currentSelectedTask == nil ? .blue : .gray).font(.largeTitle).padding(5)
+                SFSymbols.moreButton
+                    .foregroundColor(currentSelectedTask == nil ? .blue : .gray)
+                    .font(.largeTitle).padding(5)
             }
             Button(action: {
                 self.currentSelectedTask = self.task
@@ -37,7 +39,7 @@ struct TaskCellFrontView: View {
                     withAnimation { self.allTasks.allTasks.move(from: index, to: 0) }
                 }
             }) {
-                Image(systemName: SFSymbols.playButton).foregroundColor(currentSelectedTask == nil ? .green : .gray).font(.largeTitle).padding(5)
+                SFSymbols.playButton.foregroundColor(currentSelectedTask == nil ? .green : .gray).font(.largeTitle).padding(5)
             }
         }
     }
