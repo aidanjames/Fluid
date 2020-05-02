@@ -13,7 +13,7 @@ struct TimerCardView: View {
     @ObservedObject var timer = MyTimer.shared
     @State private var taskName = ""
     
-    var tasks: Tasks
+    var tasks: TasksViewModel
     @Binding var currentSelectedTask: Task?
     @State private var currentLoggingRecord: LoggingRecord?
     var buttonDisabled: Bool { return taskName.isEmpty && currentSelectedTask == nil }
@@ -134,7 +134,7 @@ struct TimerCardView: View {
 
 struct TimerCardView_Previews: PreviewProvider {
     static var previews: some View {
-        TimerCardView(tasks: Tasks(), currentSelectedTask: .constant(nil))
+        TimerCardView(tasks: TasksViewModel(), currentSelectedTask: .constant(nil))
             .previewLayout(.sizeThatFits)
     }
 }

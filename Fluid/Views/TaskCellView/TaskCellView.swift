@@ -10,7 +10,7 @@ import SwiftUI
 
 struct TaskCellView: View {
     
-    var allTasks: Tasks
+    var allTasks: TasksViewModel
     var task: Task
     @Binding var currentSelectedTask: Task?
     

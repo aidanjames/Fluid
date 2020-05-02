@@ -10,7 +10,7 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @ObservedObject var tasks = Tasks()
+    @ObservedObject var tasks = TasksViewModel()
     @State private var currentSelectedTask: Task?
     
     

@@ -12,6 +12,6 @@ enum PreviewMockData {
     
     static let task = Task(name: "Meeting", loggingHistory: [LoggingRecord(taskID: UUID(), startTime: Date(), endTime: Date().addingTimeInterval(6000))])
     static let loggingRecord = LoggingRecord(taskID: UUID(), startTime: Date(), endTime: Date().addingTimeInterval(19))
-    static let tasks = Tasks(tasks: [task])
+    static let tasks = TasksViewModel(tasks: [task])
     
 }

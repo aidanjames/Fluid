@@ -11,7 +11,7 @@ import SwiftUI
 struct TaskCellBackView: View {
     
     var task: Task
-    var allTasks: Tasks
+    var allTasks: TasksViewModel
     @Binding var currentSelectedTask: Task?
     @Binding var showingFront: Bool
     
