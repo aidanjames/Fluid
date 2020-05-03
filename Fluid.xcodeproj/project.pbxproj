@@ -33,6 +33,7 @@
 		3D904A2224577C63000A4989 /* clock-simple-animated.json in Resources */ = {isa = PBXBuildFile; fileRef = 3D904A2124577C63000A4989 /* clock-simple-animated.json */; };
 		3D9B0465245B62A200268783 /* PreviewMockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9B0464245B62A200268783 /* PreviewMockData.swift */; };
 		3D9B0467245B79DB00268783 /* Array-Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9B0466245B79DB00268783 /* Array-Ext.swift */; };
+		3DF791A0245F0F2900CB5DB7 /* LogRecordListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF7919F245F0F2900CB5DB7 /* LogRecordListView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -63,6 +64,7 @@
 		3D904A2124577C63000A4989 /* clock-simple-animated.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "clock-simple-animated.json"; sourceTree = "<group>"; };
 		3D9B0464245B62A200268783 /* PreviewMockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewMockData.swift; sourceTree = "<group>"; };
 		3D9B0466245B79DB00268783 /* Array-Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array-Ext.swift"; sourceTree = "<group>"; };
+		3DF7919F245F0F2900CB5DB7 /* LogRecordListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogRecordListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +93,7 @@
 			children = (
 				3D227CF0245B4F17007FCF2E /* TaskCellFrontView.swift */,
 				3D227CF2245B4F24007FCF2E /* TaskCellBackView.swift */,
+				3DF7919F245F0F2900CB5DB7 /* LogRecordListView.swift */,
 			);
 			path = ComponentViews;
 			sourceTree = "<group>";
@@ -332,6 +335,7 @@
 				3D7DE2FA245DE9AF00246957 /* LoggingRecord.swift in Sources */,
 				3D3148982455D4E40022447E /* SceneDelegate.swift in Sources */,
 				3D9B0465245B62A200268783 /* PreviewMockData.swift in Sources */,
+				3DF791A0245F0F2900CB5DB7 /* LogRecordListView.swift in Sources */,
 				3D56B7B6245782E50042BB0F /* WelcomeView.swift in Sources */,
 				3D7DE2FE245E277800246957 /* Date-Ext.swift in Sources */,
 				3D3148B02455D77C0022447E /* MyTimer.swift in Sources */,

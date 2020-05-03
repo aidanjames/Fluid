@@ -29,7 +29,7 @@ struct TaskCellFrontView: View {
             Button(action: {
                 withAnimation { self.showingFront.toggle() }
             }) {
-                SFSymbols.moreButton
+                SFSymbols.moreButtonWithoutCircle
                     .foregroundColor(tasks.currentSelectedTask == nil ? .blue : .gray)
                     .font(.largeTitle).padding(5)
             }

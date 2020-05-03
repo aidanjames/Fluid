@@ -24,6 +24,7 @@ struct ContentView: View {
                 ScrollView {
                     ForEach(tasks.allTasks) { task in
                         TaskCellView(tasks: self.tasks, task: task)
+                            .frame(maxHeight: 400)
                         .shadow(radius: 5, x: 5, y: 5)
                     }
                     Spacer()

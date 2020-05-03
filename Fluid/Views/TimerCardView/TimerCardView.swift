@@ -30,7 +30,7 @@ struct TimerCardView: View {
                                 Rectangle().fill(Color.gray).frame(height: 1).opacity(0)
                                 if timer.isCounting {
                                     Button("Discard") {
-                                        self.tasks.discardInFlightLoggingRecord()
+                                        withAnimation { self.tasks.discardInFlightLoggingRecord() }
                                     }
                                 }
                             }

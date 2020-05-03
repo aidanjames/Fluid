@@ -22,5 +22,19 @@ extension Date {
         let components = calendar.dateComponents([.year, .month], from: self)
         return calendar.date(from: components)
     }
+    
+    var dateAsString: String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .short
+        dateFormatter.timeStyle = .none
+        return dateFormatter.string(from: self)
+    }
+    
+    var timeFromDateAsString: String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .none
+        dateFormatter.timeStyle = .short
+        return dateFormatter.string(from: self)
+    }
 
 }

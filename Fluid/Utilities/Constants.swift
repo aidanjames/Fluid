@@ -13,6 +13,7 @@ enum SFSymbols {
     static let stopButton = Image(systemName: "stop.circle.fill")
     static let playButton = Image(systemName: "play.circle.fill")
     static let moreButton = Image(systemName: "ellipsis.circle")
+    static let moreButtonWithoutCircle = Image(systemName: "ellipsis")
     static let hamburgerMenu = Image(systemName: "line.horizontal.3")
 }
 

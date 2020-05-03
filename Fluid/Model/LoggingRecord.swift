@@ -8,7 +8,8 @@
 
 import Foundation
 
-class LoggingRecord: Codable {
+class LoggingRecord: Codable, Identifiable {
+    let id = UUID()
     var taskID: UUID
     var startTime: Date
     var endTime: Date?
@@ -17,6 +18,13 @@ class LoggingRecord: Codable {
         guard let endTime = self.endTime else { return 0 }
         let time = endTime.timeIntervalSince(startTime)
         return Int(time)
+    }
+    
+    var dateString: String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .short
+        dateFormatter.timeStyle = .none
+        return dateFormatter.string(from: startTime)
     }
     
     

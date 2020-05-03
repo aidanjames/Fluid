@@ -17,16 +17,25 @@ struct TaskCellBackView: View {
     
     
     var body: some View {
-        HStack {
-            Button(action: {
-                self.tasks.delete(task: self.task)
-            }) {
-                SFSymbols.trashButton.foregroundColor(tasks.currentSelectedTask == nil ? .red : .gray).font(.largeTitle).padding(5)
+        VStack {
+            HStack {
+                Button(action: {
+                    self.tasks.delete(task: self.task)
+                }) {
+                    SFSymbols.trashButton.foregroundColor(tasks.currentSelectedTask == nil ? .red : .gray).padding(5)
+                }
+                Spacer()
+                Button("Done") {
+                    withAnimation { self.showingFront.toggle() }
+                }
             }
-            Spacer()
-            Button("Done") {
-                withAnimation { self.showingFront.toggle() }
+            if task.loggingHistory.isEmpty {
+                Text("No logging records")
+            } else {
+                LogRecordListView(tasks: self.tasks, taskID: self.task.id)
+                    .frame(height: 300)
             }
+            
         }
     }
     
