@@ -20,13 +20,8 @@ class LoggingRecord: Codable, Identifiable {
         return Int(time)
     }
     
-    var dateString: String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .short
-        dateFormatter.timeStyle = .none
-        return dateFormatter.string(from: startTime)
-    }
-    
+    var startDateString: String { startTime.dateAsString }
+
     
     init(taskID: UUID, endTime: Date? = nil) {
         self.taskID = taskID

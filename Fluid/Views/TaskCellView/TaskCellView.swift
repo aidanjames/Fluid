@@ -30,6 +30,7 @@ struct TaskCellView: View {
         .background(Color.white)
         .cornerRadius(16)
         .padding(.horizontal)
+//        .padding(.bottom, showingFront ? 2 : 10)
         
         
     }

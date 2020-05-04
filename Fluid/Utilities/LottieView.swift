@@ -13,7 +13,7 @@ struct LottieView: UIViewRepresentable {
     
     var filename: String
     let animationView = AnimationView()
-    
+
     func makeUIView(context: UIViewRepresentableContext<LottieView>) -> UIView {
         
         let view = UIView()
@@ -23,7 +23,6 @@ struct LottieView: UIViewRepresentable {
         animationView.contentMode = .scaleAspectFit
         animationView.loopMode = .loop
         animationView.play()
-
         animationView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(animationView)
         
@@ -36,7 +35,6 @@ struct LottieView: UIViewRepresentable {
     }
     
     
-    func updateUIView(_ uiView: UIViewType, context: Context) {
-    }
+    func updateUIView(_ uiView: UIViewType, context: Context) { }
     
 }

@@ -34,7 +34,7 @@ struct LogRecordListView: View {
     
     
     var recordsGroupedByDate: [String: [LoggingRecord]] {
-        Dictionary.init(grouping: logHistory, by: { $0.dateString })
+        Dictionary.init(grouping: logHistory, by: { $0.startDateString })
     }
     
     
@@ -42,32 +42,28 @@ struct LogRecordListView: View {
         recordsGroupedByDate.map({ $0.key }).sorted()
     }
     
-    
     var body: some View {
-        List {
+        ScrollView {
             ForEach(uniqueDates, id: \.self) { date in
-                Section(header: Text(date)) {
-                    ForEach(self.recordsGroupedByDate[date]!) { record in
-                        HStack {
-                            Text("From \(record.startTime.timeFromDateAsString)")
-                            Text("-> \(record.endTime?.timeFromDateAsString ?? "Active record")")
-                            Spacer()
-                            Button("Edit") { withAnimation { self.tasks.delete(loggingRecord: record) } }
-                                .foregroundColor(.blue)
-                            Button("Delete") { withAnimation {  } }
-                                .foregroundColor(.blue)
-                        }
+                VStack(alignment: .leading, spacing: 0) {
+                    Text(date).bold()
+                    ForEach(self.recordsGroupedByDate[date]!.reversed()) { record in
+                        LogRecordListItemView(tasks: self.tasks, record: record)
                     }
                 }
             }
-            .font(.caption)
+            Spacer()
         }
+        .frame(minHeight: 150)
     }
+    
+    
 }
 
 struct LogRecordListView_Previews: PreviewProvider {
     static var previews: some View {
         LogRecordListView(tasks: PreviewMockData.tasks, taskID: PreviewMockData.task.id, task: PreviewMockData.task)
+        .padding()
             .previewLayout(.sizeThatFits)
     }
 }

@@ -49,8 +49,13 @@ struct TaskCellFrontView: View {
 
 struct TaskCellView_Front_Previews: PreviewProvider {
     static var previews: some View {
-        TaskCellFrontView(task: PreviewMockData.task, tasks: PreviewMockData.tasks, showingFront: .constant(true))
+        VStack {
+            TaskCellFrontView(task: PreviewMockData.task, tasks: PreviewMockData.tasks, showingFront: .constant(true))
+                .padding()
+                .previewLayout(.sizeThatFits)
+            TaskCellFrontView(task: PreviewMockData.task, tasks: PreviewMockData.tasks, showingFront: .constant(true))
             .padding()
             .previewLayout(.sizeThatFits)
+        }
     }
 }

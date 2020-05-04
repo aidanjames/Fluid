@@ -33,7 +33,6 @@ struct TaskCellBackView: View {
                 Text("No logging records")
             } else {
                 LogRecordListView(tasks: self.tasks, taskID: self.task.id)
-                    .frame(height: 300)
             }
             
         }

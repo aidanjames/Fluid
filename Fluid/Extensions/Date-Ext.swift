@@ -23,6 +23,10 @@ extension Date {
     }
     
     var dateAsString: String {
+        let calendar = Calendar(identifier: .gregorian)
+        if calendar.isDateInToday(self) { return "Today"}
+        if calendar.isDateInYesterday(self) { return "Yesterday" }
+        
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .short
         dateFormatter.timeStyle = .none
@@ -32,8 +36,9 @@ extension Date {
     var timeFromDateAsString: String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .none
-        dateFormatter.timeStyle = .short
+        dateFormatter.dateFormat = "HH:mm"
         return dateFormatter.string(from: self)
     }
+
     
 }

@@ -10,7 +10,7 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @ObservedObject var tasks = TasksViewModel()    
+    @ObservedObject var tasks = TasksViewModel()
     
     var body: some View {
         ZStack {
