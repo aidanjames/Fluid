@@ -51,8 +51,8 @@ class TasksViewModel: ObservableObject {
     
     func startLoggingForCurrentTask() {
         guard currentSelectedTask != nil else { fatalError() }
-        MyTimer.shared.maxCounter = 1500
         MyTimer.shared.startTimer()
+        UIApplication.shared.isIdleTimerDisabled = true
         currentSelectedTask!.loggingHistory.append(LoggingRecord(taskID: currentSelectedTask!.id))
         persistTaskViewModelState()
     }
@@ -60,6 +60,7 @@ class TasksViewModel: ObservableObject {
     
     func stopLoggingForCurrentTask() {
         MyTimer.shared.stopTimer()
+        UIApplication.shared.isIdleTimerDisabled = false
         guard currentSelectedTask != nil else { fatalError() }
         guard let loggingRecord = currentSelectedTask!.loggingHistory.last else { fatalError("There's no logging record to update.") }
         loggingRecord.endTime = Date()

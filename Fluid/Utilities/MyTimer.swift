@@ -13,7 +13,7 @@ class MyTimer: ObservableObject {
     static let shared = MyTimer()
         
     private var timer: Timer?
-    var maxCounter: Int = .max
+    var maxCounter: Int = 1500
     @Published var counter = 0
     @Published var isCounting = false
     

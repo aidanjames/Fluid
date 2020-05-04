@@ -62,7 +62,6 @@ struct LogRecordListView: View {
             }
             .font(.caption)
         }
-//        .listStyle(GroupedListStyle())
     }
 }
 

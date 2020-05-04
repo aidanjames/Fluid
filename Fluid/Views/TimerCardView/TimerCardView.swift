@@ -75,10 +75,8 @@ struct TimerCardView: View {
     func buttonPressed() {
         UIApplication.shared.endEditing()
         if timer.isCounting {
-            UIApplication.shared.isIdleTimerDisabled = false
             withAnimation { tasks.stopLoggingForCurrentTask() }
         } else {
-            UIApplication.shared.isIdleTimerDisabled = true
             if tasks.currentSelectedTask == nil {
                 withAnimation { tasks.startLoggingForNewTask(named: self.taskName) }
                 self.taskName = ""

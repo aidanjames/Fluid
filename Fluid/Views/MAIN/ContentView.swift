@@ -25,14 +25,14 @@ struct ContentView: View {
                     ForEach(tasks.allTasks) { task in
                         TaskCellView(tasks: self.tasks, task: task)
                             .frame(maxHeight: 400)
-                        .shadow(radius: 5, x: 5, y: 5)
+                            .shadow(radius: 5, x: 5, y: 5)
                     }
                     Spacer()
                 }
             }
         }
+        .onAppear { UIApplication.shared.isIdleTimerDisabled = MyTimer.shared.isCounting }
     }
-
     
 }
 

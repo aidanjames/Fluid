@@ -9,11 +9,10 @@
 import Foundation
 
 extension Date {
-
+    
     var startOfThisWeek: Date? {
         let calendar = Calendar(identifier: .gregorian)
-        guard let thisTimeLastWeek = calendar.date(byAdding: .day, value: -7, to: self) else { return nil }
-        let components = calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: thisTimeLastWeek)
+        let components = calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: Date())
         return calendar.date(byAdding: .day, value: 1, to: calendar.date(from: components)!)
     }
     
@@ -36,5 +35,5 @@ extension Date {
         dateFormatter.timeStyle = .short
         return dateFormatter.string(from: self)
     }
-
+    
 }
