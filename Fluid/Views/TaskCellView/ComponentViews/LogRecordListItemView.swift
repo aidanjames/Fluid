@@ -14,14 +14,19 @@ struct LogRecordListItemView: View {
     var record: LoggingRecord
     
     @State private var showingAlert = false
+    @State private var showingEditRecord = false
     
     var body: some View {
         HStack {
             Text("\(record.startTime.timeFromDateAsString) -> \(record.endTime?.timeFromDateAsString ?? "Active record") (\(record.lengthInSeconds.secondsToHoursMins()))").fontWeight(.thin)
             Spacer()
-            Button(action: { print("Here's where things get interesting") }) {
+            Button(action: { self.showingEditRecord.toggle() }) {
                 Text("Edit")
-            }.padding(3)
+            }
+            .padding(3)
+            .sheet(isPresented: $showingEditRecord) {
+                EditLogRecordView(logRecord: self.record, tasks: self.tasks)
+            }
             Button(action: { self.showingAlert.toggle() }) {
                 Text("Delete")
             }.padding(.horizontal)

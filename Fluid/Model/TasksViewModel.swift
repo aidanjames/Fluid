@@ -56,7 +56,7 @@ class TasksViewModel: ObservableObject {
         currentSelectedTask!.loggingHistory.append(LoggingRecord(taskID: currentSelectedTask!.id))
         persistTaskViewModelState()
     }
-
+    
     
     func stopLoggingForCurrentTask() {
         MyTimer.shared.stopTimer()
@@ -93,6 +93,18 @@ class TasksViewModel: ObservableObject {
                 persistTaskViewModelState()
                 self.manualRefresh.toggle()
                 break
+            }
+        }
+    }
+    
+    
+    func update(logRecord: LoggingRecord, startTime: Date, endTime: Date?) {
+        if let taskIndex = allTasks.firstIndex(where: { $0.id == logRecord.taskID }) {
+            if let logRecordIndex = allTasks[taskIndex].loggingHistory.firstIndex(where: { $0.id == logRecord.id }) {
+                let logRecordToUpdate = allTasks[taskIndex].loggingHistory[logRecordIndex]
+                logRecordToUpdate.startTime = startTime
+                logRecordToUpdate.endTime = endTime
+                persistTaskViewModelState()
             }
         }
     }

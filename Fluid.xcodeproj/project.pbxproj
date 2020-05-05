@@ -30,6 +30,7 @@
 		3D7DE2FC245DE9FB00246957 /* TasksViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D7DE2FB245DE9FB00246957 /* TasksViewModel.swift */; };
 		3D7DE2FE245E277800246957 /* Date-Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D7DE2FD245E277800246957 /* Date-Ext.swift */; };
 		3D82A43F2460991900725CFC /* LogRecordListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D82A43E2460991900725CFC /* LogRecordListItemView.swift */; };
+		3D82A4412461DBAB00725CFC /* EditLogRecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D82A4402461DBAA00725CFC /* EditLogRecordView.swift */; };
 		3D904A1F2457691A000A4989 /* ProgressBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D904A1E2457691A000A4989 /* ProgressBarView.swift */; };
 		3D904A2224577C63000A4989 /* clock-simple-animated.json in Resources */ = {isa = PBXBuildFile; fileRef = 3D904A2124577C63000A4989 /* clock-simple-animated.json */; };
 		3D9B0465245B62A200268783 /* PreviewMockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9B0464245B62A200268783 /* PreviewMockData.swift */; };
@@ -62,6 +63,7 @@
 		3D7DE2FB245DE9FB00246957 /* TasksViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksViewModel.swift; sourceTree = "<group>"; };
 		3D7DE2FD245E277800246957 /* Date-Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date-Ext.swift"; sourceTree = "<group>"; };
 		3D82A43E2460991900725CFC /* LogRecordListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogRecordListItemView.swift; sourceTree = "<group>"; };
+		3D82A4402461DBAA00725CFC /* EditLogRecordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditLogRecordView.swift; sourceTree = "<group>"; };
 		3D904A1E2457691A000A4989 /* ProgressBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBarView.swift; sourceTree = "<group>"; };
 		3D904A2124577C63000A4989 /* clock-simple-animated.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "clock-simple-animated.json"; sourceTree = "<group>"; };
 		3D9B0464245B62A200268783 /* PreviewMockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewMockData.swift; sourceTree = "<group>"; };
@@ -97,6 +99,7 @@
 				3D227CF2245B4F24007FCF2E /* TaskCellBackView.swift */,
 				3DF7919F245F0F2900CB5DB7 /* LogRecordListView.swift */,
 				3D82A43E2460991900725CFC /* LogRecordListItemView.swift */,
+				3D82A4402461DBAA00725CFC /* EditLogRecordView.swift */,
 			);
 			path = ComponentViews;
 			sourceTree = "<group>";
@@ -334,6 +337,7 @@
 				3D3148962455D4E40022447E /* AppDelegate.swift in Sources */,
 				3D775045245A128F00144355 /* TaskCellView.swift in Sources */,
 				3D7DC169245896FB00F58087 /* Task.swift in Sources */,
+				3D82A4412461DBAB00725CFC /* EditLogRecordView.swift in Sources */,
 				3D3148AE2455D5580022447E /* Int-Ext.swift in Sources */,
 				3D7DE2FA245DE9AF00246957 /* LoggingRecord.swift in Sources */,
 				3D3148982455D4E40022447E /* SceneDelegate.swift in Sources */,
