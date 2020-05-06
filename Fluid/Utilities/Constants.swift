@@ -24,6 +24,8 @@ enum LottieAnimations {
 
 
 enum Images {
+    static let flowIcon = Image("flow")
+    static let tomatoIcon = Image("tomato")
 }
 
 

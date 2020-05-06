@@ -35,6 +35,7 @@
 		3D904A2224577C63000A4989 /* clock-simple-animated.json in Resources */ = {isa = PBXBuildFile; fileRef = 3D904A2124577C63000A4989 /* clock-simple-animated.json */; };
 		3D9B0465245B62A200268783 /* PreviewMockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9B0464245B62A200268783 /* PreviewMockData.swift */; };
 		3D9B0467245B79DB00268783 /* Array-Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9B0466245B79DB00268783 /* Array-Ext.swift */; };
+		3DA6000624633A2600F2913E /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA6000524633A2600F2913E /* NotificationManager.swift */; };
 		3DF791A0245F0F2900CB5DB7 /* LogRecordListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF7919F245F0F2900CB5DB7 /* LogRecordListView.swift */; };
 /* End PBXBuildFile section */
 
@@ -68,6 +69,7 @@
 		3D904A2124577C63000A4989 /* clock-simple-animated.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "clock-simple-animated.json"; sourceTree = "<group>"; };
 		3D9B0464245B62A200268783 /* PreviewMockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewMockData.swift; sourceTree = "<group>"; };
 		3D9B0466245B79DB00268783 /* Array-Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array-Ext.swift"; sourceTree = "<group>"; };
+		3DA6000524633A2600F2913E /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		3DF7919F245F0F2900CB5DB7 /* LogRecordListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogRecordListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -123,6 +125,7 @@
 		3D3148942455D4E40022447E /* Fluid */ = {
 			isa = PBXGroup;
 			children = (
+				3DA6000424633A1300F2913E /* Managers */,
 				3D3148AC2455D5220022447E /* Views */,
 				3D3148AB2455D5190022447E /* Extensions */,
 				3D3148AA2455D5120022447E /* Model */,
@@ -237,6 +240,14 @@
 				3D904A2124577C63000A4989 /* clock-simple-animated.json */,
 			);
 			path = Animations;
+			sourceTree = "<group>";
+		};
+		3DA6000424633A1300F2913E /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				3DA6000524633A2600F2913E /* NotificationManager.swift */,
+			);
+			path = Managers;
 			sourceTree = "<group>";
 		};
 		3DB1CEBE245A246900D25BF4 /* MAIN */ = {
@@ -355,6 +366,7 @@
 				3D9B0467245B79DB00268783 /* Array-Ext.swift in Sources */,
 				3D227CF1245B4F17007FCF2E /* TaskCellFrontView.swift in Sources */,
 				3D3148B82455E5FF0022447E /* LottieView.swift in Sources */,
+				3DA6000624633A2600F2913E /* NotificationManager.swift in Sources */,
 				3D227CF3245B4F24007FCF2E /* TaskCellBackView.swift in Sources */,
 				3D775040245A075A00144355 /* Constants.swift in Sources */,
 			);

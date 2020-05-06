@@ -46,9 +46,9 @@ struct TimerCardView: View {
                         }
                         .disabled(taskName.isEmpty && tasks.currentSelectedTask == nil)
                     }
-                    HStack {
-                        Text(timer.counter.secondsToHoursMinsSecs()).font(.body).padding(.trailing, 25).padding(.vertical)
-                    }
+//                    HStack {
+//                        Text(timer.counter.secondsToHoursMinsSecs()).font(.body).padding(.trailing, 25).padding(.vertical)
+//                    }
                 }
             }
             ProgressBarView(counter: $timer.counter, maxCounter: timer.maxCounter)
@@ -60,9 +60,16 @@ struct TimerCardView: View {
         .onReceive(NotificationCenter.default.publisher(for: UIApplication.didEnterBackgroundNotification)) { _ in
             if self.timer.isCounting {
                 self.timer.stopTimer()
+                let notificationManager = NotificationManager.shared
+                notificationManager.scheduleBreakFinishedNotification()
+                notificationManager.scheduleSessionFinishedNotification()
+                if let currentTask = self.tasks.currentSelectedTask {
+                    notificationManager.scheduleTimerStillRunningNotification(for: currentTask.name)
+                }
             }
         }
         .onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)) { _ in
+            NotificationManager.shared.cancelAllNotificaitons()
             if let currentTask = self.tasks.currentSelectedTask {                
                 guard let currentLoggingRecord = currentTask.loggingHistory.last else { return }
                 guard currentLoggingRecord.endTime == nil else { return }

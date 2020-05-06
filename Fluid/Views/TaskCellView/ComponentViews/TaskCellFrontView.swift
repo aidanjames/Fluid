@@ -43,7 +43,7 @@ struct TaskCellFrontView: View {
             }) {
                 SFSymbols.playButton.foregroundColor(tasks.currentSelectedTask == nil ? .green : .gray).font(.largeTitle).padding(5)
             }
-        }
+        }.blur(radius: MyTimer.shared.isCounting ? 0.5 : 0)
     }
 }
 

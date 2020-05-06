@@ -31,7 +31,10 @@ struct ContentView: View {
                 }
             }
         }
-        .onAppear { UIApplication.shared.isIdleTimerDisabled = MyTimer.shared.isCounting }
+        .onAppear {
+            UIApplication.shared.isIdleTimerDisabled = MyTimer.shared.isCounting
+            NotificationManager.shared.requestPermission()
+        }
     }
     
 }
