@@ -10,10 +10,8 @@ import SwiftUI
 
 struct TimerCardView: View {
     
-    @ObservedObject var timer = MyTimer.shared
     @ObservedObject var tasks: TasksViewModel
     
-    // Attempt to move away from the shared timer.
     let taskTimer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
     @State private var taskName = ""
@@ -31,37 +29,34 @@ struct TimerCardView: View {
                             } else {
                                 Text(tasks.currentSelectedTask?.name ?? "Error")
                                 Rectangle().fill(Color.gray).frame(height: 1).opacity(0)
-                                if timer.isCounting {
+                                if tasks.isLogging {
                                     Button("Discard") {
                                         withAnimation { self.tasks.discardInFlightLoggingRecord() }
                                     }
-                                }
+                                }                                
                             }
                         }
                         .padding(.horizontal, 25)
                         .padding(.top)
                         Spacer()
                         Button(action: { self.buttonPressed() }) {
-                            (timer.isCounting ? SFSymbols.stopButton : SFSymbols.playButton)
+                            (tasks.isLogging ? SFSymbols.stopButton : SFSymbols.playButton)
                                 .font(.largeTitle)
-                                .foregroundColor(taskName.isEmpty && tasks.currentSelectedTask == nil ? .gray : timer.isCounting ? .red : .green)
+                                .foregroundColor(taskName.isEmpty && tasks.currentSelectedTask == nil ? .gray : tasks.isLogging ? .red : .green)
                                 .padding(.horizontal, 25)
                         }
                         .disabled(taskName.isEmpty && tasks.currentSelectedTask == nil)
                     }
-                    Text(timer.counter < 60 ? "< 1min" : "\(timer.counter.secondsToHoursMins())").padding(.trailing, 25)
-                    Text("New time")
+                    if tasks.isLogging {
+                        TimeDisplay(logRecordStartTime: tasks.currentSelectedTask?.loggingHistory.last?.startTime ?? Date())
+                    }
                 }
             }
-            ProgressBarView(counter: $timer.counter, maxCounter: timer.maxCounter)
-                .frame(height: 10)
-                .padding(.horizontal, 25)
         }
         .padding(30)
         .background(Color.white).cornerRadius(40)
         .onReceive(NotificationCenter.default.publisher(for: UIApplication.didEnterBackgroundNotification)) { _ in
-            if self.timer.isCounting {
-                self.timer.stopTimer()
+            if self.tasks.isLogging {
                 let notificationManager = NotificationManager.shared
                 if let currentTask = self.tasks.currentSelectedTask {
                     notificationManager.scheduleTimerStillRunningNotification(for: currentTask.name)
@@ -73,15 +68,13 @@ struct TimerCardView: View {
             if let currentTask = self.tasks.currentSelectedTask {                
                 guard let currentLoggingRecord = currentTask.loggingHistory.last else { return }
                 guard currentLoggingRecord.endTime == nil else { return }
-                self.timer.counter = Int(Date().timeIntervalSince(currentLoggingRecord.startTime))
-                self.timer.startTimer()
             }
         }
     }
     
     func buttonPressed() {
         UIApplication.shared.endEditing()
-        if timer.isCounting {
+        if tasks.isLogging {
             withAnimation { tasks.stopLoggingForCurrentTask() }
         } else {
             if tasks.currentSelectedTask == nil {

@@ -40,6 +40,7 @@
 		3DE1EB13246493C60023B30D /* FlowTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE1EB12246493C60023B30D /* FlowTimeView.swift */; };
 		3DE1EB16246495240023B30D /* PomodoroModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE1EB15246495240023B30D /* PomodoroModel.swift */; };
 		3DE1EB18246495370023B30D /* PomodoroViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE1EB17246495370023B30D /* PomodoroViewModel.swift */; };
+		3DE1EB1A24649E960023B30D /* TimeDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE1EB1924649E960023B30D /* TimeDisplay.swift */; };
 		3DF791A0245F0F2900CB5DB7 /* LogRecordListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF7919F245F0F2900CB5DB7 /* LogRecordListView.swift */; };
 /* End PBXBuildFile section */
 
@@ -78,6 +79,7 @@
 		3DE1EB12246493C60023B30D /* FlowTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowTimeView.swift; sourceTree = "<group>"; };
 		3DE1EB15246495240023B30D /* PomodoroModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PomodoroModel.swift; sourceTree = "<group>"; };
 		3DE1EB17246495370023B30D /* PomodoroViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PomodoroViewModel.swift; sourceTree = "<group>"; };
+		3DE1EB1924649E960023B30D /* TimeDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeDisplay.swift; sourceTree = "<group>"; };
 		3DF7919F245F0F2900CB5DB7 /* LogRecordListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogRecordListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -214,6 +216,7 @@
 			children = (
 				3D904A1E2457691A000A4989 /* ProgressBarView.swift */,
 				3DE1EB12246493C60023B30D /* FlowTimeView.swift */,
+				3DE1EB1924649E960023B30D /* TimeDisplay.swift */,
 			);
 			path = ComponentViews;
 			sourceTree = "<group>";
@@ -369,6 +372,7 @@
 				3D775045245A128F00144355 /* TaskCellView.swift in Sources */,
 				3D7DC169245896FB00F58087 /* Task.swift in Sources */,
 				3D82A4412461DBAB00725CFC /* EditLogRecordView.swift in Sources */,
+				3DE1EB1A24649E960023B30D /* TimeDisplay.swift in Sources */,
 				3DE1EB18246495370023B30D /* PomodoroViewModel.swift in Sources */,
 				3D3148AE2455D5580022447E /* Int-Ext.swift in Sources */,
 				3D7DE2FA245DE9AF00246957 /* LoggingRecord.swift in Sources */,

@@ -17,12 +17,21 @@ struct PomodoroView: View {
      - Short Break length (default = 5 min)
      - Long break length (default = 20 min)
      - Number of sessions between long breaks (default = 4)
-     
      */
+    @ObservedObject var pomodoroSession = PomodoroViewModel()
+    @State private var counter: Int = 1500
+
     
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            Button("Let it happen") {
+                
+            }
+            Text("\(counter)").padding()
+        }
     }
+    
+
 }
 
 struct PomodoroView_Previews: PreviewProvider {

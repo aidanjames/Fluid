@@ -37,10 +37,10 @@ class TasksViewModel: ObservableObject {
                     self.isLogging = true
                 }
                 
-                if currentSelectedTask?.loggingHistory.last?.endTime == nil {
-                    MyTimer.shared.startTimer()
-                    MyTimer.shared.counter = Int(Date().timeIntervalSince(currentSelectedTask?.loggingHistory.last!.startTime ?? Date()))
-                }
+//                if currentSelectedTask?.loggingHistory.last?.endTime == nil {
+//                    MyTimer.shared.startTimer()
+//                    MyTimer.shared.counter = Int(Date().timeIntervalSince(currentSelectedTask?.loggingHistory.last!.startTime ?? Date()))
+//                }
             }
         }
     }
@@ -62,7 +62,7 @@ class TasksViewModel: ObservableObject {
     
     func startLoggingForCurrentTask() {
         guard currentSelectedTask != nil else { fatalError() }
-        MyTimer.shared.startTimer()
+//        MyTimer.shared.startTimer()
         // This is the new bit
         self.isLogging = true
         
@@ -73,7 +73,7 @@ class TasksViewModel: ObservableObject {
     
     
     func stopLoggingForCurrentTask() {
-        MyTimer.shared.stopTimer()
+//        MyTimer.shared.stopTimer()
         // This is the new bit
         self.isLogging = false
         
@@ -97,7 +97,11 @@ class TasksViewModel: ObservableObject {
     func discardInFlightLoggingRecord() {
         guard currentSelectedTask?.loggingHistory.last?.endTime == nil else { fatalError("The last logging record is not in-flight.") }
         currentSelectedTask?.loggingHistory.removeLast()
-        MyTimer.shared.stopTimer()
+        
+        // New bit
+        self.isLogging = false
+        
+//        MyTimer.shared.stopTimer()
         currentSelectedTask = nil
     }
     

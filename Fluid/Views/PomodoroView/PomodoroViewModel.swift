@@ -10,16 +10,30 @@ import Foundation
 
 class PomodoroViewModel: ObservableObject {
     
-    @Published var counter = MyTimer.shared
+    @Published var counter = MyTimer() // This just ticks away
+    @Published var pomodoroSession = PomodoroSession()
+    
+    /*
+     Configuration items:
+     - Auto rollover - i.e. do not require user interaction (default = false)
+     - Session length (default = 25 min)
+     - Short Break length (default = 5 min)
+     - Long break length (default = 20 min)
+     - Number of sessions between long breaks (default = 4)
+     */
+    
+    init() {
+        
+    }
+    
+    
     
     func startPomodoroTimer() {
-        guard !counter.isCounting else { return }
-        counter.startTimer()
+        
     }
     
     func stopPomodoroTimer() {
-        guard counter.isCounting else { return }
-        counter.stopTimer()
+        
     }
     
     

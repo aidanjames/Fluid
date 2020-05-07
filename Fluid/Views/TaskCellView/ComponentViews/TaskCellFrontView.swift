@@ -35,7 +35,8 @@ struct TaskCellFrontView: View {
             }
             Button(action: {
                 self.tasks.currentSelectedTask = self.task
-                MyTimer.shared.startTimer()
+//                MyTimer.shared.startTimer()
+                self.tasks.isLogging = true
                 self.tasks.startLoggingForCurrentTask()
                 if let index = self.tasks.allTasks.firstIndex(where: { $0.id == self.task.id }) {
                     withAnimation { self.tasks.allTasks.move(from: index, to: 0) }
@@ -43,7 +44,7 @@ struct TaskCellFrontView: View {
             }) {
                 SFSymbols.playButton.foregroundColor(tasks.currentSelectedTask == nil ? .green : .gray).font(.largeTitle).padding(5)
             }
-        }.blur(radius: MyTimer.shared.isCounting ? 0.5 : 0)
+        }.blur(radius: tasks.isLogging ? 0.5 : 0)
     }
 }
 

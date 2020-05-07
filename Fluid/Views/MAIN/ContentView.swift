@@ -32,7 +32,7 @@ struct ContentView: View {
             }
         }
         .onAppear {
-            UIApplication.shared.isIdleTimerDisabled = MyTimer.shared.isCounting
+            UIApplication.shared.isIdleTimerDisabled = self.tasks.isLogging
             NotificationManager.shared.requestPermission()
         }
     }
