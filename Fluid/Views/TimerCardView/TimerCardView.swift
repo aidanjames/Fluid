@@ -13,6 +13,9 @@ struct TimerCardView: View {
     @ObservedObject var timer = MyTimer.shared
     @ObservedObject var tasks: TasksViewModel
     
+    // Attempt to move away from the shared timer.
+    let taskTimer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    
     @State private var taskName = ""
     
     var body: some View {
@@ -46,9 +49,8 @@ struct TimerCardView: View {
                         }
                         .disabled(taskName.isEmpty && tasks.currentSelectedTask == nil)
                     }
-//                    HStack {
-//                        Text(timer.counter.secondsToHoursMinsSecs()).font(.body).padding(.trailing, 25).padding(.vertical)
-//                    }
+                    Text(timer.counter < 60 ? "< 1min" : "\(timer.counter.secondsToHoursMins())").padding(.trailing, 25)
+                    Text("New time")
                 }
             }
             ProgressBarView(counter: $timer.counter, maxCounter: timer.maxCounter)
@@ -61,8 +63,6 @@ struct TimerCardView: View {
             if self.timer.isCounting {
                 self.timer.stopTimer()
                 let notificationManager = NotificationManager.shared
-                notificationManager.scheduleBreakFinishedNotification()
-                notificationManager.scheduleSessionFinishedNotification()
                 if let currentTask = self.tasks.currentSelectedTask {
                     notificationManager.scheduleTimerStillRunningNotification(for: currentTask.name)
                 }

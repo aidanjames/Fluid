@@ -12,11 +12,16 @@ import SwiftUI
 class TasksViewModel: ObservableObject {
     @Published var allTasks: [Task] = []
     @Published var currentSelectedTask: Task?
+    @Published var isLogging = false
     
     // The following is a hack to force subscribing views to refresh.
     // I use this when the screens are not updating when I'm updating objects within arrays
     // of the observed objects. I'm sure there's a more elegant way to do this but here we are.
     @Published var manualRefresh: Bool = false
+    
+    
+
+
     
     
     init() {
@@ -26,6 +31,12 @@ class TasksViewModel: ObservableObject {
         if let savedCurrentTask: Task = FileManager.default.fetchData(from: FMKeys.currentTask) {
             if let index = allTasks.firstIndex(where: { $0.id == savedCurrentTask.id }) {
                 self.currentSelectedTask = allTasks[index]
+                
+                // This is the new bit
+                if currentSelectedTask?.loggingHistory.last?.endTime == nil {
+                    self.isLogging = true
+                }
+                
                 if currentSelectedTask?.loggingHistory.last?.endTime == nil {
                     MyTimer.shared.startTimer()
                     MyTimer.shared.counter = Int(Date().timeIntervalSince(currentSelectedTask?.loggingHistory.last!.startTime ?? Date()))
@@ -52,6 +63,9 @@ class TasksViewModel: ObservableObject {
     func startLoggingForCurrentTask() {
         guard currentSelectedTask != nil else { fatalError() }
         MyTimer.shared.startTimer()
+        // This is the new bit
+        self.isLogging = true
+        
         UIApplication.shared.isIdleTimerDisabled = true
         currentSelectedTask!.loggingHistory.append(LoggingRecord(taskID: currentSelectedTask!.id))
         persistTaskViewModelState()
@@ -60,6 +74,9 @@ class TasksViewModel: ObservableObject {
     
     func stopLoggingForCurrentTask() {
         MyTimer.shared.stopTimer()
+        // This is the new bit
+        self.isLogging = false
+        
         UIApplication.shared.isIdleTimerDisabled = false
         guard currentSelectedTask != nil else { fatalError() }
         guard let loggingRecord = currentSelectedTask!.loggingHistory.last else { fatalError("There's no logging record to update.") }
