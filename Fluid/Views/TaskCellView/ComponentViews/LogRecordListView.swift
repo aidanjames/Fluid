@@ -31,22 +31,22 @@ struct LogRecordListView: View {
         }
         return returnArray
     }
+
     
-    
-    var recordsGroupedByDate: [String: [LoggingRecord]] {
-        Dictionary.init(grouping: logHistory, by: { $0.startDateString })
+    var recordsGroupedByDate: [Date: [LoggingRecord]] {
+        Dictionary.init(grouping: logHistory, by: { $0.startTime.startOfToday })
     }
     
     
-    var uniqueDates: [String] {
+    var uniqueDates: [Date] {
         recordsGroupedByDate.map({ $0.key }).sorted()
     }
     
     var body: some View {
         ScrollView {
-            ForEach(uniqueDates, id: \.self) { date in
+            ForEach(uniqueDates.reversed(), id: \.self) { date in
                 VStack(alignment: .leading, spacing: 0) {
-                    Text(date).bold()
+                    Text(date.dateAsFriendlyString).bold()
                     ForEach(self.recordsGroupedByDate[date]!.reversed()) { record in
                         LogRecordListItemView(tasks: self.tasks, record: record)
                     }
@@ -56,6 +56,7 @@ struct LogRecordListView: View {
         }
         .frame(minHeight: 150)
     }
+    
     
     
 }

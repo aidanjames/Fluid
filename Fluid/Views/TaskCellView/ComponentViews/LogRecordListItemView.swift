@@ -29,7 +29,7 @@ struct LogRecordListItemView: View {
             }
             Button(action: { self.showingAlert.toggle() }) {
                 Text("Delete")
-            }.padding(.horizontal)
+            }
             .alert(isPresented: $showingAlert) {
                 Alert(title: Text("Delete record?"), message: Text("Are you sure you want to delete this record? This cannot be undone."),
                       primaryButton: .destructive(Text("Delete")) { self.tasks.delete(loggingRecord: self.record)},

@@ -22,7 +22,20 @@ extension Date {
         return calendar.date(from: components)
     }
     
-    var dateAsString: String {
+    var startOfToday: Date {
+        let calendar = Calendar(identifier: .gregorian)
+        let components = calendar.dateComponents([.year, .month, .day], from: self)
+        return calendar.date(from: components) ?? Date()
+    }
+    
+    var dateAsString: String {        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .short
+        dateFormatter.timeStyle = .none
+        return dateFormatter.string(from: self)
+    }
+    
+    var dateAsFriendlyString: String {
         let calendar = Calendar(identifier: .gregorian)
         if calendar.isDateInToday(self) { return "Today"}
         if calendar.isDateInYesterday(self) { return "Yesterday" }

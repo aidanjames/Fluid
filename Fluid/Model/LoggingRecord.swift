@@ -21,7 +21,7 @@ class LoggingRecord: Codable, Identifiable {
     }
     
     var startDateString: String { startTime.dateAsString }
-
+    
     
     init(taskID: UUID, endTime: Date? = nil) {
         self.taskID = taskID

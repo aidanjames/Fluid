@@ -24,7 +24,7 @@ struct TimerCardView: View {
                     HStack {
                         VStack(alignment: .leading, spacing: 0) {
                             if tasks.currentSelectedTask == nil {
-                                TextField("Task", text: $taskName)
+                                TextField("New task", text: $taskName)
                                 Rectangle().fill(Color.gray).frame(height: 1)
                             } else {
                                 Text(tasks.currentSelectedTask?.name ?? "Error")
