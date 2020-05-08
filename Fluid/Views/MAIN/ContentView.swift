@@ -16,6 +16,7 @@ struct ContentView: View {
         ZStack {
             Color.blue.opacity(0.2).edgesIgnoringSafeArea(.all)
             VStack {
+//                PomodoroView()
                 TimerCardView(tasks: tasks)
                     .padding()
                     .shadow(radius: 5, x: 5, y: 5)

@@ -17,7 +17,7 @@ struct TimeDisplay: View {
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
     var body: some View {
-        Text(timeSinceStart)
+        Text(timeSinceStart).font(Font.system(.body).monospacedDigit())
         .onReceive(timer) { _ in
             self.setTimeDisplay()
         }

@@ -10,32 +10,45 @@ import SwiftUI
 
 struct PomodoroView: View {
     
-    /*
-     Configuration items:
-     - Auto rollover - i.e. do not require user interaction (default = false)
-     - Session length (default = 25 min)
-     - Short Break length (default = 5 min)
-     - Long break length (default = 20 min)
-     - Number of sessions between long breaks (default = 4)
-     */
-    @ObservedObject var pomodoroSession = PomodoroViewModel()
-    @State private var counter: Int = 1500
-
+    @ObservedObject var pomodoroSession = PomodoroSession()
+    @Binding var showingPomodoroView: Bool
+    
+    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
     var body: some View {
-        VStack {
-            Button("Let it happen") {
-                
+        ZStack {
+            RingView(pomodoroSession: self.pomodoroSession)
+                .onReceive(timer) { _ in
+                    self.timerFired()
             }
-            Text("\(counter)").padding()
+            Button(action: {
+                self.pomodoroSession.isCounting = false
+                self.pomodoroSession.pomodoros[self.pomodoroSession.currentPomodoro].counter = 0
+                self.showingPomodoroView = false
+            }) {
+                SFSymbols.closeCircle.foregroundColor(.black)
+            }
+        .offset(x: 50, y: -50)
+        }
+        // TODO: Save pomodoro session to filemanager if app goes into background
+        // TODO: Set an alert for when the next session is up
+        // TODO: Update the counter when the app returns to the foreground
+    }
+    
+    func timerFired() {
+        guard pomodoroSession.isCounting else { return }
+        if pomodoroSession.pomodoros[pomodoroSession.currentPomodoro].counter < pomodoroSession.pomodoros[pomodoroSession.currentPomodoro].maxCounter {
+            withAnimation { pomodoroSession.pomodoros[pomodoroSession.currentPomodoro].counter += 1 }
+        } else if pomodoroSession.currentPomodoro < pomodoroSession.pomodoros.count - 1 && PomodoroSettings.autoRollover {
+            pomodoroSession.currentPomodoro += 1
         }
     }
     
-
+    
 }
 
 struct PomodoroView_Previews: PreviewProvider {
     static var previews: some View {
-        PomodoroView()
+        PomodoroView(showingPomodoroView: .constant(true))
     }
 }

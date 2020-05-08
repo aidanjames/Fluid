@@ -11,10 +11,9 @@ import SwiftUI
 struct TimerCardView: View {
     
     @ObservedObject var tasks: TasksViewModel
-    
-    let taskTimer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-    
+        
     @State private var taskName = ""
+    @State private var showingPomodoroTimer = false
     
     var body: some View {
         VStack {
@@ -33,19 +32,33 @@ struct TimerCardView: View {
                                     Button("Discard") {
                                         withAnimation { self.tasks.discardInFlightLoggingRecord() }
                                     }
-                                }                                
+                                    if !showingPomodoroTimer {
+                                        Button("Add pomodoro") { self.showingPomodoroTimer.toggle() }
+                                    }
+                                }
+                                if self.showingPomodoroTimer {
+                                    PomodoroView(showingPomodoroView: $showingPomodoroTimer).padding().layoutPriority(1)
+                                }
                             }
                         }
                         .padding(.horizontal, 25)
                         .padding(.top)
                         Spacer()
-                        Button(action: { self.buttonPressed() }) {
-                            (tasks.isLogging ? SFSymbols.stopButton : SFSymbols.playButton)
-                                .font(.largeTitle)
-                                .foregroundColor(taskName.isEmpty && tasks.currentSelectedTask == nil ? .gray : tasks.isLogging ? .red : .green)
-                                .padding(.horizontal, 25)
+                        if !taskName.isEmpty || tasks.currentSelectedTask != nil {
+                            Button(action: { self.buttonPressed() }) {
+                                (tasks.isLogging ? SFSymbols.stopButton : SFSymbols.playButton)
+                                    .font(.largeTitle)
+                                    .foregroundColor(taskName.isEmpty && tasks.currentSelectedTask == nil ? .gray : tasks.isLogging ? .red : .green)
+                                    .padding(.horizontal, 25)
+                            }
                         }
-                        .disabled(taskName.isEmpty && tasks.currentSelectedTask == nil)
+//                        Button(action: { self.buttonPressed() }) {
+//                            (tasks.isLogging ? SFSymbols.stopButton : SFSymbols.playButton)
+//                                .font(.largeTitle)
+//                                .foregroundColor(taskName.isEmpty && tasks.currentSelectedTask == nil ? .gray : tasks.isLogging ? .red : .green)
+//                                .padding(.horizontal, 25)
+//                        }
+//                        .disabled(taskName.isEmpty && tasks.currentSelectedTask == nil)
                     }
                     if tasks.isLogging {
                         TimeDisplay(logRecordStartTime: tasks.currentSelectedTask?.loggingHistory.last?.startTime ?? Date())
@@ -75,7 +88,10 @@ struct TimerCardView: View {
     func buttonPressed() {
         UIApplication.shared.endEditing()
         if tasks.isLogging {
-            withAnimation { tasks.stopLoggingForCurrentTask() }
+            withAnimation {
+                tasks.stopLoggingForCurrentTask()
+                self.showingPomodoroTimer = false
+            }
         } else {
             if tasks.currentSelectedTask == nil {
                 withAnimation { tasks.startLoggingForNewTask(named: self.taskName) }
