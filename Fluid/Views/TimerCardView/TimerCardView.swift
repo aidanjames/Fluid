@@ -11,7 +11,7 @@ import SwiftUI
 struct TimerCardView: View {
     
     @ObservedObject var tasks: TasksViewModel
-        
+    
     @State private var taskName = ""
     @State private var showingPomodoroTimer = false
     
@@ -19,55 +19,69 @@ struct TimerCardView: View {
         VStack {
             HStack {
                 Spacer()
-                VStack(alignment: .trailing) {
+                VStack {
                     HStack {
-                        VStack(alignment: .leading, spacing: 0) {
+                        VStack(spacing: 0) {
                             if tasks.currentSelectedTask == nil {
                                 TextField("New task", text: $taskName)
                                 Rectangle().fill(Color.gray).frame(height: 1)
+                                
                             } else {
                                 Text(tasks.currentSelectedTask?.name ?? "Error")
                                 Rectangle().fill(Color.gray).frame(height: 1).opacity(0)
-                                if tasks.isLogging {
-                                    Button("Discard") {
-                                        withAnimation { self.tasks.discardInFlightLoggingRecord() }
-                                    }
-                                    if !showingPomodoroTimer {
-                                        Button("Add pomodoro") { self.showingPomodoroTimer.toggle() }
-                                    }
-                                }
-                                if self.showingPomodoroTimer {
-                                    PomodoroView(showingPomodoroView: $showingPomodoroTimer).padding().layoutPriority(1)
-                                }
+                                
                             }
                         }
-                        .padding(.horizontal, 25)
                         .padding(.top)
                         Spacer()
                         if !taskName.isEmpty || tasks.currentSelectedTask != nil {
                             Button(action: { self.buttonPressed() }) {
                                 (tasks.isLogging ? SFSymbols.stopButton : SFSymbols.playButton)
                                     .font(.largeTitle)
-                                    .foregroundColor(taskName.isEmpty && tasks.currentSelectedTask == nil ? .gray : tasks.isLogging ? .red : .green)
+                                    .foregroundColor(taskName.isEmpty && tasks.currentSelectedTask == nil ? .gray : tasks.isLogging ? .red : Color(hex: "3b6978"))
                                     .padding(.horizontal, 25)
                             }
+                            
+                            
+                            
                         }
-//                        Button(action: { self.buttonPressed() }) {
-//                            (tasks.isLogging ? SFSymbols.stopButton : SFSymbols.playButton)
-//                                .font(.largeTitle)
-//                                .foregroundColor(taskName.isEmpty && tasks.currentSelectedTask == nil ? .gray : tasks.isLogging ? .red : .green)
-//                                .padding(.horizontal, 25)
-//                        }
-//                        .disabled(taskName.isEmpty && tasks.currentSelectedTask == nil)
+                        //                        Button(action: { self.buttonPressed() }) {
+                        //                            (tasks.isLogging ? SFSymbols.stopButton : SFSymbols.playButton)
+                        //                                .font(.largeTitle)
+                        //                                .foregroundColor(taskName.isEmpty && tasks.currentSelectedTask == nil ? .gray : tasks.isLogging ? .red : .green)
+                        //                                .padding(.horizontal, 25)
+                        //                        }
+                        //                        .disabled(taskName.isEmpty && tasks.currentSelectedTask == nil)
                     }
+                    
                     if tasks.isLogging {
                         TimeDisplay(logRecordStartTime: tasks.currentSelectedTask?.loggingHistory.last?.startTime ?? Date())
+                    }
+                    if tasks.isLogging {
+                        HStack {
+                            Button(action: { withAnimation { self.tasks.discardInFlightLoggingRecord() } }) {
+                                Text("Discard").font(.caption)
+                            }.padding()
+                            if !showingPomodoroTimer {
+                                Button(action: { withAnimation { self.showingPomodoroTimer.toggle() } }) {
+                                    Text("Add pomodoro").font(.caption)
+                                }.padding()
+                                
+                                
+                            }
+                        }
+                        
+                        
+                    }
+                    if self.showingPomodoroTimer {
+                        PomodoroView(showingPomodoroView: $showingPomodoroTimer).padding().layoutPriority(1)
                     }
                 }
             }
         }
+        .frame(minHeight: 150)
         .padding(30)
-        .background(Color.white).cornerRadius(40)
+        .background(Color.white).cornerRadius(16)
         .onReceive(NotificationCenter.default.publisher(for: UIApplication.didEnterBackgroundNotification)) { _ in
             if self.tasks.isLogging {
                 let notificationManager = NotificationManager.shared

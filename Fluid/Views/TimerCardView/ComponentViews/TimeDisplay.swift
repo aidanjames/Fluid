@@ -17,7 +17,14 @@ struct TimeDisplay: View {
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
     var body: some View {
-        Text(timeSinceStart).font(Font.system(.body).monospacedDigit())
+        VStack {
+            Text(timeSinceStart).font(Font.system(.largeTitle).monospacedDigit())
+            HStack {
+                Text("Hours")
+                Text("  Minutes")
+                
+            }.font(.body)
+        }
         .onReceive(timer) { _ in
             self.setTimeDisplay()
         }
@@ -28,13 +35,13 @@ struct TimeDisplay: View {
     
     func setTimeDisplay() {
         let counter = Int(Date().timeIntervalSince(self.logRecordStartTime))
-        guard counter > 59 else { return }
-        self.timeSinceStart = counter.secondsToHoursMins()
+//        guard counter > 59 else { return }
+        self.timeSinceStart = counter.secondsToHoursMinsMinimal()
     }
 }
 
 struct TimeDisplay_Previews: PreviewProvider {
     static var previews: some View {
-        TimeDisplay(logRecordStartTime: Date())
+        TimeDisplay(logRecordStartTime: Date().startOfToday)
     }
 }

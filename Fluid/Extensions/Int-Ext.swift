@@ -25,4 +25,11 @@ extension Int {
         return String(format: "%01dh %02dm", hours, mins)
     }
     
+    
+    func secondsToHoursMinsMinimal() -> String {
+        let hours = self / 3600
+        let mins = (self % 3600) / 60
+        return String(format: "%02d : %02d", hours, mins)
+    }
+    
 }

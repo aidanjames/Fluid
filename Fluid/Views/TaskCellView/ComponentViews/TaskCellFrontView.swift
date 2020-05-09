@@ -35,7 +35,6 @@ struct TaskCellFrontView: View {
             }
             Button(action: {
                 self.tasks.currentSelectedTask = self.task
-//                MyTimer.shared.startTimer()
                 self.tasks.isLogging = true
                 self.tasks.startLoggingForCurrentTask()
                 if let index = self.tasks.allTasks.firstIndex(where: { $0.id == self.task.id }) {
