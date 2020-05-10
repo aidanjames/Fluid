@@ -45,7 +45,7 @@ struct TimerCardView: View {
                 if tasks.isLogging {
                     ZStack {
                         TimeDisplay(logRecordStartTime: tasks.currentSelectedTask?.loggingHistory.last?.startTime ?? Date())
-                        LottieView(filename: "clockCoral").frame(width: 80, height: 80).offset(x: 100, y: -5)
+                        LottieView(filename: "clockCoral").frame(width: 80, height: 80).offset(x: 80, y: -8)
                     }
                 }
                 if tasks.isLogging {

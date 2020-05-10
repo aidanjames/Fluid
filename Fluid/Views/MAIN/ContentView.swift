@@ -18,13 +18,10 @@ struct ContentView: View {
     var body: some View {
         ZStack {
             
-//            Color.black.opacity(0.1).edgesIgnoringSafeArea(.all)
             Color(Colours.midnightBlue).opacity(0.3).edgesIgnoringSafeArea(.all)
             
             VStack(alignment: .leading) {
-
                 TimerCardView(tasks: tasks, showingFullScreen: $showingFullScreen)
-//                    .shadow(color: Color.gray.opacity(0.5), radius: 5, x: 0, y: 5)
                     .shadow(color: tasks.isLogging ? Color(Colours.hotCoral).opacity(0.3) : Color.gray.opacity(0.5), radius: 10, x: 0, y: 10)
                 
                 Spacer()
@@ -41,6 +38,7 @@ struct ContentView: View {
                     Spacer()
                 }
             }
+            .padding(.top)
         }
         .onAppear {
             UIApplication.shared.isIdleTimerDisabled = self.tasks.isLogging
