@@ -32,4 +32,15 @@ extension Int {
         return String(format: "%02d : %02d", hours, mins)
     }
     
+    
+    func secondsToHoursMinsSpit() -> (hours: String, mins: String) {
+        let hours = self / 3600
+        let mins = (self % 3600) / 60
+        
+        let hoursReturnValue = String(format: "%02d", hours)
+        let minsReturnValue = String(format: "%02d", mins)
+        
+        return (hours: hoursReturnValue, mins: minsReturnValue)
+    }
+    
 }

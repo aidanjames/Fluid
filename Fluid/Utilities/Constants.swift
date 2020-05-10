@@ -35,4 +35,5 @@ enum FMKeys {
 }
 
 
-
+// Will eventually replace this with GeometryReader.
+let screen = UIScreen.main.bounds

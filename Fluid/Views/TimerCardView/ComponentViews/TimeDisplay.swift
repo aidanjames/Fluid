@@ -12,18 +12,24 @@ struct TimeDisplay: View {
     
     var logRecordStartTime: Date
     
-    @State private var timeSinceStart = "< 1min"
+    @State private var hoursSinceStart = "00"
+    @State private var minutesSinceStart = "00"
     
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
     var body: some View {
         VStack {
-            Text(timeSinceStart).font(Font.system(.largeTitle).monospacedDigit())
-            HStack {
-                Text("Hours")
-                Text("  Minutes")
-                
-            }.font(.body)
+            HStack(alignment: .top) {
+                VStack {
+                    Text(hoursSinceStart)
+                    Text("Hours").font(.caption).foregroundColor(.secondary)
+                }
+                Text(":")
+                VStack {
+                    Text(minutesSinceStart)
+                    Text("Minutes").font(.caption).foregroundColor(.secondary)
+                }
+            }.font(.largeTitle)
         }
         .onReceive(timer) { _ in
             self.setTimeDisplay()
@@ -35,8 +41,9 @@ struct TimeDisplay: View {
     
     func setTimeDisplay() {
         let counter = Int(Date().timeIntervalSince(self.logRecordStartTime))
-//        guard counter > 59 else { return }
-        self.timeSinceStart = counter.secondsToHoursMinsMinimal()
+        let splitHoursAndSeconds = counter.secondsToHoursMinsSpit()
+        self.hoursSinceStart = splitHoursAndSeconds.hours
+        self.minutesSinceStart = splitHoursAndSeconds.mins
     }
 }
 

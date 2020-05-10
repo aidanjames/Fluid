@@ -14,21 +14,25 @@ struct ContentView: View {
     
     var body: some View {
         ZStack {
+            
             Color.black.opacity(0.1).edgesIgnoringSafeArea(.all)
+            
             VStack(alignment: .leading) {
-//                PomodoroView()
+
                 TimerCardView(tasks: tasks)
-                    .padding(.bottom)
-                    .edgesIgnoringSafeArea(.top)
-//                    .shadow(radius: 5, x: 5, y: 5)
-//                    .shadow(color: .gray, radius: 2, x: 2, y: 2)
+                    .padding()
+                    .shadow(color: Color.gray.opacity(0.5), radius: 5, x: 0, y: 5)
+                
                 Spacer()
-                Text("Continue an existing task").font(.body).bold().padding(.leading)
+                
+                Text("Existing tasks").font(.body).bold().padding(.leading)
+                
                 ScrollView {
                     ForEach(tasks.allTasks) { task in
                         TaskCellView(tasks: self.tasks, task: task)
                             .frame(maxHeight: 400)
-//                            .shadow(radius: 5, x: 5, y: 5)
+                            .shadow(color: Color.gray.opacity(0.5), radius: 5, x: 0, y: 5)
+
                     }
                     Spacer()
                 }

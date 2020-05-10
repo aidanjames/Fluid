@@ -15,63 +15,69 @@ struct TimerCardView: View {
     @State private var taskName = ""
     @State private var showingPomodoroTimer = false
     
+    @State private var isFullScreenMod = false
+    
     var body: some View {
         VStack {
             HStack {
                 Spacer()
                 VStack {
-                    HStack {
-                        VStack(spacing: 0) {
-                            if tasks.currentSelectedTask == nil {
-                                TextField("New task", text: $taskName)
+                    ZStack {
+                        // Display when a task is selected
+                        if tasks.currentSelectedTask == nil {
+                            VStack {
+                                TextField("New task", text: $taskName).font(.title).multilineTextAlignment(.center)
                                 Rectangle().fill(Color.gray).frame(height: 1)
                                 
-                            } else {
-                                Text(tasks.currentSelectedTask?.name ?? "Error")
-                                Rectangle().fill(Color.gray).frame(height: 1).opacity(0)
+                                if !taskName.isEmpty && tasks.currentSelectedTask == nil {
+                                    Button(action: { self.buttonPressed() }) {
+                                        SFSymbols.playButton
+                                            .font(.largeTitle)
+                                            .foregroundColor(Color(hex: "3b6978"))
+                                    }
+                                    .animation(.default)
+                                    .transition(.move(edge: .trailing))
+                                    .padding()
+                                }
                                 
                             }
+                            
+                        } else {
+                            Text(tasks.currentSelectedTask?.name ?? "Error").font(.title)
                         }
-                        .padding(.top)
-                        Spacer()
-                        if !taskName.isEmpty || tasks.currentSelectedTask != nil {
-                            Button(action: { self.buttonPressed() }) {
-                                (tasks.isLogging ? SFSymbols.stopButton : SFSymbols.playButton)
-                                    .font(.largeTitle)
-                                    .foregroundColor(taskName.isEmpty && tasks.currentSelectedTask == nil ? .gray : tasks.isLogging ? .red : Color(hex: "3b6978"))
-                                    .padding(.horizontal, 25)
-                            }
-                            
-                            
-                            
-                        }
-                        //                        Button(action: { self.buttonPressed() }) {
-                        //                            (tasks.isLogging ? SFSymbols.stopButton : SFSymbols.playButton)
-                        //                                .font(.largeTitle)
-                        //                                .foregroundColor(taskName.isEmpty && tasks.currentSelectedTask == nil ? .gray : tasks.isLogging ? .red : .green)
-                        //                                .padding(.horizontal, 25)
-                        //                        }
-                        //                        .disabled(taskName.isEmpty && tasks.currentSelectedTask == nil)
+
                     }
                     
                     if tasks.isLogging {
-                        TimeDisplay(logRecordStartTime: tasks.currentSelectedTask?.loggingHistory.last?.startTime ?? Date())
+                        ZStack {
+                            TimeDisplay(logRecordStartTime: tasks.currentSelectedTask?.loggingHistory.last?.startTime ?? Date())
+                            
+                            HStack {
+                                Spacer()
+                                // Display that hides the play button until either a task is selected or the user starts typing
+                                Button(action: { self.buttonPressed() }) {
+                                    SFSymbols.stopButton
+                                        .font(.largeTitle)
+                                        .foregroundColor(.red)
+                                }
+                                .animation(.default)
+                                .transition(.move(edge: .trailing))
+                                .padding(.bottom)
+                                .padding(.trailing, 50)
+                            }
+                            
+                            
+                            
+                        }
                     }
                     if tasks.isLogging {
-                        HStack {
-                            Button(action: { withAnimation { self.tasks.discardInFlightLoggingRecord() } }) {
-                                Text("Discard").font(.caption)
+                        
+                        
+                        if !showingPomodoroTimer {
+                            Button(action: { withAnimation { self.showingPomodoroTimer.toggle() } }) {
+                                Text("Add pomodoro").font(.caption)
                             }.padding()
-                            if !showingPomodoroTimer {
-                                Button(action: { withAnimation { self.showingPomodoroTimer.toggle() } }) {
-                                    Text("Add pomodoro").font(.caption)
-                                }.padding()
-                                
-                                
-                            }
                         }
-                        
-                        
                     }
                     if self.showingPomodoroTimer {
                         PomodoroView(showingPomodoroView: $showingPomodoroTimer).padding().layoutPriority(1)
