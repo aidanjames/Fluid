@@ -24,7 +24,7 @@ struct PomodoroView: View {
             Button(action: {
                 self.pomodoroSession.isCounting = false
                 self.pomodoroSession.pomodoros[self.pomodoroSession.currentPomodoro].counter = 0
-                self.showingPomodoroView = false
+                withAnimation { self.showingPomodoroView = false }
             }) {
                 SFSymbols.closeCircle.foregroundColor(.black)
             }

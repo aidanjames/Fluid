@@ -20,9 +20,11 @@ struct ButtonView: View {
             Text(buttonText)
                 .foregroundColor(.white)
                 .font(.caption)
+                .bold()
             Spacer()
         }
-        .padding()
+        .padding(.horizontal, 5)
+        .padding(.vertical, 12)
         .background(backgroundColour)
         .clipShape(RoundedRectangle(cornerRadius: 16))
         .frame(maxWidth: maxWitdh)
@@ -31,6 +33,6 @@ struct ButtonView: View {
 
 struct ButtonView_Previews: PreviewProvider {
     static var previews: some View {
-        ButtonView(buttonText: "Start", backgroundColour: Color(hex: "3b6978"))
+        ButtonView(buttonText: "Start", backgroundColour: Color(Colours.hotCoral))
     }
 }

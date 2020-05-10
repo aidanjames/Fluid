@@ -22,7 +22,7 @@ struct TaskCellBackView: View {
                 Button(action: {
                     self.tasks.delete(task: self.task)
                 }) {
-                    SFSymbols.trashButton.foregroundColor(tasks.currentSelectedTask == nil ? .red : .gray).padding(5)
+                    SFSymbols.trashButton.foregroundColor(tasks.currentSelectedTask == nil ? Color(Colours.hotCoral) : .gray).padding(5)
                 }
                 Spacer()
                 Button("Done") {

@@ -30,7 +30,7 @@ class Task: Identifiable, Codable {
     func getSecondsRecordedThisWeek() -> Int {
         guard let startOfThisWeek = Date().startOfThisWeek else { return 0 }
         let filteredHistoryRecords = loggingHistory.filter { $0.startTime > startOfThisWeek }
-        return filteredHistoryRecords.reduce(0) { $0 + $1.lengthInSeconds}
+        return filteredHistoryRecords.reduce(0) { $0 + $1.lengthInSeconds }
     }
     
     

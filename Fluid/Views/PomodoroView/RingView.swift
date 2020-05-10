@@ -20,11 +20,11 @@ struct RingView: View {
     var colour: Color {
         switch pomodoroSession.pomodoros[pomodoroSession.currentPomodoro].pomodoroType {
         case .focusSession:
-            return .red
+            return Color(Colours.hotCoral)
         case .shortBreak:
             return .green
         case .longBreak:
-            return .blue
+            return Color(Colours.midnightBlue)
         }
     }
     

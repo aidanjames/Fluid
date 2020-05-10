@@ -34,6 +34,11 @@ enum FMKeys {
     static let currentTask = "currentTask"
 }
 
+enum Colours {
+    static let midnightBlue = "Midnight_Blue"
+    static let hotCoral = "Hot_Coral"
+}
+
 
 // Will eventually replace this with GeometryReader.
 let screen = UIScreen.main.bounds

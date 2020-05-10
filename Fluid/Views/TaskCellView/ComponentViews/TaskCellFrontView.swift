@@ -17,7 +17,7 @@ struct TaskCellFrontView: View {
     var body: some View {
         HStack {
             VStack(alignment: .leading) {
-                Text(task.name).font(.body).bold().padding(.bottom, 5)
+                Text(task.name).font(.body).bold().foregroundColor(Color(Colours.midnightBlue)).padding(.bottom, 5)
                 Text("Today: \(task.getSecondsRecordedToday().secondsToHoursMins())").foregroundColor(.secondary)
                 Text("This week: \(task.getSecondsRecordedThisWeek().secondsToHoursMins())").foregroundColor(.secondary)
                 Text("This month: \(task.getSecondsRecordedThisMonth().secondsToHoursMins())").foregroundColor(.secondary)
@@ -30,7 +30,7 @@ struct TaskCellFrontView: View {
                 withAnimation { self.showingFront.toggle() }
             }) {
                 SFSymbols.moreButtonWithoutCircle
-                    .foregroundColor(tasks.currentSelectedTask == nil ? .blue : .gray)
+                    .foregroundColor(tasks.currentSelectedTask == nil ? Color(Colours.midnightBlue) : .gray)
                     .font(.largeTitle).padding(5)
             }
             Button(action: {
@@ -41,7 +41,7 @@ struct TaskCellFrontView: View {
                     withAnimation { self.tasks.allTasks.move(from: index, to: 0) }
                 }
             }) {
-                SFSymbols.playButton.foregroundColor(tasks.currentSelectedTask == nil ? .green : .gray).font(.largeTitle).padding(5)
+                SFSymbols.playButton.foregroundColor(tasks.currentSelectedTask == nil ? Color(Colours.midnightBlue) : .gray).font(.largeTitle).padding(5)
             }
         }.blur(radius: tasks.isLogging ? 0.5 : 0)
     }

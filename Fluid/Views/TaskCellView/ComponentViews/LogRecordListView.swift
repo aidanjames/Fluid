@@ -46,7 +46,7 @@ struct LogRecordListView: View {
         ScrollView {
             ForEach(uniqueDates.reversed(), id: \.self) { date in
                 VStack(alignment: .leading, spacing: 0) {
-                    Text(date.dateAsFriendlyString).bold()
+                    Text(date.dateAsFriendlyString).bold().foregroundColor(Color(Colours.midnightBlue))
                     ForEach(self.recordsGroupedByDate[date]!.reversed()) { record in
                         LogRecordListItemView(tasks: self.tasks, record: record)
                     }

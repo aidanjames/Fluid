@@ -11,90 +11,85 @@ import SwiftUI
 struct TimerCardView: View {
     
     @ObservedObject var tasks: TasksViewModel
-    
     @State private var taskName = ""
     @State private var showingPomodoroTimer = false
     
-    @State private var isFullScreenMod = false
+    @Binding var showingFullScreen: Bool
+    
     
     var body: some View {
         VStack {
-            HStack {
-                Spacer()
-                VStack {
-                    ZStack {
-                        // Display when a task is selected
-                        if tasks.currentSelectedTask == nil {
-                            VStack {
-                                TextField("New task", text: $taskName).font(.title).multilineTextAlignment(.center)
-                                Rectangle().fill(Color.gray).frame(height: 1)
-                                
-                                if !taskName.isEmpty && tasks.currentSelectedTask == nil {
-                                    Button(action: { self.buttonPressed() }) {
-                                        SFSymbols.playButton
-                                            .font(.largeTitle)
-                                            .foregroundColor(Color(hex: "3b6978"))
-                                    }
-                                    .animation(.default)
-                                    .transition(.move(edge: .trailing))
-                                    .padding()
-                                }
-                                
-                            }
-                            
-                        } else {
-                            Text(tasks.currentSelectedTask?.name ?? "Error").font(.title)
-                        }
+            VStack {
+                ZStack {
 
-                    }
-                    
-                    if tasks.isLogging {
-                        ZStack {
-                            TimeDisplay(logRecordStartTime: tasks.currentSelectedTask?.loggingHistory.last?.startTime ?? Date())
+                    if tasks.currentSelectedTask == nil {
+                        VStack {
+                            TextField("Add new task", text: $taskName).font(.title).multilineTextAlignment(.center)
+                            Rectangle().fill(Color.gray).frame(height: 1).padding(.horizontal, 50)
                             
-                            HStack {
-                                Spacer()
-                                // Display that hides the play button until either a task is selected or the user starts typing
+                            if !taskName.isEmpty && tasks.currentSelectedTask == nil {
                                 Button(action: { self.buttonPressed() }) {
-                                    SFSymbols.stopButton
-                                        .font(.largeTitle)
-                                        .foregroundColor(.red)
+                                    ButtonView(buttonText: "Start timer", backgroundColour: Color(Colours.midnightBlue), maxWitdh: 120)
                                 }
                                 .animation(.default)
                                 .transition(.move(edge: .trailing))
-                                .padding(.bottom)
-                                .padding(.trailing, 50)
+                                .padding()
                             }
-                            
-                            
-                            
                         }
+                        
+                    } else {
+                        Text(tasks.currentSelectedTask?.name ?? "Error").font(.title).bold().padding(.top).foregroundColor(Color(Colours.midnightBlue))
                     }
-                    if tasks.isLogging {
-                        
-                        
+                }
+                
+                if tasks.isLogging {
+                    ZStack {
+                        TimeDisplay(logRecordStartTime: tasks.currentSelectedTask?.loggingHistory.last?.startTime ?? Date())
+                        LottieView(filename: "clockCoral").frame(width: 80, height: 80).offset(x: 100, y: -5)
+                    }
+                }
+                if tasks.isLogging {
+                    
+                    HStack {
                         if !showingPomodoroTimer {
                             Button(action: { withAnimation { self.showingPomodoroTimer.toggle() } }) {
-                                Text("Add pomodoro").font(.caption)
-                            }.padding()
+                                ButtonView(buttonText: "Add pomodoro", backgroundColour: Color(Colours.midnightBlue), maxWitdh: 120)
+                            }
+                            .padding(.leading, 45)
+                            Spacer()
                         }
-                    }
+                        Button(action: { self.buttonPressed() }) {
+                            ButtonView(buttonText: "End timer", backgroundColour: Color(Colours.hotCoral), maxWitdh: 120)
+                        }.padding(.trailing, showingPomodoroTimer ? 0 : 45)
+                        
+                        
+                        
+                    }.padding(.bottom, 20)
+                 
                     if self.showingPomodoroTimer {
-                        PomodoroView(showingPomodoroView: $showingPomodoroTimer).padding().layoutPriority(1)
+                        HStack {
+                            Spacer()
+                            PomodoroView(showingPomodoroView: $showingPomodoroTimer).padding().layoutPriority(1)
+                            Spacer()
+                        }.padding(.bottom)
+                        
                     }
+                    
                 }
+
             }
         }
-        .frame(minHeight: 150)
-        .padding(30)
-        .background(Color.white).cornerRadius(16)
-        .onReceive(NotificationCenter.default.publisher(for: UIApplication.didEnterBackgroundNotification)) { _ in
-            if self.tasks.isLogging {
-                let notificationManager = NotificationManager.shared
-                if let currentTask = self.tasks.currentSelectedTask {
-                    notificationManager.scheduleTimerStillRunningNotification(for: currentTask.name)
+            //        .frame(width: self.showingFullScreen ? screen.width : screen.width - 32, height: self.showingFullScreen ? screen.height : 200)
+            .frame(minHeight: self.showingFullScreen ? screen.height : 200)
+            .background(Color.white).cornerRadius(16)
+            .padding(.horizontal, self.showingFullScreen ? 0 : 16)
+            .onReceive(NotificationCenter.default.publisher(for: UIApplication.didEnterBackgroundNotification)) { _ in
+                if self.tasks.isLogging {
+                    let notificationManager = NotificationManager.shared
+                    if let currentTask = self.tasks.currentSelectedTask {
+                        notificationManager.scheduleTimerStillRunningNotification(for: currentTask.name)
+                    }
                 }
-            }
         }
         .onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)) { _ in
             NotificationManager.shared.cancelAllNotificaitons()
@@ -111,8 +106,10 @@ struct TimerCardView: View {
             withAnimation {
                 tasks.stopLoggingForCurrentTask()
                 self.showingPomodoroTimer = false
+                //                self.showingFullScreen = false
             }
         } else {
+            //            withAnimation { showingFullScreen = true }
             if tasks.currentSelectedTask == nil {
                 withAnimation { tasks.startLoggingForNewTask(named: self.taskName) }
                 self.taskName = ""
@@ -127,7 +124,7 @@ struct TimerCardView: View {
 
 struct TimerCardView_Previews: PreviewProvider {
     static var previews: some View {
-        TimerCardView(tasks: TasksViewModel())
+        TimerCardView(tasks: TasksViewModel(), showingFullScreen: .constant(false))
             .previewLayout(.sizeThatFits)
     }
 }

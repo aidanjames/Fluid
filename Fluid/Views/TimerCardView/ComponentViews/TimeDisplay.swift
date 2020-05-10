@@ -21,12 +21,12 @@ struct TimeDisplay: View {
         VStack {
             HStack(alignment: .top) {
                 VStack {
-                    Text(hoursSinceStart)
+                    Text(hoursSinceStart).foregroundColor(Color(Colours.midnightBlue))
                     Text("Hours").font(.caption).foregroundColor(.secondary)
                 }
                 Text(":")
                 VStack {
-                    Text(minutesSinceStart)
+                    Text(minutesSinceStart).foregroundColor(Color(Colours.midnightBlue))
                     Text("Minutes").font(.caption).foregroundColor(.secondary)
                 }
             }.font(.largeTitle)

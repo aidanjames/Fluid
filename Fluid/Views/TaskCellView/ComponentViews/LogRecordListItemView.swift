@@ -18,7 +18,7 @@ struct LogRecordListItemView: View {
     
     var body: some View {
         HStack {
-            Text("\(record.startTime.timeFromDateAsString) -> \(record.endTime?.timeFromDateAsString ?? "Active record") (\(record.lengthInSeconds.secondsToHoursMins()))").fontWeight(.thin)
+            Text("\(record.startTime.timeFromDateAsString) -> \(record.endTime?.timeFromDateAsString ?? "Active record") (\(record.lengthInSeconds.secondsToHoursMins()))").font(Font.system(.body).monospacedDigit()).foregroundColor(Color(Colours.midnightBlue))
             Spacer()
             Button(action: { self.showingEditRecord.toggle() }) {
                 Text("Edit")
