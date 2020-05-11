@@ -21,7 +21,7 @@ struct ContentView: View {
             Color(Colours.midnightBlue).opacity(0.3).edgesIgnoringSafeArea(.all)
             
             VStack(alignment: .leading) {
-                TimerCardView(tasks: tasks, showingFullScreen: $showingFullScreen)
+                TimerCardView(tasks: tasks)
                     .shadow(color: tasks.isLogging ? Color(Colours.hotCoral).opacity(0.3) : Color.gray.opacity(0.5), radius: 10, x: 0, y: 10)
                 
                 Spacer()

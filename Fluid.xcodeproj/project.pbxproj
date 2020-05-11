@@ -35,7 +35,6 @@
 		3D82A4412461DBAB00725CFC /* EditLogRecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D82A4402461DBAA00725CFC /* EditLogRecordView.swift */; };
 		3D904A1F2457691A000A4989 /* ProgressBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D904A1E2457691A000A4989 /* ProgressBarView.swift */; };
 		3D904A2224577C63000A4989 /* clock-simple-animated.json in Resources */ = {isa = PBXBuildFile; fileRef = 3D904A2124577C63000A4989 /* clock-simple-animated.json */; };
-		3D91F61E24686D2B00DB3736 /* TimerContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D91F61D24686D2B00DB3736 /* TimerContainerView.swift */; };
 		3D91F6212468AD6700DB3736 /* clockCoral.json in Resources */ = {isa = PBXBuildFile; fileRef = 3D91F61F2468AD6600DB3736 /* clockCoral.json */; };
 		3D91F6222468AD6700DB3736 /* clockBlue.json in Resources */ = {isa = PBXBuildFile; fileRef = 3D91F6202468AD6700DB3736 /* clockBlue.json */; };
 		3D9B0465245B62A200268783 /* PreviewMockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9B0464245B62A200268783 /* PreviewMockData.swift */; };
@@ -79,7 +78,6 @@
 		3D82A4402461DBAA00725CFC /* EditLogRecordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditLogRecordView.swift; sourceTree = "<group>"; };
 		3D904A1E2457691A000A4989 /* ProgressBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBarView.swift; sourceTree = "<group>"; };
 		3D904A2124577C63000A4989 /* clock-simple-animated.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "clock-simple-animated.json"; sourceTree = "<group>"; };
-		3D91F61D24686D2B00DB3736 /* TimerContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerContainerView.swift; sourceTree = "<group>"; };
 		3D91F61F2468AD6600DB3736 /* clockCoral.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = clockCoral.json; sourceTree = "<group>"; };
 		3D91F6202468AD6700DB3736 /* clockBlue.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = clockBlue.json; sourceTree = "<group>"; };
 		3D9B0464245B62A200268783 /* PreviewMockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewMockData.swift; sourceTree = "<group>"; };
@@ -216,7 +214,6 @@
 		3D3148B12455E2140022447E /* TimerCardView */ = {
 			isa = PBXGroup;
 			children = (
-				3D91F61D24686D2B00DB3736 /* TimerContainerView.swift */,
 				3D3148B92455E6680022447E /* TimerCardView.swift */,
 				3D3148B22455E21F0022447E /* ComponentViews */,
 			);
@@ -395,7 +392,6 @@
 				3D3148AE2455D5580022447E /* Int-Ext.swift in Sources */,
 				3D7DE2FA245DE9AF00246957 /* LoggingRecord.swift in Sources */,
 				3D3148982455D4E40022447E /* SceneDelegate.swift in Sources */,
-				3D91F61E24686D2B00DB3736 /* TimerContainerView.swift in Sources */,
 				3D9B0465245B62A200268783 /* PreviewMockData.swift in Sources */,
 				3DE1EB11246493BA0023B30D /* PomodoroView.swift in Sources */,
 				3DE1EB16246495240023B30D /* PomodoroModel.swift in Sources */,

@@ -9,10 +9,10 @@
 import Foundation
 
 enum PomodoroSettings {
-    static var numberOfRounds: Int = 3
-    static var sessionLength: Int = 1500 // 25 mins = 1500
-    static var shortBreakLength: Int =  300 // 5 mins = 300
-    static var longBreakLength: Int = 1200 // 20 mins = 1200
+    static var numberOfRounds: Int = 3 // Going to depricate this so we just keep rolling until the user cancels the timer
+    static var sessionLength: Int = 7 // 25 mins = 1500
+    static var shortBreakLength: Int =  3 // 5 mins = 300
+    static var longBreakLength: Int = 5 // 20 mins = 1200
     static var numberOfSessionsBeforeLongBreak: Int = 4
     static var autoRollover = true
 }

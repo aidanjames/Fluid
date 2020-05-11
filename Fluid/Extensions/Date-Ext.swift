@@ -11,14 +11,9 @@ import Foundation
 extension Date {
     
     var startOfThisWeek: Date? {
-        let calendar = Calendar(identifier: .gregorian)
-        let components = calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: Date())
-        return calendar.date(from: components)
-        
-        // I'm can't recall why I had the below in here. It adds a day then returns the start of the week.
-        // I've removed it for now but I'm sure it was there to solve some edge case so this might come back to haunt me...
-        
-//        return calendar.date(byAdding: .day, value: 1, to: calendar.date(from: components)!)
+        var calendar = Calendar(identifier: .gregorian)
+        calendar.firstWeekday = 2 // So week starts from midnight at the start of Monday morning (i.e. midnight Sunday)
+        return calendar.date(from: calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: self))
     }
     
     var startOfThisMonth: Date? {

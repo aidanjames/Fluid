@@ -14,14 +14,12 @@ struct TimerCardView: View {
     @State private var taskName = ""
     @State private var showingPomodoroTimer = false
     
-    @Binding var showingFullScreen: Bool
-    
     
     var body: some View {
         VStack {
             VStack {
                 ZStack {
-
+                    
                     if tasks.currentSelectedTask == nil {
                         VStack {
                             TextField("Add new task", text: $taskName).font(.title).multilineTextAlignment(.center)
@@ -38,7 +36,11 @@ struct TimerCardView: View {
                         }
                         
                     } else {
-                        Text(tasks.currentSelectedTask?.name ?? "Error").font(.title).bold().padding(.top).foregroundColor(Color(Colours.midnightBlue))
+                        Text(tasks.currentSelectedTask?.name ?? "Error")
+                            .font(.title)
+                            .bold()
+                            .padding(.top)
+                            .foregroundColor(Color(Colours.midnightBlue))
                     }
                 }
                 
@@ -64,8 +66,9 @@ struct TimerCardView: View {
                         
                         
                         
-                    }.padding(.bottom, 20)
-                 
+                    }
+                    .padding(.bottom, showingPomodoroTimer ? 0 : 20)
+                    
                     if self.showingPomodoroTimer {
                         HStack {
                             Spacer()
@@ -76,20 +79,20 @@ struct TimerCardView: View {
                     }
                     
                 }
-
+                
             }
         }
-            //        .frame(width: self.showingFullScreen ? screen.width : screen.width - 32, height: self.showingFullScreen ? screen.height : 200)
-            .frame(minHeight: self.showingFullScreen ? screen.height : 200)
-            .background(Color.white).cornerRadius(16)
-            .padding(.horizontal, self.showingFullScreen ? 0 : 16)
-            .onReceive(NotificationCenter.default.publisher(for: UIApplication.didEnterBackgroundNotification)) { _ in
-                if self.tasks.isLogging {
-                    let notificationManager = NotificationManager.shared
-                    if let currentTask = self.tasks.currentSelectedTask {
-                        notificationManager.scheduleTimerStillRunningNotification(for: currentTask.name)
-                    }
+        .frame(minHeight: 200)
+        .layoutPriority(1)
+        .background(Color.white.opacity(1)).cornerRadius(16)
+        .padding(.horizontal, 16)
+        .onReceive(NotificationCenter.default.publisher(for: UIApplication.didEnterBackgroundNotification)) { _ in
+            if self.tasks.isLogging {
+                let notificationManager = NotificationManager.shared
+                if let currentTask = self.tasks.currentSelectedTask {
+                    notificationManager.scheduleTimerStillRunningNotification(for: currentTask.name)
                 }
+            }
         }
         .onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)) { _ in
             NotificationManager.shared.cancelAllNotificaitons()
@@ -124,7 +127,7 @@ struct TimerCardView: View {
 
 struct TimerCardView_Previews: PreviewProvider {
     static var previews: some View {
-        TimerCardView(tasks: TasksViewModel(), showingFullScreen: .constant(false))
+        TimerCardView(tasks: TasksViewModel())
             .previewLayout(.sizeThatFits)
     }
 }
