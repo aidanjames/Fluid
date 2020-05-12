@@ -44,7 +44,7 @@ class NotificationManager {
         }
     }
     
-    func scheduleBreakFinishedNotification(withID id: String = UUID().uuidString) {
+    func scheduleBreakFinishedNotification(withID id: String = UUID().uuidString, timeInterval: Double) {
         center.getNotificationSettings { settings in
             guard (settings.authorizationStatus == .authorized) else { return }
             let content = UNMutableNotificationContent()
@@ -52,7 +52,7 @@ class NotificationManager {
             content.subtitle = "Time to get back to work"
             content.sound = UNNotificationSound.default
             
-            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 300, repeats: false)
+            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: timeInterval, repeats: false)
             
             let request = UNNotificationRequest(identifier: id, content: content, trigger: trigger)
             
@@ -61,7 +61,7 @@ class NotificationManager {
     }
     
     
-    func scheduleSessionFinishedNotification(withID id: String = UUID().uuidString) {
+    func scheduleSessionFinishedNotification(withID id: String = UUID().uuidString, timeInterval: Double) {
         center.getNotificationSettings { settings in
             guard (settings.authorizationStatus == .authorized) else { return }
             let content = UNMutableNotificationContent()
@@ -69,7 +69,7 @@ class NotificationManager {
             content.subtitle = "Time for a break"
             content.sound = UNNotificationSound.default
             
-            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 15, repeats: false)
+            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: timeInterval, repeats: false)
             
             let request = UNNotificationRequest(identifier: id, content: content, trigger: trigger)
             

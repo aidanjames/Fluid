@@ -30,7 +30,7 @@ struct PomodoroView: View {
             }
             .padding(.horizontal, 30)
             .padding(.vertical, 30)
-
+            
             VStack {
                 HStack {
                     Spacer()
@@ -46,31 +46,38 @@ struct PomodoroView: View {
                 .padding(.top, 15)
                 Spacer()
             }
-            
         }
         .frame(maxWidth: 250, maxHeight: 140)
         .background(Color.white)
         .cornerRadius(16)
         .shadow(color: Color.gray.opacity(0.5), radius: 10, x: 0, y: 5)
-        
-        
-        
+        .onReceive(NotificationCenter.default.publisher(for: UIApplication.didEnterBackgroundNotification)) { _ in
+            self.pomodoroSession.persistInFlightPomodoroState()
+            
+            guard self.pomodoroSession.isCounting else { return }
+            
+            let secondsRemaining = self.pomodoroSession.pomodoros[self.pomodoroSession.currentPomodoro].maxCounter - self.pomodoroSession.pomodoros[self.pomodoroSession.currentPomodoro].counter
+            
+            switch self.pomodoroSession.pomodoros[self.pomodoroSession.currentPomodoro].pomodoroType {
+            case .focusSession:
+                NotificationManager.shared.scheduleSessionFinishedNotification(timeInterval: Double(secondsRemaining))
+            case .shortBreak, .longBreak:
+                NotificationManager.shared.scheduleBreakFinishedNotification(timeInterval: Double(secondsRemaining))
+            }
+            
+            
+        }
+        .onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)) { _ in
+            self.pomodoroSession.loadInFlightPomodoroState()
+        }
+
         
     }
-    
-    // TODO: Save pomodoro session to filemanager if app goes into background
-    // TODO: Set an alert for when the next session is up
-    // TODO: Update the counter when the app returns to the foreground
+
     
     func timerFired() {
         guard pomodoroSession.isCounting else { return }
-        
-        // If the current session has not finished, increment the counter, else, roll over to the next pomodoro (but only if we have one left in the array).
-        if pomodoroSession.pomodoros[pomodoroSession.currentPomodoro].counter < pomodoroSession.pomodoros[pomodoroSession.currentPomodoro].maxCounter {
-            withAnimation { pomodoroSession.pomodoros[pomodoroSession.currentPomodoro].counter += 1 }
-        } else if pomodoroSession.currentPomodoro < pomodoroSession.pomodoros.count - 1 && PomodoroSettings.autoRollover {
-            pomodoroSession.currentPomodoro += 1
-        }
+        pomodoroSession.incrementCounter()
     }
     
     

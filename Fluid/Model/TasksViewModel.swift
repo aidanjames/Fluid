@@ -14,30 +14,34 @@ class TasksViewModel: ObservableObject {
     @Published var currentSelectedTask: Task?
     @Published var isLogging = false
     
+    // Test to see if I can store the presence (or absence of the pomodoro timer)
+    @Published var showingPomodoroTimer = false
+    
     // The following is a hack to force subscribing views to refresh.
     // I use this when the screens are not updating when I'm updating objects within arrays
     // of the observed objects. I'm sure there's a more elegant way to do this but here we are.
     @Published var manualRefresh: Bool = false
     
-    
 
-
-    
     
     init() {
         if let savedTasks: [Task] = FileManager.default.fetchData(from: FMKeys.allTasks) {
             self.allTasks = savedTasks
-        }
-        if let savedCurrentTask: Task = FileManager.default.fetchData(from: FMKeys.currentTask) {
-            if let index = allTasks.firstIndex(where: { $0.id == savedCurrentTask.id }) {
-                self.currentSelectedTask = allTasks[index]
-                
-                if currentSelectedTask?.loggingHistory.last?.endTime == nil {
-                    self.isLogging = true
-                }
+            if let savedCurrentTask: Task = FileManager.default.fetchData(from: FMKeys.currentTask) {
+                if let index = allTasks.firstIndex(where: { $0.id == savedCurrentTask.id }) {
+                    self.currentSelectedTask = allTasks[index]
+                    
+                    if currentSelectedTask?.loggingHistory.last?.endTime == nil {
+                        self.isLogging = true
+                    }
 
+                }
+                if let showingPomodoroTimer: Bool = FileManager.default.fetchData(from: FMKeys.showingPomodoroTimer) {
+                    self.showingPomodoroTimer = showingPomodoroTimer
+                }
             }
         }
+
     }
     
     
@@ -117,6 +121,12 @@ class TasksViewModel: ObservableObject {
                 persistTaskViewModelState()
             }
         }
+    }
+    
+    
+    func persistPomodoroState() {
+        print("I'm about to save the thing?")
+        FileManager.default.writeData(showingPomodoroTimer, to: FMKeys.showingPomodoroTimer)
     }
     
     

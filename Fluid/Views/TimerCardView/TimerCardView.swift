@@ -12,7 +12,6 @@ struct TimerCardView: View {
     
     @ObservedObject var tasks: TasksViewModel
     @State private var taskName = ""
-    @State private var showingPomodoroTimer = false
     
     
     var body: some View {
@@ -53,8 +52,9 @@ struct TimerCardView: View {
                 if tasks.isLogging {
                     
                     HStack {
-                        if !showingPomodoroTimer {
-                            Button(action: { withAnimation { self.showingPomodoroTimer.toggle() } }) {
+                        if !tasks.showingPomodoroTimer {
+                            Button(action: { withAnimation { self.tasks.showingPomodoroTimer.toggle() } }) {
+                                
                                 ButtonView(buttonText: "Add pomodoro", backgroundColour: Color(Colours.midnightBlue), maxWitdh: 120)
                             }
                             .padding(.leading, 45)
@@ -62,17 +62,19 @@ struct TimerCardView: View {
                         }
                         Button(action: { self.buttonPressed() }) {
                             ButtonView(buttonText: "End timer", backgroundColour: Color(Colours.hotCoral), maxWitdh: 120)
-                        }.padding(.trailing, showingPomodoroTimer ? 0 : 45)
+                        }
+                        .padding(.trailing, tasks.showingPomodoroTimer ? 0 : 45)
                         
                         
                         
                     }
-                    .padding(.bottom, showingPomodoroTimer ? 0 : 20)
+                    .padding(.bottom, tasks.showingPomodoroTimer ? 0 : 20)
                     
-                    if self.showingPomodoroTimer {
+                    if tasks.showingPomodoroTimer {
+                        
                         HStack {
                             Spacer()
-                            PomodoroView(showingPomodoroView: $showingPomodoroTimer).padding().layoutPriority(1)
+                            PomodoroView(showingPomodoroView: $tasks.showingPomodoroTimer).padding().layoutPriority(1)
                             Spacer()
                         }.padding(.bottom)
                         
@@ -92,6 +94,9 @@ struct TimerCardView: View {
                 if let currentTask = self.tasks.currentSelectedTask {
                     notificationManager.scheduleTimerStillRunningNotification(for: currentTask.name)
                 }
+                if self.tasks.showingPomodoroTimer {
+                    self.tasks.persistPomodoroState()
+                }
             }
         }
         .onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)) { _ in
@@ -108,11 +113,9 @@ struct TimerCardView: View {
         if tasks.isLogging {
             withAnimation {
                 tasks.stopLoggingForCurrentTask()
-                self.showingPomodoroTimer = false
-                //                self.showingFullScreen = false
+                tasks.showingPomodoroTimer = false
             }
         } else {
-            //            withAnimation { showingFullScreen = true }
             if tasks.currentSelectedTask == nil {
                 withAnimation { tasks.startLoggingForNewTask(named: self.taskName) }
                 self.taskName = ""

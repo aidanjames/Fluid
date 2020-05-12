@@ -32,7 +32,10 @@ enum Images {
 enum FMKeys {
     static let allTasks = "allTasks"
     static let currentTask = "currentTask"
-    static let pomodoroSession = "pomodoroSessions"
+    static let showingPomodoroTimer = "showingPomodoroTimer"
+    static let pomodoros = "pomodoros"
+    static let currentPomodoro = "currentPomodoro"
+    static let pomodoroIsCounting = "pomodoroIsCounting"
 }
 
 enum Colours {
