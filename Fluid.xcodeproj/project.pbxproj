@@ -27,6 +27,8 @@
 		3D775042245A085D00144355 /* FileManager-Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D775041245A085D00144355 /* FileManager-Ext.swift */; };
 		3D775045245A128F00144355 /* TaskCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D775044245A128F00144355 /* TaskCellView.swift */; };
 		3D775047245A149000144355 /* UIApplication-Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D775046245A149000144355 /* UIApplication-Ext.swift */; };
+		3D7DA88E246B2435007E3D91 /* ProgressDotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D7DA88D246B2435007E3D91 /* ProgressDotView.swift */; };
+		3D7DA890246B2F51007E3D91 /* View-Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D7DA88F246B2F51007E3D91 /* View-Ext.swift */; };
 		3D7DC169245896FB00F58087 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D7DC168245896FB00F58087 /* Task.swift */; };
 		3D7DE2FA245DE9AF00246957 /* LoggingRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D7DE2F9245DE9AF00246957 /* LoggingRecord.swift */; };
 		3D7DE2FC245DE9FB00246957 /* TasksViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D7DE2FB245DE9FB00246957 /* TasksViewModel.swift */; };
@@ -42,7 +44,6 @@
 		3DA6000624633A2600F2913E /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA6000524633A2600F2913E /* NotificationManager.swift */; };
 		3DC841002465758E0079027E /* RingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC840FF2465758E0079027E /* RingView.swift */; };
 		3DE1EB11246493BA0023B30D /* PomodoroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE1EB10246493BA0023B30D /* PomodoroView.swift */; };
-		3DE1EB13246493C60023B30D /* FlowTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE1EB12246493C60023B30D /* FlowTimeView.swift */; };
 		3DE1EB16246495240023B30D /* PomodoroModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE1EB15246495240023B30D /* PomodoroModel.swift */; };
 		3DE1EB1A24649E960023B30D /* TimeDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE1EB1924649E960023B30D /* TimeDisplay.swift */; };
 		3DF791A0245F0F2900CB5DB7 /* LogRecordListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF7919F245F0F2900CB5DB7 /* LogRecordListView.swift */; };
@@ -70,6 +71,8 @@
 		3D775041245A085D00144355 /* FileManager-Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager-Ext.swift"; sourceTree = "<group>"; };
 		3D775044245A128F00144355 /* TaskCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCellView.swift; sourceTree = "<group>"; };
 		3D775046245A149000144355 /* UIApplication-Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication-Ext.swift"; sourceTree = "<group>"; };
+		3D7DA88D246B2435007E3D91 /* ProgressDotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressDotView.swift; sourceTree = "<group>"; };
+		3D7DA88F246B2F51007E3D91 /* View-Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View-Ext.swift"; sourceTree = "<group>"; };
 		3D7DC168245896FB00F58087 /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		3D7DE2F9245DE9AF00246957 /* LoggingRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggingRecord.swift; sourceTree = "<group>"; };
 		3D7DE2FB245DE9FB00246957 /* TasksViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksViewModel.swift; sourceTree = "<group>"; };
@@ -85,7 +88,6 @@
 		3DA6000524633A2600F2913E /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		3DC840FF2465758E0079027E /* RingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RingView.swift; sourceTree = "<group>"; };
 		3DE1EB10246493BA0023B30D /* PomodoroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PomodoroView.swift; sourceTree = "<group>"; };
-		3DE1EB12246493C60023B30D /* FlowTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowTimeView.swift; sourceTree = "<group>"; };
 		3DE1EB15246495240023B30D /* PomodoroModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PomodoroModel.swift; sourceTree = "<group>"; };
 		3DE1EB1924649E960023B30D /* TimeDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeDisplay.swift; sourceTree = "<group>"; };
 		3DF7919F245F0F2900CB5DB7 /* LogRecordListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogRecordListView.swift; sourceTree = "<group>"; };
@@ -194,6 +196,7 @@
 				3D9B0466245B79DB00268783 /* Array-Ext.swift */,
 				3D7DE2FD245E277800246957 /* Date-Ext.swift */,
 				3D47E1C424660BAE00EB6280 /* Color-Ext.swift */,
+				3D7DA88F246B2F51007E3D91 /* View-Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -223,8 +226,6 @@
 		3D3148B22455E21F0022447E /* ComponentViews */ = {
 			isa = PBXGroup;
 			children = (
-				3D904A1E2457691A000A4989 /* ProgressBarView.swift */,
-				3DE1EB12246493C60023B30D /* FlowTimeView.swift */,
 				3DE1EB1924649E960023B30D /* TimeDisplay.swift */,
 			);
 			path = ComponentViews;
@@ -297,6 +298,8 @@
 				3DE1EB10246493BA0023B30D /* PomodoroView.swift */,
 				3DE1EB15246495240023B30D /* PomodoroModel.swift */,
 				3DC840FF2465758E0079027E /* RingView.swift */,
+				3D7DA88D246B2435007E3D91 /* ProgressDotView.swift */,
+				3D904A1E2457691A000A4989 /* ProgressBarView.swift */,
 			);
 			path = PomodoroView;
 			sourceTree = "<group>";
@@ -383,11 +386,13 @@
 			files = (
 				3DC841002465758E0079027E /* RingView.swift in Sources */,
 				3D3148BA2455E6680022447E /* TimerCardView.swift in Sources */,
+				3D7DA890246B2F51007E3D91 /* View-Ext.swift in Sources */,
 				3D3148962455D4E40022447E /* AppDelegate.swift in Sources */,
 				3D775045245A128F00144355 /* TaskCellView.swift in Sources */,
 				3D7DC169245896FB00F58087 /* Task.swift in Sources */,
 				3D82A4412461DBAB00725CFC /* EditLogRecordView.swift in Sources */,
 				3DE1EB1A24649E960023B30D /* TimeDisplay.swift in Sources */,
+				3D7DA88E246B2435007E3D91 /* ProgressDotView.swift in Sources */,
 				3D47E1C524660BAE00EB6280 /* Color-Ext.swift in Sources */,
 				3D3148AE2455D5580022447E /* Int-Ext.swift in Sources */,
 				3D7DE2FA245DE9AF00246957 /* LoggingRecord.swift in Sources */,
@@ -404,7 +409,6 @@
 				3D31489A2455D4E40022447E /* ContentView.swift in Sources */,
 				3D775047245A149000144355 /* UIApplication-Ext.swift in Sources */,
 				3D7DE2FC245DE9FB00246957 /* TasksViewModel.swift in Sources */,
-				3DE1EB13246493C60023B30D /* FlowTimeView.swift in Sources */,
 				3D775042245A085D00144355 /* FileManager-Ext.swift in Sources */,
 				3D9B0467245B79DB00268783 /* Array-Ext.swift in Sources */,
 				3D227CF1245B4F17007FCF2E /* TaskCellFrontView.swift in Sources */,

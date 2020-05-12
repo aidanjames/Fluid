@@ -24,7 +24,7 @@ struct RingView: View {
         case .shortBreak:
             return .green
         case .longBreak:
-            return Color(Colours.midnightBlue)
+            return Color.blue
         }
     }
     
@@ -43,6 +43,7 @@ struct RingView: View {
                 .rotationEffect(Angle(degrees: 90))
                 .rotation3DEffect(Angle(degrees: 180), axis: (x: 1, y: 0, z: 0))
                 .shadow(color: colour.opacity(0.3), radius: 3 * multiplier, x: 0, y: 3 * multiplier)
+                .animation(.default)
             Text("\((pomodoroSession.pomodoros[pomodoroSession.currentPomodoro].maxCounter - pomodoroSession.pomodoros[pomodoroSession.currentPomodoro].counter).secondsToHoursMinsSecs())").font(Font.system(.body).monospacedDigit())
         }
     }

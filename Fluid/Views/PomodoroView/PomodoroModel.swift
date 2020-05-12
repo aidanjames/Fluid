@@ -6,11 +6,11 @@
 //  Copyright © 2020 Aidan Pendlebury. All rights reserved.
 //
 
-import Foundation
+import SwiftUI
 
 enum PomodoroSettings {
     static var sessionLength: Int = 1500 // 25 mins = 1500
-    static var shortBreakLength: Int =  300 // 5 mins = 300
+    static var shortBreakLength: Int = 300  // 5 mins = 300
     static var longBreakLength: Int = 1200 // 20 mins = 1200
     static var numberOfSessionsBeforeLongBreak: Int = 4
     static var autoRollover = true
@@ -22,13 +22,11 @@ class PomodoroSession: ObservableObject {
     @Published var currentPomodoro: Int = 0
     @Published var isCounting = true
     
+    
     init() {
-        print("Pomodoro initialiser being called")
-
         loadInFlightPomodoroState()
-        
         guard pomodoros.isEmpty else { return }
-
+        
         for session in 1...PomodoroSettings.numberOfSessionsBeforeLongBreak {
             pomodoros.append(Pomodoro(counter: 0, maxCounter: PomodoroSettings.sessionLength, pomodoroType: .focusSession, startTime: nil, endTime: nil))
             if session != PomodoroSettings.numberOfSessionsBeforeLongBreak {
@@ -46,19 +44,59 @@ class PomodoroSession: ObservableObject {
         guard isCounting else { return }
 
         if pomodoros[currentPomodoro].counter < pomodoros[currentPomodoro].maxCounter {
+            if pomodoros[currentPomodoro].state == .toDo { pomodoros[currentPomodoro].state = .active }
             pomodoros[currentPomodoro].counter += 1
         } else if currentPomodoro < (pomodoros.count - 1) && PomodoroSettings.autoRollover {
+            pomodoros[currentPomodoro].state = .done
             currentPomodoro += 1
+            pomodoros[currentPomodoro].state = .active
             pomodoros[currentPomodoro].counter = 0
             pomodoros[currentPomodoro].startTime = Date()
             pomodoros[currentPomodoro].endTime = Calendar.current.date(byAdding: .second, value: pomodoros[currentPomodoro].pomodoroType == .focusSession ? PomodoroSettings.sessionLength : pomodoros[currentPomodoro].pomodoroType == .shortBreak ? PomodoroSettings.shortBreakLength : PomodoroSettings.longBreakLength, to: Date())
             persistInFlightPomodoroState()
         } else {
             currentPomodoro = 0
+            // Not sure why I can't use map here.
+            for i in 0..<pomodoros.count {
+                pomodoros[i].state = .toDo
+            }
+            pomodoros[currentPomodoro].state = .active
             pomodoros[currentPomodoro].counter = 0
             pomodoros[currentPomodoro].startTime = Date()
             pomodoros[currentPomodoro].endTime = Calendar.current.date(byAdding: .second, value: pomodoros[currentPomodoro].pomodoroType == .focusSession ? PomodoroSettings.sessionLength : pomodoros[currentPomodoro].pomodoroType == .shortBreak ? PomodoroSettings.shortBreakLength : PomodoroSettings.longBreakLength, to: Date())
             persistInFlightPomodoroState()
+        }
+    }
+    
+    
+    func skipToNextPomodoro() {
+        if currentPomodoro < pomodoros.count - 1 {
+            pomodoros[currentPomodoro].state = .done
+            currentPomodoro += 1
+            pomodoros[currentPomodoro].startTime = Date()
+            pomodoros[currentPomodoro].endTime = Calendar.current.date(byAdding: .second, value: pomodoros[currentPomodoro].pomodoroType == .focusSession ? PomodoroSettings.sessionLength : pomodoros[currentPomodoro].pomodoroType == .shortBreak ? PomodoroSettings.shortBreakLength : PomodoroSettings.longBreakLength, to: Date())
+        } else {
+            for i in 0..<pomodoros.count {
+                pomodoros[i].state = .toDo
+            }
+            currentPomodoro = 0
+            pomodoros[currentPomodoro].startTime = Date()
+            pomodoros[currentPomodoro].endTime = Calendar.current.date(byAdding: .second, value: pomodoros[currentPomodoro].pomodoroType == .focusSession ? PomodoroSettings.sessionLength : pomodoros[currentPomodoro].pomodoroType == .shortBreak ? PomodoroSettings.shortBreakLength : PomodoroSettings.longBreakLength, to: Date())
+        }
+        pomodoros[currentPomodoro].counter = 0
+        isCounting = true
+        persistInFlightPomodoroState()
+    }
+    
+    
+    func colourForCurrentPomodoroType() -> Color {
+        switch pomodoros[currentPomodoro].pomodoroType {
+        case .focusSession:
+            return Color(Colours.hotCoral)
+        case .shortBreak:
+            return Color.green
+        case .longBreak:
+            return Color.blue
         }
     }
     
@@ -110,7 +148,9 @@ class PomodoroSession: ObservableObject {
 }
 
 
-struct Pomodoro: Codable {
+struct Pomodoro: Codable, Identifiable {
+    let id = UUID()
+    var state: PomodoroState = .toDo
     var counter: Int
     let maxCounter: Int
     let pomodoroType: PomodoroType
@@ -120,6 +160,10 @@ struct Pomodoro: Codable {
 
 enum PomodoroType: String, Codable {
     case focusSession, shortBreak, longBreak
+}
+
+enum PomodoroState: String, Codable {
+    case done, active, toDo
 }
 
 

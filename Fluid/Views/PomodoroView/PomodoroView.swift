@@ -22,11 +22,30 @@ struct PomodoroView: View {
             HStack {
                 RingView(pomodoroSession: self.pomodoroSession)
                     .onReceive(timer) { _ in
-                        self.timerFired()
+                        guard self.pomodoroSession.isCounting else { return }
+                        self.pomodoroSession.incrementCounter()
                 }
                 Spacer()
-                Text("\(currentPomodoroType == .focusSession ? "In session" : currentPomodoroType == .shortBreak ? "Short Break" : "Long break")")
-                    .foregroundColor(Color("\(currentPomodoroType == .focusSession ? Colours.hotCoral : Colours.midnightBlue)"))
+                VStack(alignment: .leading) {
+                    Text("\(currentPomodoroType == .focusSession ? "Focus session" : currentPomodoroType == .shortBreak ? "Short Break" : "Long break")")
+                        .foregroundColor(pomodoroSession.colourForCurrentPomodoroType())
+                    ProgressDotView(pomodoroSession: self.pomodoroSession)
+                    Spacer()
+                    Button(action: { self.pomodoroSession.skipToNextPomodoro() }) {
+                        HStack {
+                            Text("Skip")
+                            SFSymbols.advance
+                        }
+                        .font(.caption)
+                        .foregroundColor(.white)
+                        .padding(.vertical, 7)
+                        .padding(.horizontal, 15)
+                        .background(Color(Colours.midnightBlue))
+                        .cornerRadius(10)
+                    }
+                    .padding(.top, 10)
+                }
+                .padding(.leading)
             }
             .padding(.horizontal, 30)
             .padding(.vertical, 30)
@@ -47,25 +66,21 @@ struct PomodoroView: View {
                 Spacer()
             }
         }
-        .frame(maxWidth: 250, maxHeight: 140)
+        .frame(maxWidth: 300, maxHeight: 150)
         .background(Color.white)
         .cornerRadius(16)
         .shadow(color: Color.gray.opacity(0.5), radius: 10, x: 0, y: 5)
+//            .shadow(color: self.pomodoroSession.colourForCurrentPomodoroType().opacity(0.3), radius: 10, x: 0, y: 5)
         .onReceive(NotificationCenter.default.publisher(for: UIApplication.didEnterBackgroundNotification)) { _ in
             self.pomodoroSession.persistInFlightPomodoroState()
-            
             guard self.pomodoroSession.isCounting else { return }
-            
             let secondsRemaining = self.pomodoroSession.pomodoros[self.pomodoroSession.currentPomodoro].maxCounter - self.pomodoroSession.pomodoros[self.pomodoroSession.currentPomodoro].counter
-            
             switch self.pomodoroSession.pomodoros[self.pomodoroSession.currentPomodoro].pomodoroType {
             case .focusSession:
                 NotificationManager.shared.scheduleSessionFinishedNotification(timeInterval: Double(secondsRemaining))
             case .shortBreak, .longBreak:
                 NotificationManager.shared.scheduleBreakFinishedNotification(timeInterval: Double(secondsRemaining))
             }
-            
-            
         }
         .onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)) { _ in
             self.pomodoroSession.loadInFlightPomodoroState()
@@ -74,11 +89,6 @@ struct PomodoroView: View {
         
     }
 
-    
-    func timerFired() {
-        guard pomodoroSession.isCounting else { return }
-        pomodoroSession.incrementCounter()
-    }
     
     
 }

@@ -15,6 +15,7 @@ enum SFSymbols {
     static let moreButton = Image(systemName: "ellipsis.circle")
     static let moreButtonWithoutCircle = Image(systemName: "ellipsis")
     static let closeCircle = Image(systemName: "xmark.circle.fill")
+    static let advance = Image(systemName: "arrow.right")
 }
 
 
