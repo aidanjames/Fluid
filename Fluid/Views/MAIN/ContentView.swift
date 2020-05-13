@@ -11,9 +11,8 @@ import SwiftUI
 struct ContentView: View {
     
     @ObservedObject var tasks = TasksViewModel()
-    
-    // Get rid of this when we know what we're doing
-    @State private var showingFullScreen = false
+    @State private var showingPopUpView = false
+
     
     var body: some View {
         ZStack {
@@ -26,7 +25,19 @@ struct ContentView: View {
                 
                 Spacer()
                 
-                Text("Recent tasks").font(.title).foregroundColor(Color(Colours.midnightBlue)).bold().padding(.leading).padding(.top)
+                HStack { // Get rid of this when I've finish testing the popup view
+                    Text("Recent tasks").font(.title).foregroundColor(Color(Colours.midnightBlue)).bold().padding(.leading).padding(.top)
+                    Button("Show popup") {
+                        withAnimation {
+                            self.showingPopUpView.toggle()
+                        }
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                            withAnimation {
+                                self.showingPopUpView.toggle()
+                            }
+                        }
+                    }
+                }
                 
                 ScrollView {
                     ForEach(tasks.allTasks) { task in
@@ -39,7 +50,19 @@ struct ContentView: View {
                 }
             }
             .padding(.top)
+            
+            if showingPopUpView {
+                PopUpView(isShowing: $showingPopUpView) {
+                    VStack {
+                        Text("This is my popup view!")
+                        Text("It. Is. Happening.")
+                    }
+
+                }
+                .transition(.opacity)
+            }
         }
+           
         .onAppear {
             UIApplication.shared.isIdleTimerDisabled = self.tasks.isLogging
             NotificationManager.shared.requestPermission()

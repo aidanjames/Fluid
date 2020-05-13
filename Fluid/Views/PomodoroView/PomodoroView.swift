@@ -52,6 +52,9 @@ struct PomodoroView: View {
             
             VStack {
                 HStack {
+                    Images.cog
+                        .padding(.leading, 10)
+                        .padding(.top, 10)
                     Spacer()
                     Button(action: {
                         self.pomodoroSession.isCounting = false
@@ -59,10 +62,12 @@ struct PomodoroView: View {
                         withAnimation { self.showingPomodoroView = false }
                     }) {
                         SFSymbols.closeCircle.foregroundColor(.black)
+                            .font(.headline)
+                        .padding(.trailing, 10)
+                        .padding(.top, 10)
                     }
                 }
-                .padding(.trailing, 15)
-                .padding(.top, 15)
+
                 Spacer()
             }
         }
@@ -70,7 +75,6 @@ struct PomodoroView: View {
         .background(Color.white)
         .cornerRadius(16)
         .shadow(color: Color.gray.opacity(0.5), radius: 10, x: 0, y: 5)
-//            .shadow(color: self.pomodoroSession.colourForCurrentPomodoroType().opacity(0.3), radius: 10, x: 0, y: 5)
         .onReceive(NotificationCenter.default.publisher(for: UIApplication.didEnterBackgroundNotification)) { _ in
             self.pomodoroSession.persistInFlightPomodoroState()
             guard self.pomodoroSession.isCounting else { return }

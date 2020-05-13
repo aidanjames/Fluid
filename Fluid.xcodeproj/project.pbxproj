@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3D0F7F0F246C7AD800AB3874 /* PopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0F7F0E246C7AD800AB3874 /* PopUpView.swift */; };
 		3D227CF1245B4F17007FCF2E /* TaskCellFrontView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D227CF0245B4F17007FCF2E /* TaskCellFrontView.swift */; };
 		3D227CF3245B4F24007FCF2E /* TaskCellBackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D227CF2245B4F24007FCF2E /* TaskCellBackView.swift */; };
 		3D3148962455D4E40022447E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3148952455D4E40022447E /* AppDelegate.swift */; };
@@ -50,6 +51,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3D0F7F0E246C7AD800AB3874 /* PopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpView.swift; sourceTree = "<group>"; };
 		3D227CF0245B4F17007FCF2E /* TaskCellFrontView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCellFrontView.swift; sourceTree = "<group>"; };
 		3D227CF2245B4F24007FCF2E /* TaskCellBackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCellBackView.swift; sourceTree = "<group>"; };
 		3D3148922455D4E40022447E /* Fluid.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fluid.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -204,8 +206,8 @@
 		3D3148AC2455D5220022447E /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				3DE1EB142464950B0023B30D /* PomodoroView */,
 				3DB1CEBE245A246900D25BF4 /* MAIN */,
+				3DE1EB142464950B0023B30D /* PomodoroView */,
 				3D3148B12455E2140022447E /* TimerCardView */,
 				3D227CF4245B535F007FCF2E /* TaskCellView */,
 				3D56B7B4245782D50042BB0F /* WelcomeView */,
@@ -235,6 +237,7 @@
 			isa = PBXGroup;
 			children = (
 				3D47E1C224660B9100EB6280 /* ButtonView.swift */,
+				3D0F7F0E246C7AD800AB3874 /* PopUpView.swift */,
 			);
 			path = SharedViews;
 			sourceTree = "<group>";
@@ -385,6 +388,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3DC841002465758E0079027E /* RingView.swift in Sources */,
+				3D0F7F0F246C7AD800AB3874 /* PopUpView.swift in Sources */,
 				3D3148BA2455E6680022447E /* TimerCardView.swift in Sources */,
 				3D7DA890246B2F51007E3D91 /* View-Ext.swift in Sources */,
 				3D3148962455D4E40022447E /* AppDelegate.swift in Sources */,
