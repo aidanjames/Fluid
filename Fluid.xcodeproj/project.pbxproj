@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3D09898D246DBDF200E520E2 /* PomodoroSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D09898C246DBDF200E520E2 /* PomodoroSettingsView.swift */; };
 		3D0F7F0F246C7AD800AB3874 /* PopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0F7F0E246C7AD800AB3874 /* PopUpView.swift */; };
 		3D227CF1245B4F17007FCF2E /* TaskCellFrontView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D227CF0245B4F17007FCF2E /* TaskCellFrontView.swift */; };
 		3D227CF3245B4F24007FCF2E /* TaskCellBackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D227CF2245B4F24007FCF2E /* TaskCellBackView.swift */; };
@@ -51,6 +52,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3D09898C246DBDF200E520E2 /* PomodoroSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PomodoroSettingsView.swift; sourceTree = "<group>"; };
 		3D0F7F0E246C7AD800AB3874 /* PopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpView.swift; sourceTree = "<group>"; };
 		3D227CF0245B4F17007FCF2E /* TaskCellFrontView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCellFrontView.swift; sourceTree = "<group>"; };
 		3D227CF2245B4F24007FCF2E /* TaskCellBackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCellBackView.swift; sourceTree = "<group>"; };
@@ -303,6 +305,7 @@
 				3DC840FF2465758E0079027E /* RingView.swift */,
 				3D7DA88D246B2435007E3D91 /* ProgressDotView.swift */,
 				3D904A1E2457691A000A4989 /* ProgressBarView.swift */,
+				3D09898C246DBDF200E520E2 /* PomodoroSettingsView.swift */,
 			);
 			path = PomodoroView;
 			sourceTree = "<group>";
@@ -408,6 +411,7 @@
 				3D56B7B6245782E50042BB0F /* WelcomeView.swift in Sources */,
 				3D7DE2FE245E277800246957 /* Date-Ext.swift in Sources */,
 				3D3148B02455D77C0022447E /* MyTimer.swift in Sources */,
+				3D09898D246DBDF200E520E2 /* PomodoroSettingsView.swift in Sources */,
 				3D904A1F2457691A000A4989 /* ProgressBarView.swift in Sources */,
 				3D82A43F2460991900725CFC /* LogRecordListItemView.swift in Sources */,
 				3D31489A2455D4E40022447E /* ContentView.swift in Sources */,

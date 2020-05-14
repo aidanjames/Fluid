@@ -26,7 +26,13 @@ class PomodoroSession: ObservableObject {
     init() {
         loadInFlightPomodoroState()
         guard pomodoros.isEmpty else { return }
-        
+        resetPomodoroSession()
+    }
+    
+    
+    func resetPomodoroSession() {
+        pomodoros.removeAll()
+        currentPomodoro = 0
         for session in 1...PomodoroSettings.numberOfSessionsBeforeLongBreak {
             pomodoros.append(Pomodoro(counter: 0, maxCounter: PomodoroSettings.sessionLength, pomodoroType: .focusSession, startTime: nil, endTime: nil))
             if session != PomodoroSettings.numberOfSessionsBeforeLongBreak {
@@ -105,10 +111,19 @@ class PomodoroSession: ObservableObject {
         FileManager.default.writeData(pomodoros, to: FMKeys.pomodoros)
         FileManager.default.writeData(currentPomodoro, to: FMKeys.currentPomodoro)
         FileManager.default.writeData(isCounting, to: FMKeys.pomodoroIsCounting)
+        
+        let pomoSettings = [PomodoroSettings.sessionLength, PomodoroSettings.shortBreakLength, PomodoroSettings.longBreakLength, PomodoroSettings.numberOfSessionsBeforeLongBreak]
+        FileManager.default.writeData(pomoSettings, to: FMKeys.pomodoroSettings)
     }
     
     
     func loadInFlightPomodoroState() {
+        if let pomoSettings: [Int] = FileManager.default.fetchData(from: FMKeys.pomodoroSettings) {
+            PomodoroSettings.sessionLength = pomoSettings[0]
+            PomodoroSettings.shortBreakLength = pomoSettings[1]
+            PomodoroSettings.longBreakLength = pomoSettings[2]
+            PomodoroSettings.numberOfSessionsBeforeLongBreak = pomoSettings[3]
+        }
         if let inFlightPomodoros: [Pomodoro] = FileManager.default.fetchData(from: FMKeys.pomodoros) {
             self.pomodoros = inFlightPomodoros
             if let currentPomodoro: Int = FileManager.default.fetchData(from: FMKeys.currentPomodoro) {
@@ -140,6 +155,7 @@ class PomodoroSession: ObservableObject {
     }
     
     deinit {
+        print("Hello. Only me")
         deleteInFlightPromodoroState()
     }
     

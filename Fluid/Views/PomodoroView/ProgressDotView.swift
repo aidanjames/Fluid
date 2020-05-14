@@ -35,16 +35,21 @@ struct DotView: View {
         if pomodoroState == .active {
             return Circle()
                 .fill(colourForPomodoroType())
+                .frame(maxWidth: 30)
                 .eraseToAnyView()
         } else if pomodoroState == .done {
             return Circle()
                 .fill(colourForPomodoroType())
                 .opacity(0.3)
+                .frame(maxWidth: 30)
+
                 .eraseToAnyView()
         } else {
             return Circle()
                 .stroke(colourForPomodoroType())
                 .opacity(0.3)
+                .frame(maxWidth: 30)
+
                 .eraseToAnyView()
         }
     }

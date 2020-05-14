@@ -27,16 +27,16 @@ struct ContentView: View {
                 
                 HStack { // Get rid of this when I've finish testing the popup view
                     Text("Recent tasks").font(.title).foregroundColor(Color(Colours.midnightBlue)).bold().padding(.leading).padding(.top)
-                    Button("Show popup") {
-                        withAnimation {
-                            self.showingPopUpView.toggle()
-                        }
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                            withAnimation {
-                                self.showingPopUpView.toggle()
-                            }
-                        }
-                    }
+//                    Button("Show popup") {
+//                        withAnimation {
+//                            self.showingPopUpView.toggle()
+//                        }
+//                        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+//                            withAnimation {
+//                                self.showingPopUpView.toggle()
+//                            }
+//                        }
+//                    }
                 }
                 
                 ScrollView {

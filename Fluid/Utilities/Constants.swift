@@ -36,6 +36,7 @@ enum FMKeys {
     static let pomodoros = "pomodoros"
     static let currentPomodoro = "currentPomodoro"
     static let pomodoroIsCounting = "pomodoroIsCounting"
+    static let pomodoroSettings = "pomodoroSettings"
 }
 
 enum Colours {
