@@ -14,6 +14,9 @@ struct PomodoroView: View {
     @Binding var showingPomodoroView: Bool
     @State private var showingPopUp = false
     
+    @Binding var showingSessionFinishedPopUp: Bool
+    @Binding var showingBreakFinishedPopUp: Bool
+    
     var currentPomodoroType: PomodoroType { pomodoroSession.pomodoros[pomodoroSession.currentPomodoro].pomodoroType }
     
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
@@ -108,6 +111,6 @@ struct PomodoroView: View {
 
 struct PomodoroView_Previews: PreviewProvider {
     static var previews: some View {
-        PomodoroView(showingPomodoroView: .constant(true))
+        PomodoroView(showingPomodoroView: .constant(true), showingSessionFinishedPopUp: .constant(false), showingBreakFinishedPopUp: .constant(false))
     }
 }

@@ -13,6 +13,9 @@ struct TimerCardView: View {
     @ObservedObject var tasks: TasksViewModel
     @State private var taskName = ""
     
+    @Binding var showingSessionFinishedPopUp: Bool
+    @Binding var showingBreakFinishedPopUp: Bool
+    
     
     var body: some View {
         VStack {
@@ -74,7 +77,7 @@ struct TimerCardView: View {
                         
                         HStack {
                             Spacer()
-                            PomodoroView(showingPomodoroView: $tasks.showingPomodoroTimer).padding().layoutPriority(1)
+                            PomodoroView(showingPomodoroView: $tasks.showingPomodoroTimer, showingSessionFinishedPopUp: $showingSessionFinishedPopUp, showingBreakFinishedPopUp: $showingBreakFinishedPopUp).padding().layoutPriority(1)
                             Spacer()
                         }.padding(.bottom)
                         
@@ -130,7 +133,7 @@ struct TimerCardView: View {
 
 struct TimerCardView_Previews: PreviewProvider {
     static var previews: some View {
-        TimerCardView(tasks: TasksViewModel())
+        TimerCardView(tasks: TasksViewModel(), showingSessionFinishedPopUp: .constant(false), showingBreakFinishedPopUp: .constant(false))
             .previewLayout(.sizeThatFits)
     }
 }
