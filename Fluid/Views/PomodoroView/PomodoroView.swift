@@ -12,10 +12,7 @@ struct PomodoroView: View {
     
     @ObservedObject var pomodoroSession = PomodoroSession()
     @Binding var showingPomodoroView: Bool
-    @State private var showingPopUp = false
-    
-    @Binding var showingSessionFinishedPopUp: Bool
-    @Binding var showingBreakFinishedPopUp: Bool
+    @State private var showingSettingsScreen = false
     
     var currentPomodoroType: PomodoroType { pomodoroSession.pomodoros[pomodoroSession.currentPomodoro].pomodoroType }
     
@@ -56,13 +53,15 @@ struct PomodoroView: View {
             
             VStack {
                 HStack {
-                    Button(action: { self.showingPopUp.toggle() }) {
+                    Button(action: {
+                        self.showingSettingsScreen.toggle()
+                    }) {
                         Images.cog
                         .padding(.leading, 10)
                         .padding(.top, 10)
                         }
                     .buttonStyle(PlainButtonStyle())
-                    .sheet(isPresented: $showingPopUp) {
+                    .sheet(isPresented: $showingSettingsScreen) {
                         PomodoroSettingsView(pomodoroSession: self.pomodoroSession)
                     }
                     Spacer()
@@ -111,6 +110,6 @@ struct PomodoroView: View {
 
 struct PomodoroView_Previews: PreviewProvider {
     static var previews: some View {
-        PomodoroView(showingPomodoroView: .constant(true), showingSessionFinishedPopUp: .constant(false), showingBreakFinishedPopUp: .constant(false))
+        PomodoroView(showingPomodoroView: .constant(true))
     }
 }

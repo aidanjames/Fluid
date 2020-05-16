@@ -11,9 +11,6 @@ import SwiftUI
 struct ContentView: View {
     
     @ObservedObject var tasks = TasksViewModel()
-    @State private var showingSessionFinishedPopUp = false
-    @State private var showingBreakFinishedPopUp = false
-
     
     var body: some View {
         ZStack {
@@ -21,7 +18,7 @@ struct ContentView: View {
             Color(Colours.midnightBlue).opacity(0.3).edgesIgnoringSafeArea(.all)
             
             VStack(alignment: .leading) {
-                TimerCardView(tasks: tasks, showingSessionFinishedPopUp: $showingSessionFinishedPopUp, showingBreakFinishedPopUp: $showingBreakFinishedPopUp)
+                TimerCardView(tasks: tasks)
                     .shadow(color: tasks.isLogging ? Color(Colours.hotCoral).opacity(0.3) : Color.gray.opacity(0.5), radius: 10, x: 0, y: 10)
                 
                 Spacer()
@@ -52,26 +49,6 @@ struct ContentView: View {
             }
             .padding(.top)
             
-            if showingSessionFinishedPopUp {
-                PopUpView(isShowing: $showingSessionFinishedPopUp) {
-                    VStack {
-                        Text("Session over")
-                        Text("Time for a break! 🎉")
-                    }
-
-                }
-                .transition(.opacity)
-            }
-            if showingBreakFinishedPopUp {
-                PopUpView(isShowing: $showingBreakFinishedPopUp) {
-                    VStack {
-                        Text("Break over")
-                        Text("Time to get back to work! 👨🏽‍💻")
-                    }
-
-                }
-                .transition(.opacity)
-            }
         }
            
         .onAppear {
