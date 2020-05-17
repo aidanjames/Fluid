@@ -25,6 +25,7 @@
 		3D47E1C324660B9100EB6280 /* ButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D47E1C224660B9100EB6280 /* ButtonView.swift */; };
 		3D47E1C524660BAE00EB6280 /* Color-Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D47E1C424660BAE00EB6280 /* Color-Ext.swift */; };
 		3D56B7B6245782E50042BB0F /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D56B7B5245782E50042BB0F /* WelcomeView.swift */; };
+		3D7696C124715519003E18A4 /* Target.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D7696C024715519003E18A4 /* Target.swift */; };
 		3D775040245A075A00144355 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D77503F245A075A00144355 /* Constants.swift */; };
 		3D775042245A085D00144355 /* FileManager-Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D775041245A085D00144355 /* FileManager-Ext.swift */; };
 		3D775045245A128F00144355 /* TaskCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D775044245A128F00144355 /* TaskCellView.swift */; };
@@ -71,6 +72,7 @@
 		3D47E1C224660B9100EB6280 /* ButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonView.swift; sourceTree = "<group>"; };
 		3D47E1C424660BAE00EB6280 /* Color-Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color-Ext.swift"; sourceTree = "<group>"; };
 		3D56B7B5245782E50042BB0F /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
+		3D7696C024715519003E18A4 /* Target.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Target.swift; sourceTree = "<group>"; };
 		3D77503F245A075A00144355 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		3D775041245A085D00144355 /* FileManager-Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager-Ext.swift"; sourceTree = "<group>"; };
 		3D775044245A128F00144355 /* TaskCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCellView.swift; sourceTree = "<group>"; };
@@ -187,6 +189,7 @@
 				3D7DC168245896FB00F58087 /* Task.swift */,
 				3D7DE2F9245DE9AF00246957 /* LoggingRecord.swift */,
 				3D7DE2FB245DE9FB00246957 /* TasksViewModel.swift */,
+				3D7696C024715519003E18A4 /* Target.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -420,6 +423,7 @@
 				3D775042245A085D00144355 /* FileManager-Ext.swift in Sources */,
 				3D9B0467245B79DB00268783 /* Array-Ext.swift in Sources */,
 				3D227CF1245B4F17007FCF2E /* TaskCellFrontView.swift in Sources */,
+				3D7696C124715519003E18A4 /* Target.swift in Sources */,
 				3D3148B82455E5FF0022447E /* LottieView.swift in Sources */,
 				3DA6000624633A2600F2913E /* NotificationManager.swift in Sources */,
 				3D47E1C324660B9100EB6280 /* ButtonView.swift in Sources */,

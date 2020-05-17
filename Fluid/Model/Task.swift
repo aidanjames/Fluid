@@ -12,6 +12,7 @@ class Task: Identifiable, Codable {
     var id = UUID()
     var name: String
     var loggingHistory: [LoggingRecord]
+    var target: Target?
 
     
     init(name: String, loggingHistory: [LoggingRecord]) {
