@@ -71,7 +71,8 @@ struct PomodoroView: View {
                         withAnimation { self.showingPomodoroView = false }
                     }) {
                         SFSymbols.closeCircle.foregroundColor(.black)
-                            .font(.headline)
+                            .scaleEffect(0.75)
+                            .font(.title)
                         .padding(.trailing, 10)
                         .padding(.top, 10)
                     }
