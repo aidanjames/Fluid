@@ -15,12 +15,13 @@ struct TaskCellBackView: View {
     
     @Binding var showingFront: Bool
     
-    
+    @State private var showingAlert = false
+        
     var body: some View {
         VStack {
             HStack {
                 Button(action: {
-                    self.tasks.delete(task: self.task)
+                    self.showingAlert.toggle()
                 }) {
                     SFSymbols.trashButton.foregroundColor(tasks.currentSelectedTask == nil ? Color(Colours.hotCoral) : .gray).padding(5)
                 }
@@ -28,13 +29,18 @@ struct TaskCellBackView: View {
                 Button("Done") {
                     withAnimation { self.showingFront.toggle() }
                 }
+                .alert(isPresented: $showingAlert) {
+                    Alert(title: Text("Delete task?"), message: Text("Are you sure you want to delete this task? This cannot be undone."),
+                          primaryButton: .destructive(Text("Delete")) { self.tasks.delete(task: self.task) },
+                          secondaryButton: .cancel()
+                    )
+                }
             }
             if task.loggingHistory.isEmpty {
                 Text("No logging records")
             } else {
                 LogRecordListView(tasks: self.tasks, taskID: self.task.id)
             }
-            
         }
     }
     

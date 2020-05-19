@@ -12,7 +12,7 @@ class Task: Identifiable, Codable {
     var id = UUID()
     var name: String
     var loggingHistory: [LoggingRecord]
-    var targets = [Target]() // Will allow the user to set multiple targets for a task
+    var targets: [Target]? // Will allow the user to set multiple targets for a task
 
     
     init(name: String, loggingHistory: [LoggingRecord]) {
