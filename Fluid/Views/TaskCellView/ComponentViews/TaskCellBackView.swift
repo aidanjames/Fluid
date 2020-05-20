@@ -19,6 +19,7 @@ struct TaskCellBackView: View {
         
     var body: some View {
         VStack {
+            // Trash and done buttons
             HStack {
                 Button(action: {
                     self.showingAlert.toggle()
