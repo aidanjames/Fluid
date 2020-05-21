@@ -38,6 +38,7 @@
 		3D7DE2FE245E277800246957 /* Date-Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D7DE2FD245E277800246957 /* Date-Ext.swift */; };
 		3D82A43F2460991900725CFC /* LogRecordListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D82A43E2460991900725CFC /* LogRecordListItemView.swift */; };
 		3D82A4412461DBAB00725CFC /* EditLogRecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D82A4402461DBAA00725CFC /* EditLogRecordView.swift */; };
+		3D8F6ACF2476EC62001175A5 /* BarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8F6ACE2476EC62001175A5 /* BarView.swift */; };
 		3D904A1F2457691A000A4989 /* ProgressBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D904A1E2457691A000A4989 /* ProgressBarView.swift */; };
 		3D904A2224577C63000A4989 /* clock-simple-animated.json in Resources */ = {isa = PBXBuildFile; fileRef = 3D904A2124577C63000A4989 /* clock-simple-animated.json */; };
 		3D91F6212468AD6700DB3736 /* clockCoral.json in Resources */ = {isa = PBXBuildFile; fileRef = 3D91F61F2468AD6600DB3736 /* clockCoral.json */; };
@@ -85,6 +86,7 @@
 		3D7DE2FD245E277800246957 /* Date-Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date-Ext.swift"; sourceTree = "<group>"; };
 		3D82A43E2460991900725CFC /* LogRecordListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogRecordListItemView.swift; sourceTree = "<group>"; };
 		3D82A4402461DBAA00725CFC /* EditLogRecordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditLogRecordView.swift; sourceTree = "<group>"; };
+		3D8F6ACE2476EC62001175A5 /* BarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarView.swift; sourceTree = "<group>"; };
 		3D904A1E2457691A000A4989 /* ProgressBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBarView.swift; sourceTree = "<group>"; };
 		3D904A2124577C63000A4989 /* clock-simple-animated.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "clock-simple-animated.json"; sourceTree = "<group>"; };
 		3D91F61F2468AD6600DB3736 /* clockCoral.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = clockCoral.json; sourceTree = "<group>"; };
@@ -211,6 +213,7 @@
 		3D3148AC2455D5220022447E /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				3D8F6ACC2476EBCF001175A5 /* GraphView */,
 				3DB1CEBE245A246900D25BF4 /* MAIN */,
 				3DE1EB142464950B0023B30D /* PomodoroView */,
 				3D3148B12455E2140022447E /* TimerCardView */,
@@ -264,6 +267,22 @@
 				3D3148A02455D4E60022447E /* LaunchScreen.storyboard */,
 			);
 			path = Support;
+			sourceTree = "<group>";
+		};
+		3D8F6ACC2476EBCF001175A5 /* GraphView */ = {
+			isa = PBXGroup;
+			children = (
+				3D8F6ACD2476EC52001175A5 /* ComponentViews */,
+			);
+			path = GraphView;
+			sourceTree = "<group>";
+		};
+		3D8F6ACD2476EC52001175A5 /* ComponentViews */ = {
+			isa = PBXGroup;
+			children = (
+				3D8F6ACE2476EC62001175A5 /* BarView.swift */,
+			);
+			path = ComponentViews;
 			sourceTree = "<group>";
 		};
 		3D904A2024577C40000A4989 /* Animations */ = {
@@ -418,6 +437,7 @@
 				3D904A1F2457691A000A4989 /* ProgressBarView.swift in Sources */,
 				3D82A43F2460991900725CFC /* LogRecordListItemView.swift in Sources */,
 				3D31489A2455D4E40022447E /* ContentView.swift in Sources */,
+				3D8F6ACF2476EC62001175A5 /* BarView.swift in Sources */,
 				3D775047245A149000144355 /* UIApplication-Ext.swift in Sources */,
 				3D7DE2FC245DE9FB00246957 /* TasksViewModel.swift in Sources */,
 				3D775042245A085D00144355 /* FileManager-Ext.swift in Sources */,

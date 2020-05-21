@@ -22,7 +22,7 @@ struct LogRecordListView: View {
                 return tasks.allTasks[taskIndex].loggingHistory
             }
         }
-        // If we're here, we'll just return all the tasks
+        // If we're here, we'll just return all the tasks (future use)
         var returnArray = [LoggingRecord]()
         for task in tasks.allTasks {
             for logRecord in task.loggingHistory {
