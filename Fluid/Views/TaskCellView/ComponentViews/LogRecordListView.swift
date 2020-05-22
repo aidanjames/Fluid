@@ -33,14 +33,10 @@ struct LogRecordListView: View {
     }
 
     
-    var recordsGroupedByDate: [Date: [LoggingRecord]] {
-        Dictionary.init(grouping: logHistory, by: { $0.startTime.startOfToday })
-    }
+    var recordsGroupedByDate: [Date: [LoggingRecord]] { Dictionary.init(grouping: logHistory, by: { $0.startTime.startOfToday }) }
     
     
-    var uniqueDates: [Date] {
-        recordsGroupedByDate.map({ $0.key }).sorted()
-    }
+    var uniqueDates: [Date] { recordsGroupedByDate.map({ $0.key }).sorted() }
     
     var body: some View {
         ScrollView {

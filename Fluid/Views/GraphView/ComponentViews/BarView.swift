@@ -16,17 +16,20 @@ struct BarView: View {
     var timeText: String
     
     var body: some View {
-        ZStack {
-            VStack {
-                Text(timeText).font(Font.system(size: width, design: Font.Design.default))
-                RoundedRectangle(cornerRadius: 4)
-                    .fill(Color.green)
-                    .frame(width: width * 2, height: height)
+        VStack {
+            ZStack {
+                VStack {
+                    Text(timeText)
+                        .font(Font.system(size: width, design: Font.Design.default))
+                    RoundedRectangle(cornerRadius: 4)
+                        .fill(Color.green)
+                        .frame(width: width * 2, height: height)
+                }
+                
+                Text(taskName).font(Font.system(size: width, design: Font.Design.default))
+                    .frame(height: height)
+                    .rotationEffect(.degrees(90))
             }
-            
-            Text(taskName).font(Font.system(size: width, design: Font.Design.default))
-                .frame(height: height)
-                .rotationEffect(.degrees(90))
         }
     }
 }

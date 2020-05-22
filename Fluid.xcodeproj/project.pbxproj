@@ -46,6 +46,7 @@
 		3D9B0465245B62A200268783 /* PreviewMockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9B0464245B62A200268783 /* PreviewMockData.swift */; };
 		3D9B0467245B79DB00268783 /* Array-Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9B0466245B79DB00268783 /* Array-Ext.swift */; };
 		3DA6000624633A2600F2913E /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA6000524633A2600F2913E /* NotificationManager.swift */; };
+		3DC51D1D247836C300BF75A0 /* SingleTaskGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC51D1C247836C300BF75A0 /* SingleTaskGraphView.swift */; };
 		3DC841002465758E0079027E /* RingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC840FF2465758E0079027E /* RingView.swift */; };
 		3DE1EB11246493BA0023B30D /* PomodoroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE1EB10246493BA0023B30D /* PomodoroView.swift */; };
 		3DE1EB16246495240023B30D /* PomodoroModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE1EB15246495240023B30D /* PomodoroModel.swift */; };
@@ -94,6 +95,7 @@
 		3D9B0464245B62A200268783 /* PreviewMockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewMockData.swift; sourceTree = "<group>"; };
 		3D9B0466245B79DB00268783 /* Array-Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array-Ext.swift"; sourceTree = "<group>"; };
 		3DA6000524633A2600F2913E /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
+		3DC51D1C247836C300BF75A0 /* SingleTaskGraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleTaskGraphView.swift; sourceTree = "<group>"; };
 		3DC840FF2465758E0079027E /* RingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RingView.swift; sourceTree = "<group>"; };
 		3DE1EB10246493BA0023B30D /* PomodoroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PomodoroView.swift; sourceTree = "<group>"; };
 		3DE1EB15246495240023B30D /* PomodoroModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PomodoroModel.swift; sourceTree = "<group>"; };
@@ -272,6 +274,7 @@
 		3D8F6ACC2476EBCF001175A5 /* GraphView */ = {
 			isa = PBXGroup;
 			children = (
+				3DC51D1C247836C300BF75A0 /* SingleTaskGraphView.swift */,
 				3D8F6ACD2476EC52001175A5 /* ComponentViews */,
 			);
 			path = GraphView;
@@ -449,6 +452,7 @@
 				3D47E1C324660B9100EB6280 /* ButtonView.swift in Sources */,
 				3D227CF3245B4F24007FCF2E /* TaskCellBackView.swift in Sources */,
 				3D775040245A075A00144355 /* Constants.swift in Sources */,
+				3DC51D1D247836C300BF75A0 /* SingleTaskGraphView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

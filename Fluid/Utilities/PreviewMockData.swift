@@ -23,8 +23,8 @@ enum PreviewMockData {
     static func makeMeABunchOfLoggingRecords() -> [LoggingRecord] {
         var returnArray = [LoggingRecord]()
         for _ in 1...10 {
-            let newRecord = LoggingRecord(taskID: UUID(), endTime: Date().addingTimeInterval(TimeInterval.random(in: -10000...10000)))
-            newRecord.startTime = Date().addingTimeInterval(TimeInterval.random(in: -10000...10000))
+            let newRecord = LoggingRecord(taskID: UUID(), endTime: Date().addingTimeInterval(TimeInterval.random(in: 0...10000)))
+            newRecord.startTime = Date().addingTimeInterval(TimeInterval.random(in: -10000...0))
             returnArray.append(newRecord)
         }
         return returnArray

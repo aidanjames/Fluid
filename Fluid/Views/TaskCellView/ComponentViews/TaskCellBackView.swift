@@ -41,7 +41,11 @@ struct TaskCellBackView: View {
                 Text("No logging records")
             } else {
                 LogRecordListView(tasks: self.tasks, taskID: self.task.id)
+                SingleTaskGraphView(task: self.task)
             }
+            
+            
+            
         }
     }
     
