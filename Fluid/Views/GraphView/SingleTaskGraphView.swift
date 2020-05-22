@@ -39,9 +39,8 @@ struct SingleTaskGraphView: View {
             ForEach(filteredLogRecords) { record in
                 Text("\(record.startTime)").font(.caption)
             }
-            
-            Text("Count: \(task.loggingHistory.count)")
         }
+        .padding(.bottom)
     }
     
     
