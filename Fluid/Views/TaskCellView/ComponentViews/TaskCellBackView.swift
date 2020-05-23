@@ -16,7 +16,8 @@ struct TaskCellBackView: View {
     @Binding var showingFront: Bool
     
     @State private var showingAlert = false
-        
+    @State private var editView = true
+    
     var body: some View {
         VStack {
             // Trash and done buttons
@@ -27,6 +28,19 @@ struct TaskCellBackView: View {
                     SFSymbols.trashButton.foregroundColor(tasks.currentSelectedTask == nil ? Color(Colours.hotCoral) : .gray).padding(5)
                 }
                 Spacer()
+                
+                Button(action: {
+                    withAnimation {
+                        self.editView.toggle()
+                    }
+                } ) {
+                    if editView {
+                        SFSymbols.chart
+                    } else {
+                        SFSymbols.list
+                    }
+                }.padding(.horizontal)
+                
                 Button("Done") {
                     withAnimation { self.showingFront.toggle() }
                 }
@@ -40,13 +54,17 @@ struct TaskCellBackView: View {
             if task.loggingHistory.isEmpty {
                 Text("No logging records")
             } else {
-                LogRecordListView(tasks: self.tasks, taskID: self.task.id)
-                SingleTaskGraphView(task: self.task)
+                if editView {
+                    LogRecordListView(tasks: self.tasks, taskID: self.task.id)
+                } else {
+                    SingleTaskGraphView(task: self.task)
+                    
+                }
             }
             
             
             
-        }
+        }.frame(minHeight: 300)
     }
     
 }

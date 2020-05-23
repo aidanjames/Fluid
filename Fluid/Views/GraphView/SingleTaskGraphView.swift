@@ -25,22 +25,47 @@ struct SingleTaskGraphView: View {
     @State private var periodFilter = 0
     
     var body: some View {
-        VStack {
-            
-            Picker("Filter", selection: $periodFilter) {
-                ForEach(0..<filterPeriods.count) {
-                    Text("\(self.filterPeriods[$0])")
+        
+        
+        GeometryReader { geo in
+            VStack {
+                
+                Picker("", selection: self.$periodFilter) {
+                    ForEach(0..<self.filterPeriods.count) {
+                        Text("\(self.filterPeriods[$0])").font(.caption)
+                    }
                 }
-            }
-            .pickerStyle(SegmentedPickerStyle())
-            .padding()
-            
-            
-            ForEach(filteredLogRecords) { record in
-                Text("\(record.startTime)").font(.caption)
+                .pickerStyle(SegmentedPickerStyle())
+                .padding()
+                if self.filteredLogRecords.isEmpty {
+                    Text("No activity :(").font(.caption)
+                } else {
+                    HStack(alignment: .bottom) {
+                        ForEach(self.filteredLogRecords) { record in
+                            BarView(width: self.calculateBarWidth(forSize: geo.size.width), height: self.caluculateBarHeight(forSeconds: record.lengthInSeconds), taskName: record.lengthInSeconds.secondsToHoursMins(), timeText: "")
+                        }
+                    }.padding(.horizontal)
+                }
+                
+
+                Spacer()
+                //            ForEach(filteredLogRecords) { record in
+                //                Text("\(record.startTime)").font(.caption)
+                //            }
             }
         }
-        .padding(.bottom)
+    }
+    
+    func calculateBarWidth(forSize widthAvailable: CGFloat) -> CGFloat {
+        let calculatedBarWidth = (widthAvailable / CGFloat(self.filteredLogRecords.count)) / 5
+        
+        return calculatedBarWidth > 10 ? CGFloat(10) : calculatedBarWidth
+    }
+    
+    func caluculateBarHeight(forSeconds seconds: Int) -> CGFloat {
+        let max = filteredLogRecords.map { $0.lengthInSeconds }.max()
+        
+        return CGFloat(seconds) / CGFloat(max!) * 150
     }
     
     
