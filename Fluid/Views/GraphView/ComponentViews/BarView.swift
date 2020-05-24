@@ -23,7 +23,7 @@ struct BarView: View {
                     Text(timeText)
                         .font(Font.system(size: width, design: Font.Design.default))
                         .frame(width: 40)
-                    RoundedRectangle(cornerRadius: 4)
+                    Capsule()
                         .fill(Color(Colours.hotCoral))
                         .frame(width: width * 2, height: height)
                     Text(bottomLabel).font(Font.system(size: width, design: Font.Design.default))
