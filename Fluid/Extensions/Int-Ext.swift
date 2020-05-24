@@ -19,10 +19,22 @@ extension Int {
     }
     
     
+//    func secondsToHoursMins() -> String {
+//        let hours = self / 3600
+//        let mins = (self % 3600) / 60
+//        return String(format: "%01dh %02dm", hours, mins)
+//    }
+    
     func secondsToHoursMins() -> String {
         let hours = self / 3600
         let mins = (self % 3600) / 60
-        return String(format: "%01dh %02dm", hours, mins)
+
+        if hours > 0 {
+            return String(format: "%01dh %01dm", hours, mins)
+        }
+
+        return String(format: "%01dm", mins)
+
     }
     
     

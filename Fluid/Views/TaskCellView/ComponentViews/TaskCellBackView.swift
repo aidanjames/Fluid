@@ -16,7 +16,7 @@ struct TaskCellBackView: View {
     @Binding var showingFront: Bool
     
     @State private var showingAlert = false
-    @State private var editView = true
+    @State private var editView = false
     
     var body: some View {
         VStack {
