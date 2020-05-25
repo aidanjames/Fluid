@@ -80,7 +80,14 @@ struct SingleTaskGraphView: View {
     
     
     func caluculateBarHeight(forSeconds seconds: Int) -> CGFloat {
-        let max = timeSpentByWeek.map { $0 }.max()
+        var totalTime = [Int]()
+        let filteredRecords = task.loggingHistory.filter { $0.startTime > Date().addingTimeInterval(-604800).startOfThisWeek! }
+        
+        for record in filteredRecords {
+            totalTime.append(record.lengthInSeconds)
+        }
+        
+        let max = totalTime.max()
         return CGFloat(seconds) / CGFloat(max!) * 150
     }
     
