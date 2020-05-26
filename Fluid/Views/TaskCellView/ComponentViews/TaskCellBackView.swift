@@ -56,14 +56,17 @@ struct TaskCellBackView: View {
                 if editView {
                     LogRecordListView(tasks: self.tasks, taskID: self.task.id)
                 } else {
+                    
                     SingleTaskGraphView(task: self.task)
+                    
                     
                 }
             }
             
             
             
-        }.frame(minHeight: 300)
+        }
+        .frame(height: 300)
     }
     
 }
@@ -72,6 +75,6 @@ struct TaskCellView_Back_Previews: PreviewProvider {
     static var previews: some View {
         TaskCellBackView(tasks: PreviewMockData.tasks, task: PreviewMockData.task, showingFront: .constant(false))
             .padding()
-            .previewLayout(.sizeThatFits)
+//            .previewLayout(.sizeThatFits)
     }
 }
