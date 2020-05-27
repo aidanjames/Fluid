@@ -12,48 +12,44 @@ struct ContentView: View {
     
     @ObservedObject var tasks = TasksViewModel()
     
+    @State var showingTimerFullScreen = false
+    
     var body: some View {
-        ZStack {
+        
+        GeometryReader { bounds in
             
-            Color(Colours.midnightBlue).opacity(0.3).edgesIgnoringSafeArea(.all)
-            
-            VStack(alignment: .leading) {
-                TimerCardView(tasks: tasks)
-                    .shadow(color: tasks.isLogging ? Color(Colours.hotCoral).opacity(0.3) : Color.gray.opacity(0.5), radius: 10, x: 0, y: 10)
+            ZStack {
                 
-                Spacer()
-                
-                HStack { // Get rid of this when I've finish testing the popup view
-                    Text("Recent tasks").font(.title).foregroundColor(Color(Colours.midnightBlue)).bold().padding(.leading).padding(.top)
-//                    Button("Show popup") {
-//                        withAnimation {
-//                            self.showingPopUpView.toggle()
-//                        }
-//                        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-//                            withAnimation {
-//                                self.showingPopUpView.toggle()
-//                            }
-//                        }
-//                    }
-                }
+                Color(Colours.midnightBlue).opacity(0.1).edgesIgnoringSafeArea(.all)
                 
                 ScrollView {
-                    ForEach(tasks.allTasks) { task in
-                        TaskCellView(tasks: self.tasks, task: task)
-                            .frame(maxHeight: 400)
-                            .shadow(color: Color.gray.opacity(0.5), radius: 5, x: 0, y: 5)
-
+                    
+                    VStack {
+                        TimerCardView(tasks: self.tasks, showingFullScreen: self.$showingTimerFullScreen)
+                            .shadow(color: self.tasks.isLogging ? Color(Colours.hotCoral).opacity(0.3) : Color.gray.opacity(0.5), radius: 10, x: 0, y: 10)
+                        
+                        
+                        // TODO: Add empty state view
+                        
+                        Text("Recent tasks").font(.title).foregroundColor(Color(Colours.midnightBlue)).bold()
+                        
+                        ForEach(self.tasks.allTasks) { task in
+                            TaskCellView(tasks: self.tasks, task: task)
+                                .frame(maxHeight: 400)
+                                .shadow(color: Color.gray.opacity(0.5), radius: 5, x: 0, y: 5)
+                            
+                        }
+                        Spacer()
+                        
                     }
-                    Spacer()
+                    .frame(width: bounds.size.width)
+                        
+                    .onAppear {
+                        UIApplication.shared.isIdleTimerDisabled = self.tasks.isLogging
+                        NotificationManager.shared.requestPermission()
+                    }
                 }
             }
-            .padding(.top)
-            
-        }
-           
-        .onAppear {
-            UIApplication.shared.isIdleTimerDisabled = self.tasks.isLogging
-            NotificationManager.shared.requestPermission()
         }
     }
     

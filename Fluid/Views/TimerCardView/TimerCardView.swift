@@ -12,6 +12,7 @@ struct TimerCardView: View {
     
     @ObservedObject var tasks: TasksViewModel
     @State private var taskName = ""
+    @Binding var showingFullScreen: Bool
 
     var body: some View {
         VStack {
@@ -40,14 +41,13 @@ struct TimerCardView: View {
                             .foregroundColor(Color(Colours.midnightBlue))
                     }
                 }
-                
+
                 if tasks.isLogging {
+                    
                     ZStack {
                         TimeDisplay(logRecordStartTime: tasks.currentSelectedTask?.loggingHistory.last?.startTime ?? Date())
                         LottieView(filename: "clockCoral").frame(width: 80, height: 80).offset(x: 80, y: -8)
                     }
-                }
-                if tasks.isLogging {
                     
                     HStack {
                         if !tasks.showingPomodoroTimer {
@@ -82,7 +82,10 @@ struct TimerCardView: View {
                 
             }
         }
+            
+//        .frame(minWidth: showingFullScreen ? screen.width : screen.width - 20, minHeight: showingFullScreen ? screen.height : 200)
         .frame(minHeight: 200)
+        .edgesIgnoringSafeArea(.all)
         .layoutPriority(1)
         .background(Color.white.opacity(1)).cornerRadius(16)
         .padding(.horizontal, 16)
@@ -110,10 +113,12 @@ struct TimerCardView: View {
         UIApplication.shared.endEditing()
         if tasks.isLogging {
             withAnimation {
+                self.showingFullScreen = false
                 tasks.stopLoggingForCurrentTask()
                 tasks.showingPomodoroTimer = false
             }
         } else {
+            self.showingFullScreen = true
             if tasks.currentSelectedTask == nil {
                 withAnimation { tasks.startLoggingForNewTask(named: self.taskName) }
                 self.taskName = ""
@@ -128,7 +133,7 @@ struct TimerCardView: View {
 
 struct TimerCardView_Previews: PreviewProvider {
     static var previews: some View {
-        TimerCardView(tasks: TasksViewModel())
+        TimerCardView(tasks: TasksViewModel(), showingFullScreen: .constant(true))
             .previewLayout(.sizeThatFits)
     }
 }

@@ -17,6 +17,7 @@ struct TaskCellBackView: View {
     
     @State private var showingAlert = false
     @State private var editView = true
+    @State private var taskName = ""
     
     var body: some View {
         VStack {
@@ -26,7 +27,18 @@ struct TaskCellBackView: View {
                 }) {
                     SFSymbols.trashButton.foregroundColor(tasks.currentSelectedTask == nil ? Color(Colours.hotCoral) : .gray).padding(5)
                 }
+                
+                TextField("", text: $taskName)
+                    .font(.caption)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .padding(.leading)
+                    .onAppear {
+                        self.taskName = self.task.name
+                }
+                
                 Spacer()
+                
+                
                 
                 Button(action: {
                     withAnimation {
@@ -41,8 +53,10 @@ struct TaskCellBackView: View {
                 }.padding(.horizontal)
                 
                 Button("Done") {
+                    self.tasks.changeTask(id: self.task.id, name: self.taskName)
                     withAnimation { self.showingFront.toggle() }
                 }
+                .disabled(self.taskName.isEmpty)
                 .alert(isPresented: $showingAlert) {
                     Alert(title: Text("Delete task?"), message: Text("Are you sure you want to delete this task? This cannot be undone."),
                           primaryButton: .destructive(Text("Delete")) { self.tasks.delete(task: self.task) },
@@ -75,6 +89,6 @@ struct TaskCellView_Back_Previews: PreviewProvider {
     static var previews: some View {
         TaskCellBackView(tasks: PreviewMockData.tasks, task: PreviewMockData.task, showingFront: .constant(false))
             .padding()
-//            .previewLayout(.sizeThatFits)
+        //            .previewLayout(.sizeThatFits)
     }
 }

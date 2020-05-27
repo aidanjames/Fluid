@@ -24,7 +24,6 @@
 		3D3148BA2455E6680022447E /* TimerCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3148B92455E6680022447E /* TimerCardView.swift */; };
 		3D47E1C324660B9100EB6280 /* ButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D47E1C224660B9100EB6280 /* ButtonView.swift */; };
 		3D47E1C524660BAE00EB6280 /* Color-Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D47E1C424660BAE00EB6280 /* Color-Ext.swift */; };
-		3D56B7B6245782E50042BB0F /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D56B7B5245782E50042BB0F /* WelcomeView.swift */; };
 		3D7696C124715519003E18A4 /* Target.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D7696C024715519003E18A4 /* Target.swift */; };
 		3D775040245A075A00144355 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D77503F245A075A00144355 /* Constants.swift */; };
 		3D775042245A085D00144355 /* FileManager-Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D775041245A085D00144355 /* FileManager-Ext.swift */; };
@@ -73,7 +72,6 @@
 		3D3148B92455E6680022447E /* TimerCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerCardView.swift; sourceTree = "<group>"; };
 		3D47E1C224660B9100EB6280 /* ButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonView.swift; sourceTree = "<group>"; };
 		3D47E1C424660BAE00EB6280 /* Color-Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color-Ext.swift"; sourceTree = "<group>"; };
-		3D56B7B5245782E50042BB0F /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		3D7696C024715519003E18A4 /* Target.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Target.swift; sourceTree = "<group>"; };
 		3D77503F245A075A00144355 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		3D775041245A085D00144355 /* FileManager-Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager-Ext.swift"; sourceTree = "<group>"; };
@@ -215,12 +213,11 @@
 		3D3148AC2455D5220022447E /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				3D8F6ACC2476EBCF001175A5 /* GraphView */,
 				3DB1CEBE245A246900D25BF4 /* MAIN */,
 				3DE1EB142464950B0023B30D /* PomodoroView */,
 				3D3148B12455E2140022447E /* TimerCardView */,
 				3D227CF4245B535F007FCF2E /* TaskCellView */,
-				3D56B7B4245782D50042BB0F /* WelcomeView */,
+				3D8F6ACC2476EBCF001175A5 /* GraphView */,
 				3D3148B32455E22B0022447E /* SharedViews */,
 			);
 			path = Views;
@@ -250,14 +247,6 @@
 				3D0F7F0E246C7AD800AB3874 /* PopUpView.swift */,
 			);
 			path = SharedViews;
-			sourceTree = "<group>";
-		};
-		3D56B7B4245782D50042BB0F /* WelcomeView */ = {
-			isa = PBXGroup;
-			children = (
-				3D56B7B5245782E50042BB0F /* WelcomeView.swift */,
-			);
-			path = WelcomeView;
 			sourceTree = "<group>";
 		};
 		3D775043245A098400144355 /* Support */ = {
@@ -433,7 +422,6 @@
 				3DE1EB11246493BA0023B30D /* PomodoroView.swift in Sources */,
 				3DE1EB16246495240023B30D /* PomodoroModel.swift in Sources */,
 				3DF791A0245F0F2900CB5DB7 /* LogRecordListView.swift in Sources */,
-				3D56B7B6245782E50042BB0F /* WelcomeView.swift in Sources */,
 				3D7DE2FE245E277800246957 /* Date-Ext.swift in Sources */,
 				3D3148B02455D77C0022447E /* MyTimer.swift in Sources */,
 				3D09898D246DBDF200E520E2 /* PomodoroSettingsView.swift in Sources */,

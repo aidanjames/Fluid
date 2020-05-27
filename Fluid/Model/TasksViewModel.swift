@@ -124,6 +124,13 @@ class TasksViewModel: ObservableObject {
     }
     
     
+    func changeTask(id: UUID, name: String) {
+        if let index = allTasks.firstIndex(where: { $0.id == id } ) {
+            allTasks[index].name = name
+        }
+    }
+    
+    
     func persistPomodoroState() {
         print("I'm about to save the thing?")
         FileManager.default.writeData(showingPomodoroTimer, to: FMKeys.showingPomodoroTimer)
