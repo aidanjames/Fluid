@@ -34,16 +34,16 @@ struct TaskCellFrontView: View {
                     .font(.largeTitle).padding(5)
             }
             Button(action: {
-                self.tasks.currentSelectedTask = self.task
-                self.tasks.isLogging = true
-                self.tasks.startLoggingForCurrentTask()
                 if let index = self.tasks.allTasks.firstIndex(where: { $0.id == self.task.id }) {
                     withAnimation { self.tasks.allTasks.move(from: index, to: 0) }
                 }
+                self.tasks.currentSelectedTask = self.task
+                self.tasks.isLogging = true
+                self.tasks.startLoggingForCurrentTask()
             }) {
                 SFSymbols.playButton.foregroundColor(tasks.currentSelectedTask == nil ? Color(Colours.midnightBlue) : .gray).font(.largeTitle).padding(5)
             }
-        }.blur(radius: tasks.isLogging ? 0.5 : 0)
+        }.blur(radius: tasks.isLogging ? 0.2 : 0)
     }
 }
 

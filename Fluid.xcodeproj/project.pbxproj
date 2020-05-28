@@ -24,6 +24,7 @@
 		3D3148BA2455E6680022447E /* TimerCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3148B92455E6680022447E /* TimerCardView.swift */; };
 		3D47E1C324660B9100EB6280 /* ButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D47E1C224660B9100EB6280 /* ButtonView.swift */; };
 		3D47E1C524660BAE00EB6280 /* Color-Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D47E1C424660BAE00EB6280 /* Color-Ext.swift */; };
+		3D51E9AE24803DD4006682AA /* EmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D51E9AD24803DD4006682AA /* EmptyStateView.swift */; };
 		3D7696C124715519003E18A4 /* Target.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D7696C024715519003E18A4 /* Target.swift */; };
 		3D775040245A075A00144355 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D77503F245A075A00144355 /* Constants.swift */; };
 		3D775042245A085D00144355 /* FileManager-Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D775041245A085D00144355 /* FileManager-Ext.swift */; };
@@ -72,6 +73,7 @@
 		3D3148B92455E6680022447E /* TimerCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerCardView.swift; sourceTree = "<group>"; };
 		3D47E1C224660B9100EB6280 /* ButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonView.swift; sourceTree = "<group>"; };
 		3D47E1C424660BAE00EB6280 /* Color-Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color-Ext.swift"; sourceTree = "<group>"; };
+		3D51E9AD24803DD4006682AA /* EmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStateView.swift; sourceTree = "<group>"; };
 		3D7696C024715519003E18A4 /* Target.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Target.swift; sourceTree = "<group>"; };
 		3D77503F245A075A00144355 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		3D775041245A085D00144355 /* FileManager-Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager-Ext.swift"; sourceTree = "<group>"; };
@@ -307,6 +309,7 @@
 		3DB1CEBF245A247700D25BF4 /* ComponentViews */ = {
 			isa = PBXGroup;
 			children = (
+				3D51E9AD24803DD4006682AA /* EmptyStateView.swift */,
 			);
 			path = ComponentViews;
 			sourceTree = "<group>";
@@ -406,6 +409,7 @@
 			files = (
 				3DC841002465758E0079027E /* RingView.swift in Sources */,
 				3D0F7F0F246C7AD800AB3874 /* PopUpView.swift in Sources */,
+				3D51E9AE24803DD4006682AA /* EmptyStateView.swift in Sources */,
 				3D3148BA2455E6680022447E /* TimerCardView.swift in Sources */,
 				3D7DA890246B2F51007E3D91 /* View-Ext.swift in Sources */,
 				3D3148962455D4E40022447E /* AppDelegate.swift in Sources */,

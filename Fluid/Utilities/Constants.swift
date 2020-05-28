@@ -29,6 +29,7 @@ enum LottieAnimations {
 
 enum Images {
     static let cog = Image("cog")
+    static let emptyState = Image("workEmptyState")
 }
 
 

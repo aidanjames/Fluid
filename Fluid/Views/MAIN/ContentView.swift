@@ -12,7 +12,17 @@ struct ContentView: View {
     
     @ObservedObject var tasks = TasksViewModel()
     
-    @State var showingTimerFullScreen = false
+    @State private var showingTimerFullScreen = false
+    @State private var showingRecentTasksOnly = true
+    
+    var filteredTasks: [Task] {
+        let arraySlice = tasks.allTasks.prefix(3)
+        if showingRecentTasksOnly {
+            return Array(arraySlice)
+        } else {
+            return tasks.allTasks
+        }
+    }
     
     var body: some View {
         
@@ -28,22 +38,36 @@ struct ContentView: View {
                         TimerCardView(tasks: self.tasks, showingFullScreen: self.$showingTimerFullScreen)
                             .shadow(color: self.tasks.isLogging ? Color(Colours.hotCoral).opacity(0.3) : Color.gray.opacity(0.5), radius: 10, x: 0, y: 10)
                         
-                        
-                        // TODO: Add empty state view
-                        
-                        Text("Recent tasks").font(.title).foregroundColor(Color(Colours.midnightBlue)).bold()
-                        
-                        ForEach(self.tasks.allTasks) { task in
-                            TaskCellView(tasks: self.tasks, task: task)
-                                .frame(maxHeight: 400)
-                                .shadow(color: Color.gray.opacity(0.5), radius: 5, x: 0, y: 5)
+                        if self.tasks.allTasks.isEmpty {
                             
+                            EmptyStateView()
+                            
+                            Text("Let's get started!")
+                                .font(.title)
+                                .foregroundColor(Color(Colours.midnightBlue))
+                                .bold()
+                                .padding(.horizontal, 30)
+                                .multilineTextAlignment(.center)
+                        } else {
+                            HStack {
+                                Text("Recent tasks").font(.title).foregroundColor(Color(Colours.midnightBlue)).bold()
+                                Spacer()
+                                if self.tasks.allTasks.count > 3 && !self.tasks.isLogging {
+                                    Button("Show \(self.showingRecentTasksOnly ? "more" : "less")") {
+                                        self.showingRecentTasksOnly.toggle()
+                                    }
+                                }
+                            }
+                            .padding(.horizontal)
+                            ForEach(self.filteredTasks) { task in
+                                TaskCellView(tasks: self.tasks, task: task)
+                                    .frame(maxHeight: 400)
+                                    .shadow(color: Color.gray.opacity(0.5), radius: 5, x: 0, y: 5)
+                            }
                         }
                         Spacer()
-                        
                     }
                     .frame(width: bounds.size.width)
-                        
                     .onAppear {
                         UIApplication.shared.isIdleTimerDisabled = self.tasks.isLogging
                         NotificationManager.shared.requestPermission()
