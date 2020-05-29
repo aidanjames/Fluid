@@ -13,6 +13,7 @@ struct TaskCellFrontView: View {
     var task: Task
     @ObservedObject var tasks: TasksViewModel
     @Binding var showingFront: Bool
+    @Binding var hideEverything: Bool
     
     var body: some View {
         HStack {
@@ -34,28 +35,44 @@ struct TaskCellFrontView: View {
                     .font(.largeTitle).padding(5)
             }
             Button(action: {
-                if let index = self.tasks.allTasks.firstIndex(where: { $0.id == self.task.id }) {
-                    withAnimation { self.tasks.allTasks.move(from: index, to: 0) }
-                }
-                self.tasks.currentSelectedTask = self.task
-                self.tasks.isLogging = true
-                self.tasks.startLoggingForCurrentTask()
+                self.ScrollToTop()
+                
+                //                if let index = self.tasks.allTasks.firstIndex(where: { $0.id == self.task.id }) {
+                //                    withAnimation { self.tasks.allTasks.move(from: index, to: 0) }
+                //                }
+                //                self.tasks.currentSelectedTask = self.task
+                //                self.tasks.isLogging = true
+                //                self.tasks.startLoggingForCurrentTask()
             }) {
                 SFSymbols.playButton.foregroundColor(tasks.currentSelectedTask == nil ? Color(Colours.midnightBlue) : .gray).font(.largeTitle).padding(5)
             }
         }.blur(radius: tasks.isLogging ? 0.2 : 0)
+    }
+    
+    // This is a hack to get scroll view to scroll to the top when logging time for an existing task
+    func ScrollToTop() {
+        self.hideEverything = true
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
+            self.hideEverything = false
+            if let index = self.tasks.allTasks.firstIndex(where: { $0.id == self.task.id }) {
+                withAnimation { self.tasks.allTasks.move(from: index, to: 0) }
+            }
+            self.tasks.currentSelectedTask = self.task
+            self.tasks.isLogging = true
+            self.tasks.startLoggingForCurrentTask()
+        }
     }
 }
 
 struct TaskCellView_Front_Previews: PreviewProvider {
     static var previews: some View {
         VStack {
-            TaskCellFrontView(task: PreviewMockData.task, tasks: PreviewMockData.tasks, showingFront: .constant(true))
+            TaskCellFrontView(task: PreviewMockData.task, tasks: PreviewMockData.tasks, showingFront: .constant(true), hideEverything: .constant(false))
                 .padding()
                 .previewLayout(.sizeThatFits)
-            TaskCellFrontView(task: PreviewMockData.task, tasks: PreviewMockData.tasks, showingFront: .constant(true))
-            .padding()
-            .previewLayout(.sizeThatFits)
+            TaskCellFrontView(task: PreviewMockData.task, tasks: PreviewMockData.tasks, showingFront: .constant(true), hideEverything: .constant(false))
+                .padding()
+                .previewLayout(.sizeThatFits)
         }
     }
 }

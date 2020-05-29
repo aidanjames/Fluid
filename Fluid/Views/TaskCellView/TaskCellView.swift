@@ -14,12 +14,13 @@ struct TaskCellView: View {
     var task: Task
     
     @State private var showingFront = true
+    @Binding var hideEverything: Bool
         
     var body: some View {
         
         Group {
             if showingFront {
-                TaskCellFrontView(task: task, tasks: self.tasks, showingFront: $showingFront)
+                TaskCellFrontView(task: task, tasks: self.tasks, showingFront: $showingFront, hideEverything: $hideEverything)
             } else {
                 TaskCellBackView(tasks: tasks, task: task, showingFront: $showingFront)
             }
@@ -39,7 +40,7 @@ struct TaskCellView: View {
 
 struct TaskCellView_Previews: PreviewProvider {
     static var previews: some View {
-        TaskCellView(tasks: PreviewMockData.tasks, task: PreviewMockData.task)
+        TaskCellView(tasks: PreviewMockData.tasks, task: PreviewMockData.task, hideEverything: .constant(false))
             .frame(height: 150)
             .previewLayout(.sizeThatFits)
     }
