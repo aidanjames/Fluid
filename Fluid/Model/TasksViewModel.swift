@@ -89,16 +89,6 @@ class TasksViewModel: ObservableObject {
     }
     
     
-    func discardInFlightLoggingRecord() {
-        guard currentSelectedTask?.loggingHistory.last?.endTime == nil else { fatalError("The last logging record is not in-flight.") }
-        currentSelectedTask?.loggingHistory.removeLast()
-        
-        self.isLogging = false
-        
-        currentSelectedTask = nil
-    }
-    
-    
     func delete(loggingRecord: LoggingRecord) {
         for task in allTasks {
             if let logRecordIndex = task.loggingHistory.firstIndex(where: { $0.id == loggingRecord.id }) {
@@ -133,7 +123,6 @@ class TasksViewModel: ObservableObject {
     
     
     func persistPomodoroState() {
-        print("I'm about to save the thing?")
         FileManager.default.writeData(showingPomodoroTimer, to: FMKeys.showingPomodoroTimer)
     }
     
