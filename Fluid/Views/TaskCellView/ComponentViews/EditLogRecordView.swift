@@ -19,13 +19,17 @@ struct EditLogRecordView: View {
     @State private var editingStartTime = false
     @State private var editingEndTime = false
     
+    var dynamicLogRecordTime: String {
+        let time = endTime.timeIntervalSince(startTime)
+        return Int(time).secondsToHoursMins()
+    }
+    
     @Environment(\.presentationMode) var presentationMode
     
     var body: some View {
         NavigationView {
             Form {
-                Text("\(taskName) \(logRecord.lengthInSeconds.secondsToHoursMins())").bold()
-                
+                Text("\(taskName) (\(dynamicLogRecordTime))").bold()
                 Section(header: Text("Edit start/end time")) {
                     DatePicker("Edit start time", selection: $startTime)
                     DatePicker("Edit end time", selection: $endTime)
@@ -47,7 +51,6 @@ struct EditLogRecordView: View {
         
         if let index = tasks.allTasks.firstIndex(where: { $0.id == logRecord.taskID }) {
             self.taskName = tasks.allTasks[index].name
-            print("This is the task name - \(tasks.allTasks[index].name)")
         }
         self.startTime = self.logRecord.startTime
         if let endTime = self.logRecord.endTime {

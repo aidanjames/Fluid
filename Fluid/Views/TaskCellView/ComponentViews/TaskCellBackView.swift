@@ -28,13 +28,16 @@ struct TaskCellBackView: View {
                     SFSymbols.trashButton.foregroundColor(tasks.currentSelectedTask == nil ? Color(Colours.hotCoral) : .gray).padding(5)
                 }
                 
-                TextField("", text: $taskName)
-                    .font(.caption)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .padding(.leading)
-                    .onAppear {
-                        self.taskName = self.task.name
+                VStack(spacing: 0) {
+                    TextField("", text: $taskName)
+                        .font(.caption)
+                        .onAppear {
+                            self.taskName = self.task.name
+                    }
+                    Divider()
                 }
+                .padding(.leading)
+
                 
                 Spacer()
                 
@@ -89,6 +92,5 @@ struct TaskCellView_Back_Previews: PreviewProvider {
     static var previews: some View {
         TaskCellBackView(tasks: PreviewMockData.tasks, task: PreviewMockData.task, showingFront: .constant(false))
             .padding()
-        //            .previewLayout(.sizeThatFits)
     }
 }
