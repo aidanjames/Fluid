@@ -52,7 +52,6 @@ struct TimerCardView: View {
                     HStack {
                         if !tasks.showingPomodoroTimer {
                             Button(action: { withAnimation { self.tasks.showingPomodoroTimer.toggle() } }) {
-                                
                                 ButtonView(buttonText: "Add pomodoro", backgroundColour: Color(Colours.midnightBlue), maxWitdh: 120)
                             }
                             .padding(.leading, 45)
@@ -62,8 +61,6 @@ struct TimerCardView: View {
                             ButtonView(buttonText: "End timer", backgroundColour: Color(Colours.hotCoral), maxWitdh: 120)
                         }
                         .padding(.trailing, tasks.showingPomodoroTimer ? 0 : 45)
-                        
-                        
                         
                     }
                     .padding(.bottom, tasks.showingPomodoroTimer ? 0 : 20)
@@ -82,8 +79,6 @@ struct TimerCardView: View {
                 
             }
         }
-            
-//        .frame(minWidth: showingFullScreen ? screen.width : screen.width - 20, minHeight: showingFullScreen ? screen.height : 200)
         .frame(minHeight: 200)
         .edgesIgnoringSafeArea(.all)
         .layoutPriority(1)
@@ -91,18 +86,14 @@ struct TimerCardView: View {
         .padding(.horizontal, 16)
         .onReceive(NotificationCenter.default.publisher(for: UIApplication.didEnterBackgroundNotification)) { _ in
             if self.tasks.isLogging {
-                let notificationManager = NotificationManager.shared
                 if let currentTask = self.tasks.currentSelectedTask {
-                    notificationManager.scheduleTimerStillRunningNotification(for: currentTask.name)
-                }
-                if self.tasks.showingPomodoroTimer {
-                    self.tasks.persistPomodoroState()
+                    NotificationManager.shared.scheduleTimerStillRunningNotification(for: currentTask.name)
                 }
             }
         }
         .onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)) { _ in
             NotificationManager.shared.cancelAllNotificaitons()
-            if let currentTask = self.tasks.currentSelectedTask {                
+            if let currentTask = self.tasks.currentSelectedTask {
                 guard let currentLoggingRecord = currentTask.loggingHistory.last else { return }
                 guard currentLoggingRecord.endTime == nil else { return }
             }

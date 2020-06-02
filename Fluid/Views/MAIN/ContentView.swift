@@ -71,7 +71,6 @@ struct ContentView: View {
                                         .shadow(color: Color.gray.opacity(0.5), radius: 5, x: 0, y: 5)
                                 }
                             
-//                            Button("Hide everything") { self.ScrollToTop() }
                         }
                         Spacer()
                     }
@@ -79,21 +78,13 @@ struct ContentView: View {
                     .onAppear {
                         UIApplication.shared.isIdleTimerDisabled = self.tasks.isLogging
                         NotificationManager.shared.requestPermission()
+                        NotificationManager.shared.cancelAllNotificaitons()
                     }
                 }
             }
         }
     }
-    
-    
-    // This is a hack to get scroll view to scroll to the top when logging time for an existing task
-//    func ScrollToTop() {
-//        self.hideEverything = true
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
-//            self.hideEverything = false
-//
-//        }
-//    }
+
     
 }
 

@@ -29,6 +29,7 @@ class NotificationManager {
     
     
     func scheduleTimerStillRunningNotification(for taskName: String) {
+        print("Creating timer still running notification.")
         center.getNotificationSettings { settings in
             guard (settings.authorizationStatus == .authorized) else { return }
             let content = UNMutableNotificationContent()
@@ -45,6 +46,7 @@ class NotificationManager {
     }
     
     func scheduleBreakFinishedNotification(withID id: String = UUID().uuidString, timeInterval: Double) {
+        print("Creating break finished notification.")
         center.getNotificationSettings { settings in
             guard (settings.authorizationStatus == .authorized) else { return }
             let content = UNMutableNotificationContent()
@@ -62,6 +64,7 @@ class NotificationManager {
     
     
     func scheduleSessionFinishedNotification(withID id: String = UUID().uuidString, timeInterval: Double) {
+        print("Creating session finished notification.")
         center.getNotificationSettings { settings in
             guard (settings.authorizationStatus == .authorized) else { return }
             let content = UNMutableNotificationContent()
@@ -82,6 +85,7 @@ class NotificationManager {
     
     
     func cancelAllNotificaitons() {
+        print("Cancelling all notifications.")
         center.removeAllPendingNotificationRequests()
     }
     

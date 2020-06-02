@@ -37,7 +37,7 @@ struct TaskCellBackView: View {
                     Divider()
                 }
                 .padding(.leading)
-
+                
                 
                 Spacer()
                 

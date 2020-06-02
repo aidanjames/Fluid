@@ -155,7 +155,6 @@ class PomodoroSession: ObservableObject {
     }
     
     deinit {
-        print("Hello. Only me")
         deleteInFlightPromodoroState()
     }
     

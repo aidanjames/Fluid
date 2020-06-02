@@ -15,7 +15,11 @@ class TasksViewModel: ObservableObject {
     @Published var isLogging = false
     
     // Test to see if I can store the presence (or absence of the pomodoro timer)
-    @Published var showingPomodoroTimer = false
+    @Published var showingPomodoroTimer = false {
+        didSet {
+            persistPomodoroState()
+        }
+    }
     
     // The following is a hack to force subscribing views to refresh.
     // I use this when the screens are not updating when I'm updating objects within arrays
@@ -122,7 +126,7 @@ class TasksViewModel: ObservableObject {
     }
     
     
-    func persistPomodoroState() {
+    private func persistPomodoroState() {
         FileManager.default.writeData(showingPomodoroTimer, to: FMKeys.showingPomodoroTimer)
     }
     
