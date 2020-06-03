@@ -15,10 +15,14 @@ struct ContentView: View {
     @State private var showingTimerFullScreen = false
     @State private var showingRecentTasksOnly = true
     @State private var hideEverything = false
+    @State private var showingFilterField = false
+    @State private var searchText = ""
     
     var filteredTasks: [Task] {
         let arraySlice = tasks.allTasks.prefix(3)
-        if showingRecentTasksOnly {
+        if !searchText.isEmpty {
+            return tasks.allTasks.filter { $0.name.lowercased().contains(searchText.lowercased()) }
+        }  else if showingRecentTasksOnly {
             return Array(arraySlice)
         } else {
             return tasks.allTasks
@@ -55,21 +59,24 @@ struct ContentView: View {
                             HStack {
                                 Text("Recent tasks").font(.title).foregroundColor(Color(Colours.midnightBlue)).bold()
                                 Spacer()
-                                if self.tasks.allTasks.count > 3 && !self.tasks.isLogging {
+                                if self.tasks.allTasks.count > 3 && !self.tasks.isLogging && self.searchText.isEmpty {
                                     Button("Show \(self.showingRecentTasksOnly ? "more" : "less")") {
                                         self.showingRecentTasksOnly.toggle()
                                     }
+                                    
                                 }
                             }
                             .padding(.horizontal)
-                            
-                            
-
-                                ForEach(self.filteredTasks) { task in
-                                    TaskCellView(tasks: self.tasks, task: task, hideEverything: self.$hideEverything)
-                                        .frame(maxHeight: 400)
-                                        .shadow(color: Color.gray.opacity(0.5), radius: 5, x: 0, y: 5)
-                                }
+                            if self.tasks.allTasks.count > 3 && !self.tasks.isLogging {
+                                FilterView(searchText: self.$searchText)
+                            }
+           
+                            ForEach(self.filteredTasks) { task in
+                                TaskCellView(tasks: self.tasks, task: task, hideEverything: self.$hideEverything)
+                                    .frame(maxHeight: 400)
+                                    .shadow(color: Color.gray.opacity(0.5), radius: 5, x: 0, y: 5)
+                            }
+                            .animation(.default)
                             
                         }
                         Spacer()
@@ -84,7 +91,7 @@ struct ContentView: View {
             }
         }
     }
-
+    
     
 }
 

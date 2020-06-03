@@ -19,6 +19,7 @@ enum SFSymbols {
     static let pencil = Image(systemName: "pencil")
     static let chart = Image(systemName: "chart.bar.fill")
     static let list = Image(systemName: "list.dash")
+    static let magnifyingGlass = Image(systemName: "magnifyingglass")
 }
 
 
@@ -30,6 +31,8 @@ enum LottieAnimations {
 enum Images {
     static let cog = Image("cog")
     static let emptyState = Image("workEmptyState")
+    static let filter = Image("filter")
+    static let clearFilter = Image("clearFilter")
 }
 
 
