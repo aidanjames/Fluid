@@ -15,7 +15,7 @@ struct FilterView: View {
     var body: some View {
         HStack {
             ZStack {
-                Color.white
+                Color(Colours.cardViewColour)
                     .frame(height: 35)
                     .clipShape(Capsule())
                     .overlay(Capsule().stroke(Color(Colours.midnightBlue).opacity(0.5)))
@@ -29,15 +29,17 @@ struct FilterView: View {
             .padding(.trailing, searchText.isEmpty ? 16 : 0)
             
             if !searchText.isEmpty {
-                Button(action: { self.searchText = "" } ) {
+                Button(action: {
+                    self.searchText = ""
+                    UIApplication.shared.endEditing()
+                } ) {
                     SFSymbols.closeCircle
-                        .renderingMode(.original)
                         .font(.title)
-                        .foregroundColor(Color(Colours.midnightBlue))
+                        .foregroundColor(Color(Colours.hotCoral))
                         .opacity(0.8)
                         .padding(.trailing)
-                        .animation(.default)
                         .transition(.move(edge: .trailing))
+                        .animation(.default)
                 }
             }
         }

@@ -9,9 +9,11 @@
 import SwiftUI
 
 struct RingView: View {
-
+    
     @ObservedObject var pomodoroSession: PomodoroSession
-     
+    
+    @Environment(\.colorScheme) var colorScheme
+    
     var percent: CGFloat { CGFloat(pomodoroSession.pomodoros[pomodoroSession.currentPomodoro].counter) / CGFloat(pomodoroSession.pomodoros[pomodoroSession.currentPomodoro].maxCounter) * CGFloat(100) }
     
     var width : CGFloat = 88
@@ -45,6 +47,7 @@ struct RingView: View {
                 .shadow(color: colour.opacity(0.3), radius: 3 * multiplier, x: 0, y: 3 * multiplier)
                 .animation(.default)
             Text("\((pomodoroSession.pomodoros[pomodoroSession.currentPomodoro].maxCounter - pomodoroSession.pomodoros[pomodoroSession.currentPomodoro].counter).secondsToHoursMinsSecs())").font(Font.system(.body).monospacedDigit())
+                .foregroundColor(Color(Colours.midnightBlue))
         }
     }
 }

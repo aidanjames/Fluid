@@ -16,6 +16,8 @@ struct LogRecordListItemView: View {
     @State private var showingAlert = false
     @State private var showingEditRecord = false
     
+    @Environment(\.colorScheme) var colorScheme
+    
     var body: some View {
         HStack {
             Text("\(record.startTime.timeFromDateAsString) -> \(record.endTime?.timeFromDateAsString ?? "Active record") (\(record.lengthInSeconds.secondsToHoursMins()))").font(Font.system(.caption).monospacedDigit()).foregroundColor(Color(Colours.midnightBlue))
@@ -23,7 +25,7 @@ struct LogRecordListItemView: View {
             Button(action: { self.showingEditRecord.toggle() }) {
                 Text("Edit")
                 .font(.caption)
-                .foregroundColor(.white)
+                .foregroundColor(colorScheme == .dark ? .black : .white)
                 .padding(.horizontal)
                 .padding(.vertical, 3)
                 .background(Color(Colours.midnightBlue))
@@ -35,7 +37,7 @@ struct LogRecordListItemView: View {
             Button(action: { self.showingAlert.toggle() }) {
                 Text("Delete")
                 .font(.caption)
-                .foregroundColor(.white)
+                .foregroundColor(colorScheme == .dark ? .black : .white)
                 .padding(.horizontal)
                 .padding(.vertical, 3)
                 .background(Color(Colours.hotCoral))

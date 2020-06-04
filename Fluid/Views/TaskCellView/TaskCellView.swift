@@ -15,6 +15,8 @@ struct TaskCellView: View {
     
     @State private var showingFront = true
     @Binding var hideEverything: Bool
+    
+    @Environment(\.colorScheme) var colorScheme
         
     var body: some View {
         
@@ -25,15 +27,14 @@ struct TaskCellView: View {
                 TaskCellBackView(tasks: tasks, task: task, showingFront: $showingFront)
             }
         }
+                    
         .disabled(tasks.currentSelectedTask != nil)
         .opacity(tasks.currentSelectedTask != nil ? 0.3 : 1)
         .padding()
-        .background(Color.white)
+        .background(Color(Colours.cardViewColour))
         .cornerRadius(16)
         .padding(.horizontal)
-//        .padding(.bottom, showingFront ? 2 : 10)
-        
-        
+
     }
     
 }

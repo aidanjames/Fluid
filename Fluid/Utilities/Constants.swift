@@ -49,6 +49,8 @@ enum FMKeys {
 enum Colours {
     static let midnightBlue = "Midnight_Blue"
     static let hotCoral = "Hot_Coral"
+    static let cardViewColour = "Card_View"
+    static let shadow = "Shadow"
 }
 
 

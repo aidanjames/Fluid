@@ -18,6 +18,8 @@ struct ContentView: View {
     @State private var showingFilterField = false
     @State private var searchText = ""
     
+    @Environment(\.colorScheme) var colorScheme
+    
     var filteredTasks: [Task] {
         let arraySlice = tasks.allTasks.prefix(3)
         if !searchText.isEmpty {
@@ -41,7 +43,7 @@ struct ContentView: View {
                     
                     VStack {
                         TimerCardView(tasks: self.tasks, showingFullScreen: self.$showingTimerFullScreen)
-                            .shadow(color: self.tasks.isLogging ? Color(Colours.hotCoral).opacity(0.3) : Color.gray.opacity(0.5), radius: 10, x: 0, y: 10)
+                            .shadow(color: self.tasks.isLogging ? Color(Colours.hotCoral).opacity(0.3) : Color(Colours.shadow).opacity(0.5), radius: 10, x: 0, y: 10)
                         
                         if self.hideEverything {
                             EmptyView() // Hack to scroll to the top
@@ -60,21 +62,26 @@ struct ContentView: View {
                                 Text("Recent tasks").font(.title).foregroundColor(Color(Colours.midnightBlue)).bold()
                                 Spacer()
                                 if self.tasks.allTasks.count > 3 && !self.tasks.isLogging && self.searchText.isEmpty {
-                                    Button("Show \(self.showingRecentTasksOnly ? "more" : "less")") {
-                                        self.showingRecentTasksOnly.toggle()
+                                    Button(action: { self.showingRecentTasksOnly.toggle() }) {
+                                        Text("Show \(self.showingRecentTasksOnly ? "more" : "less")")
+                                            .font(.caption)
+                                            .foregroundColor(self.colorScheme == .dark ? .black : .white)
+                                            .padding(.horizontal)
+                                            .padding(.vertical, 3)
+                                            .background(Color(Colours.midnightBlue))
+                                            .cornerRadius(16)
                                     }
-                                    
-                                }
+                                 }
                             }
                             .padding(.horizontal)
                             if self.tasks.allTasks.count > 3 && !self.tasks.isLogging {
                                 FilterView(searchText: self.$searchText)
                             }
-           
+                            
                             ForEach(self.filteredTasks) { task in
                                 TaskCellView(tasks: self.tasks, task: task, hideEverything: self.$hideEverything)
                                     .frame(maxHeight: 400)
-                                    .shadow(color: Color.gray.opacity(0.5), radius: 5, x: 0, y: 5)
+                                    .shadow(color: Color(Colours.shadow).opacity(0.5), radius: 5, x: 0, y: 5)
                             }
                             .animation(.default)
                             

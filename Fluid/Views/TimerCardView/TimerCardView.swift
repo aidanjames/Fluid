@@ -13,7 +13,7 @@ struct TimerCardView: View {
     @ObservedObject var tasks: TasksViewModel
     @State private var taskName = ""
     @Binding var showingFullScreen: Bool
-
+      
     var body: some View {
         VStack {
             VStack {
@@ -41,7 +41,7 @@ struct TimerCardView: View {
                             .foregroundColor(Color(Colours.midnightBlue))
                     }
                 }
-
+                
                 if tasks.isLogging {
                     
                     ZStack {
@@ -82,7 +82,7 @@ struct TimerCardView: View {
         .frame(minHeight: 200)
         .edgesIgnoringSafeArea(.all)
         .layoutPriority(1)
-        .background(Color.white.opacity(1)).cornerRadius(16)
+        .background(Color(Colours.cardViewColour).opacity(1)).cornerRadius(16)
         .padding(.horizontal, 16)
         .onReceive(NotificationCenter.default.publisher(for: UIApplication.didEnterBackgroundNotification)) { _ in
             if self.tasks.isLogging {

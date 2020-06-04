@@ -14,11 +14,13 @@ struct ButtonView: View {
     var backgroundColour: Color
     var maxWitdh: CGFloat = .infinity
     
+    @Environment(\.colorScheme) var colorScheme
+    
     var body: some View {
         HStack {
             Spacer()
             Text(buttonText)
-                .foregroundColor(.white)
+                .foregroundColor(colorScheme == .dark ? .black : .white)
                 .font(.caption)
                 .bold()
             Spacer()
