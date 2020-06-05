@@ -17,6 +17,7 @@ struct ContentView: View {
     @State private var hideEverything = false
     @State private var showingFilterField = false
     @State private var searchText = ""
+    @State private var isFiltering = false
     
     @Environment(\.colorScheme) var colorScheme
     
@@ -42,9 +43,11 @@ struct ContentView: View {
                 ScrollView {
                     
                     VStack {
-                        
-                        TimerCardView(tasks: self.tasks, showingFullScreen: self.$showingTimerFullScreen)
-                            .shadow(color: self.tasks.isLogging ? Color(Colours.hotCoral).opacity(0.3) : Color(Colours.shadow).opacity(0.5), radius: 10, x: 0, y: 10)
+                        if !self.isFiltering{
+                            TimerCardView(tasks: self.tasks, showingFullScreen: self.$showingTimerFullScreen)
+                                .shadow(color: self.tasks.isLogging ? Color(Colours.hotCoral).opacity(0.3) : Color(Colours.shadow).opacity(0.5), radius: 10, x: 0, y: 10)
+                            
+                        }
                         
                         if self.hideEverything {
                             EmptyView() // Hack to scroll to the top
@@ -59,29 +62,34 @@ struct ContentView: View {
                                 .padding(.horizontal, 30)
                                 .multilineTextAlignment(.center)
                         } else {
-                            HStack {
-                                Text("Recent tasks").font(.title).foregroundColor(Color(Colours.midnightBlue)).bold()
-                                Spacer()
-                                if self.tasks.allTasks.count > 3 && !self.tasks.isLogging && self.searchText.isEmpty {
-                                    Button(action: { self.showingRecentTasksOnly.toggle() }) {
-                                        Text("Show \(self.showingRecentTasksOnly ? "more" : "less")")
-                                            .font(.caption)
-                                            .foregroundColor(self.colorScheme == .dark ? .black : .white)
-                                            .padding(.horizontal)
-                                            .padding(.vertical, 3)
-                                            .background(Color(Colours.midnightBlue))
-                                            .cornerRadius(16)
+                            
+                            if !self.isFiltering {
+                                HStack {
+                                    Text("Recent tasks").font(.title).foregroundColor(Color(Colours.midnightBlue)).bold()
+                                    Spacer()
+                                    if self.tasks.allTasks.count > 3 && !self.tasks.isLogging && self.searchText.isEmpty {
+                                        Button(action: { self.showingRecentTasksOnly.toggle() }) {
+                                            Text("Show \(self.showingRecentTasksOnly ? "more" : "less")")
+                                                .font(.caption)
+                                                .foregroundColor(self.colorScheme == .dark ? .black : .white)
+                                                .padding(.horizontal)
+                                                .padding(.vertical, 3)
+                                                .background(Color(Colours.midnightBlue))
+                                                .cornerRadius(16)
+                                        }
                                     }
                                 }
+                                .padding(.horizontal)
                             }
-                            .padding(.horizontal)
+
                             
                             if self.tasks.allTasks.count > 3 && !self.tasks.isLogging {
-                                FilterView(searchText: self.$searchText)
+                                FilterView(isFiltering: self.$isFiltering, searchText: self.$searchText, showingRecentTasksOnly: self.$showingRecentTasksOnly)
+
                             }
                             
                             ForEach(self.filteredTasks) { task in
-                                TaskCellView(tasks: self.tasks, task: task, hideEverything: self.$hideEverything)
+                                TaskCellView(tasks: self.tasks, task: task, hideEverything: self.$hideEverything, isFiltering: self.$isFiltering, searchText: self.$searchText)
                                     .frame(maxHeight: 400)
                                     .shadow(color: Color(Colours.shadow).opacity(0.5), radius: 5, x: 0, y: 5)
                             }

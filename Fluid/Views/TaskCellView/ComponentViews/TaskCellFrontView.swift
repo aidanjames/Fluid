@@ -14,6 +14,8 @@ struct TaskCellFrontView: View {
     @ObservedObject var tasks: TasksViewModel
     @Binding var showingFront: Bool
     @Binding var hideEverything: Bool
+    @Binding var isFiltering: Bool
+    @Binding var searchText: String
     
     @Environment(\.colorScheme) var colorScheme
     
@@ -21,10 +23,10 @@ struct TaskCellFrontView: View {
         HStack {
             VStack(alignment: .leading) {
                 Text(task.name).font(.body).bold().foregroundColor(Color(Colours.midnightBlue)).padding(.bottom, 5)
-                Text("Today: \(task.getSecondsRecordedToday().secondsToHoursMins())")//.foregroundColor(.secondary)
-                Text("This week: \(task.getSecondsRecordedThisWeek().secondsToHoursMins())")//.foregroundColor(.secondary)
-                Text("This month: \(task.getSecondsRecordedThisMonth().secondsToHoursMins())")//.foregroundColor(.secondary)
-                Text("All time: \(task.getSecondsRecordedAllTime().secondsToHoursMins())")//.foregroundColor(.secondary)
+                Text("Today: \(task.getSecondsRecordedToday().secondsToHoursMins())")
+                Text("This week: \(task.getSecondsRecordedThisWeek().secondsToHoursMins())")
+                Text("This month: \(task.getSecondsRecordedThisMonth().secondsToHoursMins())")
+                Text("All time: \(task.getSecondsRecordedAllTime().secondsToHoursMins())")
             }
             .foregroundColor(colorScheme == .dark ? Color(Colours.midnightBlue) : .gray)
             .font(.footnote)
@@ -53,6 +55,8 @@ struct TaskCellFrontView: View {
         self.hideEverything = true
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
             self.hideEverything = false
+            self.isFiltering = false
+            self.searchText = ""
             if let index = self.tasks.allTasks.firstIndex(where: { $0.id == self.task.id }) {
                 withAnimation { self.tasks.allTasks.move(from: index, to: 0) }
             }
@@ -65,13 +69,7 @@ struct TaskCellFrontView: View {
 
 struct TaskCellView_Front_Previews: PreviewProvider {
     static var previews: some View {
-//        VStack {
-            TaskCellFrontView(task: PreviewMockData.task, tasks: PreviewMockData.tasks, showingFront: .constant(true), hideEverything: .constant(false))
-//                .padding()
-                .previewLayout(.sizeThatFits)
-//            TaskCellFrontView(task: PreviewMockData.task, tasks: PreviewMockData.tasks, showingFront: .constant(true), hideEverything: .constant(false))
-//                .padding()
-//                .previewLayout(.sizeThatFits)
-//        }
+        TaskCellFrontView(task: PreviewMockData.task, tasks: PreviewMockData.tasks, showingFront: .constant(true), hideEverything: .constant(false), isFiltering: .constant(false), searchText: .constant(""))
+            .previewLayout(.sizeThatFits)
     }
 }

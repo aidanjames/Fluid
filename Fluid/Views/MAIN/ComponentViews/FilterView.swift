@@ -10,7 +10,9 @@ import SwiftUI
 
 struct FilterView: View {
     
+    @Binding var isFiltering: Bool
     @Binding var searchText: String
+    @Binding var showingRecentTasksOnly: Bool
     
     var body: some View {
         HStack {
@@ -28,8 +30,9 @@ struct FilterView: View {
             .padding(.leading)
             .padding(.trailing, searchText.isEmpty ? 16 : 0)
             
-            if !searchText.isEmpty {
+            if self.isFiltering {
                 Button(action: {
+                    self.isFiltering = false
                     self.searchText = ""
                     UIApplication.shared.endEditing()
                 } ) {
@@ -43,13 +46,19 @@ struct FilterView: View {
                 }
             }
         }
+            
+        .onTapGesture {
+            self.isFiltering = true
+            self.showingRecentTasksOnly = false
+        }
         .padding(.bottom, 10)
+        .padding(.top, self.isFiltering ? 10 : 0)
         
     }
 }
 
 struct FilterView_Previews: PreviewProvider {
     static var previews: some View {
-        FilterView(searchText: .constant("fef"))
+        FilterView(isFiltering: .constant(false), searchText: .constant("fef"), showingRecentTasksOnly: .constant(false))
     }
 }

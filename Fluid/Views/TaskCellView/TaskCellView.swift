@@ -15,6 +15,8 @@ struct TaskCellView: View {
     
     @State private var showingFront = true
     @Binding var hideEverything: Bool
+    @Binding var isFiltering: Bool
+    @Binding var searchText: String
     
     @Environment(\.colorScheme) var colorScheme
         
@@ -22,7 +24,7 @@ struct TaskCellView: View {
         
         Group {
             if showingFront {
-                TaskCellFrontView(task: task, tasks: self.tasks, showingFront: $showingFront, hideEverything: $hideEverything)
+                TaskCellFrontView(task: task, tasks: self.tasks, showingFront: $showingFront, hideEverything: $hideEverything, isFiltering: $isFiltering, searchText: $searchText)
             } else {
                 TaskCellBackView(tasks: tasks, task: task, showingFront: $showingFront)
             }
@@ -41,7 +43,7 @@ struct TaskCellView: View {
 
 struct TaskCellView_Previews: PreviewProvider {
     static var previews: some View {
-        TaskCellView(tasks: PreviewMockData.tasks, task: PreviewMockData.task, hideEverything: .constant(false))
+        TaskCellView(tasks: PreviewMockData.tasks, task: PreviewMockData.task, hideEverything: .constant(false), isFiltering: .constant(false), searchText: .constant(""))
             .frame(height: 150)
             .previewLayout(.sizeThatFits)
     }
