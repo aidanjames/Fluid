@@ -86,8 +86,11 @@ struct PomodoroView: View {
             
         }
         .frame(maxWidth: 300, maxHeight: 150)
+        
         .background(Color(Colours.cardViewColour))
+         
         .cornerRadius(16)
+        .overlay(RoundedRectangle(cornerRadius: 16).stroke(Color(Colours.midnightBlue).opacity(colorScheme == .dark ? 0.2 : 0.1)))
         .shadow(color: Color(Colours.shadow).opacity(0.5), radius: 10, x: 0, y: 5)
         .onReceive(NotificationCenter.default.publisher(for: UIApplication.didEnterBackgroundNotification)) { _ in
             self.pomodoroSession.persistInFlightPomodoroState()
@@ -113,6 +116,11 @@ struct PomodoroView: View {
 
 struct PomodoroView_Previews: PreviewProvider {
     static var previews: some View {
-        PomodoroView(showingPomodoroView: .constant(true))
-    }
+            ZStack {
+                Color(Colours.cardViewColour).edgesIgnoringSafeArea(.all)
+                PomodoroView(showingPomodoroView: .constant(true))
+                
+            }
+//            .colorScheme(.dark)
+        }
 }

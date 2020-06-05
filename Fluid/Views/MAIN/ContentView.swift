@@ -42,6 +42,7 @@ struct ContentView: View {
                 ScrollView {
                     
                     VStack {
+                        
                         TimerCardView(tasks: self.tasks, showingFullScreen: self.$showingTimerFullScreen)
                             .shadow(color: self.tasks.isLogging ? Color(Colours.hotCoral).opacity(0.3) : Color(Colours.shadow).opacity(0.5), radius: 10, x: 0, y: 10)
                         
@@ -71,9 +72,10 @@ struct ContentView: View {
                                             .background(Color(Colours.midnightBlue))
                                             .cornerRadius(16)
                                     }
-                                 }
+                                }
                             }
                             .padding(.horizontal)
+                            
                             if self.tasks.allTasks.count > 3 && !self.tasks.isLogging {
                                 FilterView(searchText: self.$searchText)
                             }
