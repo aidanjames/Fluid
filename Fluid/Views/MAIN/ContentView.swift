@@ -44,7 +44,7 @@ struct ContentView: View {
                     
                     VStack {
                         if !self.isFiltering{
-                            TimerCardView(tasks: self.tasks, showingFullScreen: self.$showingTimerFullScreen)
+                            TimerCardView(tasks: self.tasks)
                                 .shadow(color: self.tasks.isLogging ? Color(Colours.hotCoral).opacity(0.3) : Color(Colours.shadow).opacity(0.5), radius: 10, x: 0, y: 10)
                             
                         }

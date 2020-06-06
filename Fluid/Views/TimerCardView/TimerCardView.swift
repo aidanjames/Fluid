@@ -12,7 +12,7 @@ struct TimerCardView: View {
     
     @ObservedObject var tasks: TasksViewModel
     @State private var taskName = ""
-    @Binding var showingFullScreen: Bool
+//    @Binding var showingFullScreen: Bool
       
     var body: some View {
         VStack {
@@ -20,7 +20,20 @@ struct TimerCardView: View {
                 ZStack {
                     if tasks.currentSelectedTask == nil {
                         VStack {
-                            TextField("Add new task", text: $taskName).font(.title).multilineTextAlignment(.center)
+                            HStack {
+                                TextField("Add new task", text: $taskName).font(.title).multilineTextAlignment(.center)
+                                if !taskName.isEmpty {
+                                    Button(action: { self.taskName = "" }) {
+                                        SFSymbols.closeCircle
+                                            .font(.title)
+                                            .foregroundColor(Color(Colours.hotCoral))
+                                            .opacity(0.8)
+                                            .padding(.trailing)
+                                            .transition(.move(edge: .trailing))
+                                            .animation(.default)
+                                    }
+                                }
+                            }
                             Rectangle().fill(Color.gray).frame(height: 1).padding(.horizontal, 50)
                             
                             if !taskName.isEmpty && tasks.currentSelectedTask == nil {
@@ -104,12 +117,12 @@ struct TimerCardView: View {
         UIApplication.shared.endEditing()
         if tasks.isLogging {
             withAnimation {
-                self.showingFullScreen = false
+//                self.showingFullScreen = false
                 tasks.stopLoggingForCurrentTask()
                 tasks.showingPomodoroTimer = false
             }
         } else {
-            self.showingFullScreen = true
+//            self.showingFullScreen = true
             if tasks.currentSelectedTask == nil {
                 withAnimation { tasks.startLoggingForNewTask(named: self.taskName) }
                 self.taskName = ""
@@ -124,7 +137,7 @@ struct TimerCardView: View {
 
 struct TimerCardView_Previews: PreviewProvider {
     static var previews: some View {
-        TimerCardView(tasks: TasksViewModel(), showingFullScreen: .constant(true))
+        TimerCardView(tasks: TasksViewModel())
             .previewLayout(.sizeThatFits)
     }
 }
