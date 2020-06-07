@@ -46,7 +46,6 @@ struct ContentView: View {
                         if !self.isFiltering{
                             TimerCardView(tasks: self.tasks)
                                 .shadow(color: self.tasks.isLogging ? Color(Colours.hotCoral).opacity(0.3) : Color(Colours.shadow).opacity(0.5), radius: 10, x: 0, y: 10)
-                            
                         }
                         
                         if self.hideEverything {
@@ -73,7 +72,7 @@ struct ContentView: View {
                                                 .font(.caption)
                                                 .foregroundColor(self.colorScheme == .dark ? .black : .white)
                                                 .padding(.horizontal)
-                                                .padding(.vertical, 3)
+                                                .padding(.vertical, 5)
                                                 .background(Color(Colours.midnightBlue))
                                                 .cornerRadius(16)
                                         }
@@ -81,11 +80,11 @@ struct ContentView: View {
                                 }
                                 .padding(.horizontal)
                             }
-
+                            
                             
                             if self.tasks.allTasks.count > 3 && !self.tasks.isLogging {
                                 FilterView(isFiltering: self.$isFiltering, searchText: self.$searchText, showingRecentTasksOnly: self.$showingRecentTasksOnly)
-
+                                
                             }
                             
                             ForEach(self.filteredTasks) { task in

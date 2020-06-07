@@ -12,7 +12,6 @@ struct TimerCardView: View {
     
     @ObservedObject var tasks: TasksViewModel
     @State private var taskName = ""
-//    @Binding var showingFullScreen: Bool
       
     var body: some View {
         VStack {
@@ -23,7 +22,10 @@ struct TimerCardView: View {
                             HStack {
                                 TextField("Add new task", text: $taskName).font(.title).multilineTextAlignment(.center)
                                 if !taskName.isEmpty {
-                                    Button(action: { self.taskName = "" }) {
+                                    Button(action: {
+                                        self.taskName = ""
+                                        UIApplication.shared.endEditing()
+                                    }) {
                                         SFSymbols.closeCircle
                                             .font(.title)
                                             .foregroundColor(Color(Colours.hotCoral))
@@ -117,12 +119,10 @@ struct TimerCardView: View {
         UIApplication.shared.endEditing()
         if tasks.isLogging {
             withAnimation {
-//                self.showingFullScreen = false
                 tasks.stopLoggingForCurrentTask()
                 tasks.showingPomodoroTimer = false
             }
         } else {
-//            self.showingFullScreen = true
             if tasks.currentSelectedTask == nil {
                 withAnimation { tasks.startLoggingForNewTask(named: self.taskName) }
                 self.taskName = ""
