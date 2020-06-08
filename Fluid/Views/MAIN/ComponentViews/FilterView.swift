@@ -36,13 +36,7 @@ struct FilterView: View {
                     self.searchText = ""
                     UIApplication.shared.endEditing()
                 } ) {
-                    SFSymbols.closeCircle
-                        .font(.title)
-                        .foregroundColor(Color(Colours.hotCoral))
-                        .opacity(0.8)
-                        .padding(.trailing)
-                        .transition(.move(edge: .trailing))
-                        .animation(.default)
+                    CloseButtonView()
                 }
             }
         }

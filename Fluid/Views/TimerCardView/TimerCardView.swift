@@ -12,6 +12,7 @@ struct TimerCardView: View {
     
     @ObservedObject var tasks: TasksViewModel
     @State private var taskName = ""
+    @Binding var searchText: String
       
     var body: some View {
         VStack {
@@ -26,13 +27,7 @@ struct TimerCardView: View {
                                         self.taskName = ""
                                         UIApplication.shared.endEditing()
                                     }) {
-                                        SFSymbols.closeCircle
-                                            .font(.title)
-                                            .foregroundColor(Color(Colours.hotCoral))
-                                            .opacity(0.8)
-                                            .padding(.trailing)
-                                            .transition(.move(edge: .trailing))
-                                            .animation(.default)
+                                        CloseButtonView()
                                     }
                                 }
                             }
@@ -137,7 +132,7 @@ struct TimerCardView: View {
 
 struct TimerCardView_Previews: PreviewProvider {
     static var previews: some View {
-        TimerCardView(tasks: TasksViewModel())
+        TimerCardView(tasks: TasksViewModel(), searchText: .constant(""))
             .previewLayout(.sizeThatFits)
     }
 }

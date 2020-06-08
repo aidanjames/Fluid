@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3D026F25248EC77000D4D42A /* CloseButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D026F24248EC77000D4D42A /* CloseButtonView.swift */; };
 		3D09898D246DBDF200E520E2 /* PomodoroSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D09898C246DBDF200E520E2 /* PomodoroSettingsView.swift */; };
 		3D0F7F0F246C7AD800AB3874 /* PopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0F7F0E246C7AD800AB3874 /* PopUpView.swift */; };
 		3D227CF1245B4F17007FCF2E /* TaskCellFrontView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D227CF0245B4F17007FCF2E /* TaskCellFrontView.swift */; };
@@ -56,6 +57,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3D026F24248EC77000D4D42A /* CloseButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloseButtonView.swift; sourceTree = "<group>"; };
 		3D09898C246DBDF200E520E2 /* PomodoroSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PomodoroSettingsView.swift; sourceTree = "<group>"; };
 		3D0F7F0E246C7AD800AB3874 /* PopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpView.swift; sourceTree = "<group>"; };
 		3D227CF0245B4F17007FCF2E /* TaskCellFrontView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCellFrontView.swift; sourceTree = "<group>"; };
@@ -249,6 +251,7 @@
 			children = (
 				3D47E1C224660B9100EB6280 /* ButtonView.swift */,
 				3D0F7F0E246C7AD800AB3874 /* PopUpView.swift */,
+				3D026F24248EC77000D4D42A /* CloseButtonView.swift */,
 			);
 			path = SharedViews;
 			sourceTree = "<group>";
@@ -431,6 +434,7 @@
 				3DE1EB16246495240023B30D /* PomodoroModel.swift in Sources */,
 				3DF791A0245F0F2900CB5DB7 /* LogRecordListView.swift in Sources */,
 				3D7DE2FE245E277800246957 /* Date-Ext.swift in Sources */,
+				3D026F25248EC77000D4D42A /* CloseButtonView.swift in Sources */,
 				3D3148B02455D77C0022447E /* MyTimer.swift in Sources */,
 				3D09898D246DBDF200E520E2 /* PomodoroSettingsView.swift in Sources */,
 				3D904A1F2457691A000A4989 /* ProgressBarView.swift in Sources */,
