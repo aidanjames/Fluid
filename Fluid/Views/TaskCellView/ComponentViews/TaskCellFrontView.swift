@@ -16,6 +16,7 @@ struct TaskCellFrontView: View {
     @Binding var hideEverything: Bool
     @Binding var isFiltering: Bool
     @Binding var searchText: String
+    @Binding var taskName: String
     
     @Environment(\.colorScheme) var colorScheme
     
@@ -57,6 +58,7 @@ struct TaskCellFrontView: View {
             self.hideEverything = false
             self.isFiltering = false
             self.searchText = ""
+            self.taskName = ""
             if let index = self.tasks.allTasks.firstIndex(where: { $0.id == self.task.id }) {
                 withAnimation { self.tasks.allTasks.move(from: index, to: 0) }
             }
@@ -69,7 +71,7 @@ struct TaskCellFrontView: View {
 
 struct TaskCellView_Front_Previews: PreviewProvider {
     static var previews: some View {
-        TaskCellFrontView(task: PreviewMockData.task, tasks: PreviewMockData.tasks, showingFront: .constant(true), hideEverything: .constant(false), isFiltering: .constant(false), searchText: .constant(""))
+        TaskCellFrontView(task: PreviewMockData.task, tasks: PreviewMockData.tasks, showingFront: .constant(true), hideEverything: .constant(false), isFiltering: .constant(false), searchText: .constant(""), taskName: .constant(""))
             .previewLayout(.sizeThatFits)
     }
 }

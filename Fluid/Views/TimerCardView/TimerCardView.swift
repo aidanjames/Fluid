@@ -11,8 +11,7 @@ import SwiftUI
 struct TimerCardView: View {
     
     @ObservedObject var tasks: TasksViewModel
-    @State private var taskName = ""
-    @Binding var searchText: String
+    @Binding var taskName: String
       
     var body: some View {
         VStack {
@@ -132,7 +131,7 @@ struct TimerCardView: View {
 
 struct TimerCardView_Previews: PreviewProvider {
     static var previews: some View {
-        TimerCardView(tasks: TasksViewModel(), searchText: .constant(""))
+        TimerCardView(tasks: TasksViewModel(), taskName: .constant(""))
             .previewLayout(.sizeThatFits)
     }
 }

@@ -12,11 +12,11 @@ struct ContentView: View {
     
     @ObservedObject var tasks = TasksViewModel()
     
-    @State private var showingTimerFullScreen = false
     @State private var showingRecentTasksOnly = true
     @State private var hideEverything = false
     @State private var showingFilterField = false
     @State private var searchText = ""
+    @State private var taskName = ""
     @State private var isFiltering = false
     
     @Environment(\.colorScheme) var colorScheme
@@ -25,7 +25,9 @@ struct ContentView: View {
         let arraySlice = tasks.allTasks.prefix(3)
         if !searchText.isEmpty {
             return tasks.allTasks.filter { $0.name.lowercased().contains(searchText.lowercased()) }
-        }  else if showingRecentTasksOnly {
+        } else if !taskName.isEmpty {
+            return tasks.allTasks.filter { $0.name.lowercased().contains(taskName.lowercased()) }
+        } else if showingRecentTasksOnly {
             return Array(arraySlice)
         } else {
             return tasks.allTasks
@@ -44,7 +46,7 @@ struct ContentView: View {
                     
                     VStack {
                         if !self.isFiltering{
-                            TimerCardView(tasks: self.tasks, searchText: self.$searchText)
+                            TimerCardView(tasks: self.tasks, taskName: self.$taskName)
                                 .shadow(color: self.tasks.isLogging ? Color(Colours.hotCoral).opacity(0.3) : Color(Colours.shadow).opacity(0.5), radius: 10, x: 0, y: 10)
                         }
                         
@@ -62,7 +64,7 @@ struct ContentView: View {
                                 .multilineTextAlignment(.center)
                         } else {
                             
-                            if !self.isFiltering {
+                            if !self.isFiltering && self.taskName.isEmpty {
                                 HStack {
                                     Text("Recent tasks").font(.title).foregroundColor(Color(Colours.midnightBlue)).bold()
                                     Spacer()
@@ -81,14 +83,12 @@ struct ContentView: View {
                                 .padding(.horizontal)
                             }
                             
-                            
-                            if self.tasks.allTasks.count > 3 && !self.tasks.isLogging {
+                            if self.tasks.allTasks.count > 3 && !self.tasks.isLogging && self.taskName.isEmpty {
                                 FilterView(isFiltering: self.$isFiltering, searchText: self.$searchText, showingRecentTasksOnly: self.$showingRecentTasksOnly)
-                                
                             }
                             
                             ForEach(self.filteredTasks) { task in
-                                TaskCellView(tasks: self.tasks, task: task, hideEverything: self.$hideEverything, isFiltering: self.$isFiltering, searchText: self.$searchText)
+                                TaskCellView(tasks: self.tasks, task: task, hideEverything: self.$hideEverything, isFiltering: self.$isFiltering, searchText: self.$searchText, taskName: self.$taskName)
                                     .frame(maxHeight: 400)
                                     .shadow(color: Color(Colours.shadow).opacity(0.5), radius: 5, x: 0, y: 5)
                             }
