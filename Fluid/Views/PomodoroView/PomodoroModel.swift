@@ -164,7 +164,7 @@ class PomodoroSession: ObservableObject {
 
 
 struct Pomodoro: Codable, Identifiable {
-    let id = UUID()
+    var id = UUID()
     var state: PomodoroState = .toDo
     var counter: Int
     let maxCounter: Int

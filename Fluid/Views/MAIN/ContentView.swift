@@ -10,7 +10,7 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @ObservedObject var tasks = TasksViewModel()
+    @StateObject var tasks = TasksViewModel()
     
     @State private var showingRecentTasksOnly = true
     @State private var hideEverything = false
@@ -44,7 +44,7 @@ struct ContentView: View {
                 
                 ScrollView {
                     
-                    VStack {
+                    LazyVStack {
                         if !self.isFiltering{
                             TimerCardView(tasks: self.tasks, taskName: self.$taskName)
                                 .shadow(color: self.tasks.isLogging ? Color(Colours.hotCoral).opacity(0.3) : Color(Colours.shadow).opacity(0.5), radius: 10, x: 0, y: 10)

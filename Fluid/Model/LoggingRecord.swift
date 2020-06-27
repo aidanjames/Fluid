@@ -9,7 +9,7 @@
 import Foundation
 
 class LoggingRecord: Codable, Identifiable {
-    let id = UUID()
+    var id = UUID()
     var taskID: UUID
     var startTime: Date
     var endTime: Date?

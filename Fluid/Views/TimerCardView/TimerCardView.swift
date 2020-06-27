@@ -12,7 +12,7 @@ struct TimerCardView: View {
     
     @ObservedObject var tasks: TasksViewModel
     @Binding var taskName: String
-      
+    
     var body: some View {
         VStack {
             VStack {
@@ -88,7 +88,7 @@ struct TimerCardView: View {
                 
             }
         }
-        .frame(minHeight: 200)
+        .frame(minHeight: tasks.showingPomodoroTimer ? 400 : 200)
         .edgesIgnoringSafeArea(.all)
         .layoutPriority(1)
         .background(Color(Colours.cardViewColour).opacity(1)).cornerRadius(16)
