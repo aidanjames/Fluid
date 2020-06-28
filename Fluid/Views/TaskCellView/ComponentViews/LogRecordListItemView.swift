@@ -20,28 +20,29 @@ struct LogRecordListItemView: View {
     
     var body: some View {
         HStack {
-            Text("\(record.startTime.timeFromDateAsString) -> \(record.endTime?.timeFromDateAsString ?? "Active record") (\(record.lengthInSeconds.secondsToHoursMins()))").font(Font.system(.caption).monospacedDigit()).foregroundColor(Color(Colours.midnightBlue))
+            Text("\(record.startTime...record.startTime.addingTimeInterval(TimeInterval(record.lengthInSeconds))) (\(record.lengthInSeconds.secondsToHoursMins()))")
+                .font(Font.system(.caption).monospacedDigit()).foregroundColor(Color(Colours.midnightBlue))
             Spacer()
             Button(action: { self.showingEditRecord.toggle() }) {
                 Text("Edit")
-                .font(.caption)
-                .foregroundColor(colorScheme == .dark ? .black : .white)
-                .padding(.horizontal)
-                .padding(.vertical, 3)
-                .background(Color(Colours.midnightBlue))
-                .cornerRadius(16)
+                    .font(.caption)
+                    .foregroundColor(colorScheme == .dark ? .black : .white)
+                    .padding(.horizontal)
+                    .padding(.vertical, 3)
+                    .background(Color(Colours.midnightBlue))
+                    .cornerRadius(16)
             }
             .sheet(isPresented: $showingEditRecord) {
                 EditLogRecordView(logRecord: self.record, tasks: self.tasks)
             }
             Button(action: { self.showingAlert.toggle() }) {
                 Text("Delete")
-                .font(.caption)
-                .foregroundColor(colorScheme == .dark ? .black : .white)
-                .padding(.horizontal)
-                .padding(.vertical, 3)
-                .background(Color(Colours.hotCoral))
-                .cornerRadius(16)
+                    .font(.caption)
+                    .foregroundColor(colorScheme == .dark ? .black : .white)
+                    .padding(.horizontal)
+                    .padding(.vertical, 3)
+                    .background(Color(Colours.hotCoral))
+                    .cornerRadius(16)
             }
             .alert(isPresented: $showingAlert) {
                 Alert(title: Text("Delete record?"), message: Text("Are you sure you want to delete this record? This cannot be undone."),
