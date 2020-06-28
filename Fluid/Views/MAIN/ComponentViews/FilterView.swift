@@ -12,7 +12,6 @@ struct FilterView: View {
     
     @Binding var isFiltering: Bool
     @Binding var searchText: String
-    @Binding var showingRecentTasksOnly: Bool
     
     var body: some View {
         HStack {
@@ -43,7 +42,6 @@ struct FilterView: View {
             
         .onTapGesture {
             self.isFiltering = true
-            self.showingRecentTasksOnly = false
         }
         .padding(.bottom, 10)
         .padding(.top, self.isFiltering ? 10 : 0)
@@ -53,6 +51,6 @@ struct FilterView: View {
 
 struct FilterView_Previews: PreviewProvider {
     static var previews: some View {
-        FilterView(isFiltering: .constant(false), searchText: .constant("fef"), showingRecentTasksOnly: .constant(false))
+        FilterView(isFiltering: .constant(false), searchText: .constant("fef"))
     }
 }

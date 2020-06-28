@@ -12,7 +12,6 @@ struct ContentView: View {
     
     @StateObject var tasks = TasksViewModel()
     
-    @State private var showingRecentTasksOnly = true
     @State private var hideEverything = false
     @State private var showingFilterField = false
     @State private var searchText = ""
@@ -22,13 +21,10 @@ struct ContentView: View {
     @Environment(\.colorScheme) var colorScheme
     
     var filteredTasks: [Task] {
-        let arraySlice = tasks.allTasks.prefix(3)
         if !searchText.isEmpty {
             return tasks.allTasks.filter { $0.name.lowercased().contains(searchText.lowercased()) }
         } else if !taskName.isEmpty {
             return tasks.allTasks.filter { $0.name.lowercased().contains(taskName.lowercased()) }
-        } else if showingRecentTasksOnly {
-            return Array(arraySlice)
         } else {
             return tasks.allTasks
         }
@@ -68,23 +64,11 @@ struct ContentView: View {
                                 HStack {
                                     Text("Recent tasks").font(.title).foregroundColor(Color(Colours.midnightBlue)).bold()
                                     Spacer()
-                                    if self.tasks.allTasks.count > 3 && !self.tasks.isLogging && self.searchText.isEmpty {
-                                        Button(action: { self.showingRecentTasksOnly.toggle() }) {
-                                            Text("Show \(self.showingRecentTasksOnly ? "more" : "less")")
-                                                .font(.caption)
-                                                .foregroundColor(self.colorScheme == .dark ? .black : .white)
-                                                .padding(.horizontal)
-                                                .padding(.vertical, 5)
-                                                .background(Color(Colours.midnightBlue))
-                                                .cornerRadius(16)
-                                        }
-                                    }
                                 }
                                 .padding(.horizontal)
                             }
-                            
                             if self.tasks.allTasks.count > 3 && !self.tasks.isLogging && self.taskName.isEmpty {
-                                FilterView(isFiltering: self.$isFiltering, searchText: self.$searchText, showingRecentTasksOnly: self.$showingRecentTasksOnly)
+                                FilterView(isFiltering: self.$isFiltering, searchText: self.$searchText)
                             }
                             
                             ForEach(self.filteredTasks) { task in
