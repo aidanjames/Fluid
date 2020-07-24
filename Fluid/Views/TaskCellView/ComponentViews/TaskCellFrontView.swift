@@ -35,7 +35,7 @@ struct TaskCellFrontView: View {
             Spacer()
             
             Button(action: {
-                withAnimation { self.showingFront.toggle() }
+                withAnimation { showingFront.toggle() }
             }) {
                 SFSymbols.moreButtonWithoutCircle
                     .foregroundColor(tasks.currentSelectedTask == nil ? Color(Colours.midnightBlue) : .gray)
@@ -43,7 +43,7 @@ struct TaskCellFrontView: View {
             }
             
             Button(action: {
-                self.ScrollToTop()
+                ScrollToTop()
             }) {
                 SFSymbols.playButton.foregroundColor(tasks.currentSelectedTask == nil ? Color(Colours.midnightBlue) : .gray).font(.largeTitle).padding(5)
             }
@@ -53,18 +53,18 @@ struct TaskCellFrontView: View {
     
     // This is a hack to get scroll view to scroll to the top when logging time for an existing task
     func ScrollToTop() {
-        self.hideEverything = true
+        hideEverything = true
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
-            self.hideEverything = false
-            self.isFiltering = false
-            self.searchText = ""
-            self.taskName = ""
-            if let index = self.tasks.allTasks.firstIndex(where: { $0.id == self.task.id }) {
-                withAnimation { self.tasks.allTasks.move(from: index, to: 0) }
+            hideEverything = false
+            isFiltering = false
+            searchText = ""
+            taskName = ""
+            if let index = tasks.allTasks.firstIndex(where: { $0.id == task.id }) {
+                withAnimation { tasks.allTasks.move(from: index, to: 0) }
             }
-            self.tasks.currentSelectedTask = self.task
-            self.tasks.isLogging = true
-            self.tasks.startLoggingForCurrentTask()
+            tasks.currentSelectedTask = task
+            tasks.isLogging = true
+            tasks.startLoggingForCurrentTask()
         }
     }
 }

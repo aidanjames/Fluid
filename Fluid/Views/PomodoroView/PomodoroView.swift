@@ -10,7 +10,7 @@ import SwiftUI
 
 struct PomodoroView: View {
     
-    @ObservedObject var pomodoroSession = PomodoroSession()
+    @StateObject var pomodoroSession = PomodoroSession()
     @Binding var showingPomodoroView: Bool
     @State private var showingSettingsScreen = false
     
@@ -23,18 +23,18 @@ struct PomodoroView: View {
     var body: some View {
         ZStack {
             HStack {
-                RingView(pomodoroSession: self.pomodoroSession)
+                RingView(pomodoroSession: pomodoroSession)
                     .onReceive(timer) { _ in
-                        guard self.pomodoroSession.isCounting else { return }
-                        self.pomodoroSession.incrementCounter()
+                        guard pomodoroSession.isCounting else { return }
+                        pomodoroSession.incrementCounter()
                 }
                 Spacer()
                 VStack(alignment: .leading) {
                     Text("\(currentPomodoroType == .focusSession ? "Focus session" : currentPomodoroType == .shortBreak ? "Short Break" : "Long break")")
                         .foregroundColor(pomodoroSession.colourForCurrentPomodoroType())
-                    ProgressDotView(pomodoroSession: self.pomodoroSession)
+                    ProgressDotView(pomodoroSession: pomodoroSession)
                     Spacer()
-                    Button(action: { self.pomodoroSession.skipToNextPomodoro() }) {
+                    Button(action: { pomodoroSession.skipToNextPomodoro() }) {
                         HStack {
                             Text("Skip")
                             SFSymbols.advance
@@ -56,7 +56,7 @@ struct PomodoroView: View {
             VStack {
                 HStack {
                     Button(action: {
-                        self.showingSettingsScreen.toggle()
+                        showingSettingsScreen.toggle()
                     }) {
                         Images.cog
                             .padding(.leading, 10)
@@ -64,13 +64,13 @@ struct PomodoroView: View {
                     }
                     .buttonStyle(PlainButtonStyle())
                     .sheet(isPresented: $showingSettingsScreen) {
-                        PomodoroSettingsView(pomodoroSession: self.pomodoroSession)
+                        PomodoroSettingsView(pomodoroSession: pomodoroSession)
                     }
                     Spacer()
                     Button(action: {
-                        self.pomodoroSession.isCounting = false
-                        self.pomodoroSession.pomodoros[self.pomodoroSession.currentPomodoro].counter = 0
-                        withAnimation { self.showingPomodoroView = false }
+                        pomodoroSession.isCounting = false
+                        pomodoroSession.pomodoros[pomodoroSession.currentPomodoro].counter = 0
+                        withAnimation { showingPomodoroView = false }
                     }) {
                         SFSymbols.closeCircle.foregroundColor(Color(Colours.midnightBlue))
                             .scaleEffect(0.75)
@@ -93,10 +93,10 @@ struct PomodoroView: View {
         .overlay(RoundedRectangle(cornerRadius: 16).stroke(Color(Colours.midnightBlue).opacity(colorScheme == .dark ? 0.2 : 0.1)))
         .shadow(color: Color(Colours.shadow).opacity(0.5), radius: 10, x: 0, y: 5)
         .onReceive(NotificationCenter.default.publisher(for: UIApplication.didEnterBackgroundNotification)) { _ in
-            self.pomodoroSession.persistInFlightPomodoroState()
-            guard self.pomodoroSession.isCounting else { return }
-            let secondsRemaining = self.pomodoroSession.pomodoros[self.pomodoroSession.currentPomodoro].maxCounter - self.pomodoroSession.pomodoros[self.pomodoroSession.currentPomodoro].counter
-            switch self.pomodoroSession.pomodoros[self.pomodoroSession.currentPomodoro].pomodoroType {
+            pomodoroSession.persistInFlightPomodoroState()
+            guard pomodoroSession.isCounting else { return }
+            let secondsRemaining = pomodoroSession.pomodoros[pomodoroSession.currentPomodoro].maxCounter - pomodoroSession.pomodoros[pomodoroSession.currentPomodoro].counter
+            switch pomodoroSession.pomodoros[pomodoroSession.currentPomodoro].pomodoroType {
             case .focusSession:
                 NotificationManager.shared.scheduleSessionFinishedNotification(timeInterval: Double(secondsRemaining))
             case .shortBreak, .longBreak:
@@ -104,7 +104,7 @@ struct PomodoroView: View {
             }
         }
         .onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)) { _ in
-            self.pomodoroSession.loadInFlightPomodoroState()
+            pomodoroSession.loadInFlightPomodoroState()
         }
         
         

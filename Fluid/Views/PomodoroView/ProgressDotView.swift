@@ -14,10 +14,10 @@ struct ProgressDotView: View {
     var body: some View {
         GeometryReader { geometry in
             HStack(spacing: 0) {
-                ForEach(self.pomodoroSession.pomodoros) { pomodoro in
+                ForEach(pomodoroSession.pomodoros) { pomodoro in
                     DotView(pomodoroType: pomodoro.pomodoroType, pomodoroState: pomodoro.state)
                         .padding(3)
-                        .frame(width: geometry.size.width / CGFloat(self.pomodoroSession.pomodoros.count), height: geometry.size.width / CGFloat(self.pomodoroSession.pomodoros.count))
+                        .frame(width: geometry.size.width / CGFloat(pomodoroSession.pomodoros.count), height: geometry.size.width / CGFloat(pomodoroSession.pomodoros.count))
                 }
             }
             

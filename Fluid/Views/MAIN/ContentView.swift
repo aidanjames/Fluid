@@ -40,15 +40,15 @@ struct ContentView: View {
                 
                 ScrollView {
                     
-                    LazyVStack {
-                        if !self.isFiltering{
-                            TimerCardView(tasks: self.tasks, taskName: self.$taskName)
-                                .shadow(color: self.tasks.isLogging ? Color(Colours.hotCoral).opacity(0.3) : Color(Colours.shadow).opacity(0.5), radius: 10, x: 0, y: 10)
+                    LazyVStack(spacing: 7) {
+                        if !isFiltering{
+                            TimerCardView(tasks: tasks, taskName: $taskName)
+                                .shadow(color: tasks.isLogging ? Color(Colours.hotCoral).opacity(0.3) : Color(Colours.shadow).opacity(0.5), radius: 10, x: 0, y: 10)
                         }
                         
-                        if self.hideEverything {
+                        if hideEverything {
                             EmptyView() // Hack to scroll to the top
-                        } else if self.tasks.allTasks.isEmpty {
+                        } else if tasks.allTasks.isEmpty {
                             
                             EmptyStateView()
                             
@@ -60,19 +60,19 @@ struct ContentView: View {
                                 .multilineTextAlignment(.center)
                         } else {
                             
-                            if !self.isFiltering && self.taskName.isEmpty {
+                            if !isFiltering && taskName.isEmpty {
                                 HStack {
                                     Text("Recent tasks").font(.title).foregroundColor(Color(Colours.midnightBlue)).bold()
                                     Spacer()
                                 }
                                 .padding(.horizontal)
                             }
-                            if self.tasks.allTasks.count > 3 && !self.tasks.isLogging && self.taskName.isEmpty {
-                                FilterView(isFiltering: self.$isFiltering, searchText: self.$searchText)
+                            if tasks.allTasks.count > 3 && !tasks.isLogging && taskName.isEmpty {
+                                FilterView(isFiltering: $isFiltering, searchText: $searchText)
                             }
                             
-                            ForEach(self.filteredTasks) { task in
-                                TaskCellView(tasks: self.tasks, task: task, hideEverything: self.$hideEverything, isFiltering: self.$isFiltering, searchText: self.$searchText, taskName: self.$taskName)
+                            ForEach(filteredTasks) { task in
+                                TaskCellView(tasks: tasks, task: task, hideEverything: $hideEverything, isFiltering: $isFiltering, searchText: $searchText, taskName: $taskName)
                                     .frame(maxHeight: 400)
                                     .shadow(color: Color(Colours.shadow).opacity(0.5), radius: 5, x: 0, y: 5)
                             }
@@ -83,7 +83,7 @@ struct ContentView: View {
                     }
                     .frame(width: bounds.size.width)
                     .onAppear {
-                        UIApplication.shared.isIdleTimerDisabled = self.tasks.isLogging
+                        UIApplication.shared.isIdleTimerDisabled = tasks.isLogging
                         NotificationManager.shared.requestPermission()
                         NotificationManager.shared.cancelAllNotificaitons()
                     }

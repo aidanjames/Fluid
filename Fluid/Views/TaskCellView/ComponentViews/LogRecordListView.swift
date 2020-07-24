@@ -42,10 +42,10 @@ struct LogRecordListView: View {
         ScrollView {
             ForEach(uniqueDates.reversed(), id: \.self) { date in
                 VStack(alignment: .leading, spacing: 2) {
-                    Text("\(date.dateAsFriendlyString) - \(self.getTotalFor(date: date))").font(.caption).bold().foregroundColor(Color(Colours.midnightBlue))
+                    Text("\(date.dateAsFriendlyString) - \(getTotalFor(date: date))").font(.caption).bold().foregroundColor(Color(Colours.midnightBlue))
                         .padding(.top, 8)
-                    ForEach(self.recordsGroupedByDate[date]!.reversed()) { record in
-                        LogRecordListItemView(tasks: self.tasks, record: record)
+                    ForEach(recordsGroupedByDate[date]!.reversed()) { record in
+                        LogRecordListItemView(tasks: tasks, record: record)
                     }
                 }
             }

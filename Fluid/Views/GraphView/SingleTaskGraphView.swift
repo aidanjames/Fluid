@@ -29,9 +29,9 @@ struct SingleTaskGraphView: View {
     
     var body: some View {
         VStack {
-            Picker("", selection: self.$periodFilter) {
-                ForEach(0..<self.filterPeriods.count) {
-                    Text("\(self.filterPeriods[$0])").font(.caption)
+            Picker("", selection: $periodFilter) {
+                ForEach(0..<filterPeriods.count) {
+                    Text("\(filterPeriods[$0])").font(.caption)
                 }
             }
             .pickerStyle(SegmentedPickerStyle())
@@ -40,13 +40,13 @@ struct SingleTaskGraphView: View {
             
             HStack(alignment: .bottom, spacing: 5) {
                 // Would use a ForEach but animation doesn't work
-                BarView(width: 10, height: self.caluculateBarHeight(forSeconds: self.timeSpentByWeek[0]), taskName: "", timeText: self.timeSpentByWeek[0].secondsToHoursMins(), bottomLabel: "Mon")
-                BarView(width: 10, height: self.caluculateBarHeight(forSeconds: self.timeSpentByWeek[1]), taskName: "", timeText: self.timeSpentByWeek[1].secondsToHoursMins(), bottomLabel: "Tue")
-                BarView(width: 10, height: self.caluculateBarHeight(forSeconds: self.timeSpentByWeek[2]), taskName: "", timeText: self.timeSpentByWeek[2].secondsToHoursMins(), bottomLabel: "Wed")
-                BarView(width: 10, height: self.caluculateBarHeight(forSeconds: self.timeSpentByWeek[3]), taskName: "", timeText: self.timeSpentByWeek[3].secondsToHoursMins(), bottomLabel: "Thu")
-                BarView(width: 10, height: self.caluculateBarHeight(forSeconds: self.timeSpentByWeek[4]), taskName: "", timeText: self.timeSpentByWeek[4].secondsToHoursMins(), bottomLabel: "Fri")
-                BarView(width: 10, height: self.caluculateBarHeight(forSeconds: self.timeSpentByWeek[5]), taskName: "", timeText: self.timeSpentByWeek[5].secondsToHoursMins(), bottomLabel: "Sat")
-                BarView(width: 10, height: self.caluculateBarHeight(forSeconds: self.timeSpentByWeek[6]), taskName: "", timeText: self.timeSpentByWeek[6].secondsToHoursMins(), bottomLabel: "Sun")
+                BarView(width: 10, height: caluculateBarHeight(forSeconds: timeSpentByWeek[0]), taskName: "", timeText: timeSpentByWeek[0].secondsToHoursMins(), bottomLabel: "Mon")
+                BarView(width: 10, height: caluculateBarHeight(forSeconds: timeSpentByWeek[1]), taskName: "", timeText: timeSpentByWeek[1].secondsToHoursMins(), bottomLabel: "Tue")
+                BarView(width: 10, height: caluculateBarHeight(forSeconds: timeSpentByWeek[2]), taskName: "", timeText: timeSpentByWeek[2].secondsToHoursMins(), bottomLabel: "Wed")
+                BarView(width: 10, height: caluculateBarHeight(forSeconds: timeSpentByWeek[3]), taskName: "", timeText: timeSpentByWeek[3].secondsToHoursMins(), bottomLabel: "Thu")
+                BarView(width: 10, height: caluculateBarHeight(forSeconds: timeSpentByWeek[4]), taskName: "", timeText: timeSpentByWeek[4].secondsToHoursMins(), bottomLabel: "Fri")
+                BarView(width: 10, height: caluculateBarHeight(forSeconds: timeSpentByWeek[5]), taskName: "", timeText: timeSpentByWeek[5].secondsToHoursMins(), bottomLabel: "Sat")
+                BarView(width: 10, height: caluculateBarHeight(forSeconds: timeSpentByWeek[6]), taskName: "", timeText: timeSpentByWeek[6].secondsToHoursMins(), bottomLabel: "Sun")
             }
             .animation(.default)
             

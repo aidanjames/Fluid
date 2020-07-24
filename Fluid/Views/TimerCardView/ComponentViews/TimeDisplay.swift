@@ -32,18 +32,18 @@ struct TimeDisplay: View {
             }.font(.largeTitle)
         }
         .onReceive(timer) { _ in
-            self.setTimeDisplay()
+            setTimeDisplay()
         }
         .onAppear {
-            self.setTimeDisplay()
+            setTimeDisplay()
         }
     }
     
     func setTimeDisplay() {
-        let counter = Int(Date().timeIntervalSince(self.logRecordStartTime))
+        let counter = Int(Date().timeIntervalSince(logRecordStartTime))
         let splitHoursAndSeconds = counter.secondsToHoursMinsSpit()
-        self.hoursSinceStart = splitHoursAndSeconds.hours
-        self.minutesSinceStart = splitHoursAndSeconds.mins
+        hoursSinceStart = splitHoursAndSeconds.hours
+        minutesSinceStart = splitHoursAndSeconds.mins
     }
 }
 

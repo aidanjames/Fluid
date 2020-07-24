@@ -125,7 +125,7 @@ class PomodoroSession: ObservableObject {
             PomodoroSettings.numberOfSessionsBeforeLongBreak = pomoSettings[3]
         }
         if let inFlightPomodoros: [Pomodoro] = FileManager.default.fetchData(from: FMKeys.pomodoros) {
-            self.pomodoros = inFlightPomodoros
+            pomodoros = inFlightPomodoros
             if let currentPomodoro: Int = FileManager.default.fetchData(from: FMKeys.currentPomodoro) {
                 self.currentPomodoro = currentPomodoro
                 if let isCounting: Bool = FileManager.default.fetchData(from: FMKeys.pomodoroIsCounting) {

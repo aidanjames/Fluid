@@ -46,7 +46,7 @@ struct PomodoroSettingsView: View {
                 Section(header: Text("Number of sessions before long break - max 10")) {
                     TextField("Number of rounds", text: $numberOfSessionsPerRound)
                 }
-                Button(action: self.restoreDefaultSettings) {
+                Button(action: restoreDefaultSettings) {
                     HStack {
                         Spacer()
                         Text("Reset to default settings")
@@ -59,28 +59,28 @@ struct PomodoroSettingsView: View {
             .navigationBarTitle("Pomodoro settings")
             .navigationBarItems(
                 leading:
-                Button("Cancel") { self.presentationMode.wrappedValue.dismiss() },
+                Button("Cancel") { presentationMode.wrappedValue.dismiss() },
                 trailing:
-                Button("Save") { self.saveSettings() }.disabled(saveButtonDisabled)
+                Button("Save") { saveSettings() }.disabled(saveButtonDisabled)
             )
                 .onAppear(perform: loadExistingSettings)
         }
     }
     
     func loadExistingSettings() {
-        self.sessionLength = "\(PomodoroSettings.sessionLength / 60)"
-        self.shortBreakLength = "\(PomodoroSettings.shortBreakLength / 60)"
-        self.longBreakLength = "\(PomodoroSettings.longBreakLength / 60)"
-        self.numberOfSessionsPerRound = "\(PomodoroSettings.numberOfSessionsBeforeLongBreak)"
+        sessionLength = "\(PomodoroSettings.sessionLength / 60)"
+        shortBreakLength = "\(PomodoroSettings.shortBreakLength / 60)"
+        longBreakLength = "\(PomodoroSettings.longBreakLength / 60)"
+        numberOfSessionsPerRound = "\(PomodoroSettings.numberOfSessionsBeforeLongBreak)"
     }
     
     func saveSettings() {
-        PomodoroSettings.sessionLength = (Int(self.sessionLength) ?? 25) * 60
-        PomodoroSettings.shortBreakLength = (Int(self.shortBreakLength) ?? 5) * 60
-        PomodoroSettings.longBreakLength = (Int(self.longBreakLength) ?? 20) * 60
-        PomodoroSettings.numberOfSessionsBeforeLongBreak = Int(self.numberOfSessionsPerRound) ?? 4
+        PomodoroSettings.sessionLength = (Int(sessionLength) ?? 25) * 60
+        PomodoroSettings.shortBreakLength = (Int(shortBreakLength) ?? 5) * 60
+        PomodoroSettings.longBreakLength = (Int(longBreakLength) ?? 20) * 60
+        PomodoroSettings.numberOfSessionsBeforeLongBreak = Int(numberOfSessionsPerRound) ?? 4
         pomodoroSession.resetPomodoroSession()
-        self.presentationMode.wrappedValue.dismiss()
+        presentationMode.wrappedValue.dismiss()
     }
 
     func restoreDefaultSettings() {
@@ -89,10 +89,10 @@ struct PomodoroSettingsView: View {
         PomodoroSettings.longBreakLength = 20 * 60
         PomodoroSettings.numberOfSessionsBeforeLongBreak = 4
         
-        self.sessionLength = "25"
-        self.shortBreakLength = "5"
-        self.longBreakLength = "20"
-        self.numberOfSessionsPerRound = "4"
+        sessionLength = "25"
+        shortBreakLength = "5"
+        longBreakLength = "20"
+        numberOfSessionsPerRound = "4"
         
         pomodoroSession.resetPomodoroSession()
     }

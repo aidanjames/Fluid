@@ -24,7 +24,7 @@ struct TaskCellBackView: View {
         VStack {
             HStack {
                 Button(action: {
-                    self.showingAlert.toggle()
+                    showingAlert.toggle()
                 }) {
                     SFSymbols.trashButton.foregroundColor(tasks.currentSelectedTask == nil ? Color(Colours.hotCoral) : .gray).padding(5)
                 }
@@ -33,7 +33,7 @@ struct TaskCellBackView: View {
                         .foregroundColor(Color(Colours.midnightBlue))
                         .font(.caption)
                         .onAppear {
-                            self.taskName = self.task.name
+                            taskName = task.name
                     }
                     Divider()
                 }
@@ -43,7 +43,7 @@ struct TaskCellBackView: View {
                 
                 Button(action: {
                     withAnimation {
-                        self.editView.toggle()
+                        editView.toggle()
                     }
                 } ) {
                     if editView {
@@ -57,17 +57,17 @@ struct TaskCellBackView: View {
                 
                 
                 Button(action: {
-                    self.tasks.changeTask(id: self.task.id, name: self.taskName)
-                    withAnimation { self.showingFront.toggle() }
+                    tasks.changeTask(id: task.id, name: taskName)
+                    withAnimation { showingFront.toggle() }
                 }) {
                    Text("Done")
                     .foregroundColor(Color(Colours.midnightBlue))
-                    .opacity(self.doneButtonDisabled ? 0.4 : 1)
+                    .opacity(doneButtonDisabled ? 0.4 : 1)
                 }
                 .disabled(doneButtonDisabled)
                 .alert(isPresented: $showingAlert) {
                     Alert(title: Text("Delete task?"), message: Text("Are you sure you want to delete this task? This cannot be undone."),
-                          primaryButton: .destructive(Text("Delete")) { self.tasks.delete(task: self.task) },
+                          primaryButton: .destructive(Text("Delete")) { tasks.delete(task: task) },
                           secondaryButton: .cancel()
                     )
                 }
@@ -76,10 +76,10 @@ struct TaskCellBackView: View {
                 Text("No logging records")
             } else {
                 if editView {
-                    LogRecordListView(tasks: self.tasks, taskID: self.task.id)
+                    LogRecordListView(tasks: tasks, taskID: task.id)
                 } else {
                     
-                    SingleTaskGraphView(task: self.task)
+                    SingleTaskGraphView(task: task)
                     
                     
                 }

@@ -23,7 +23,7 @@ struct TimerCardView: View {
                                 TextField("Add new task", text: $taskName).font(.title).multilineTextAlignment(.center)
                                 if !taskName.isEmpty {
                                     Button(action: {
-                                        self.taskName = ""
+                                        taskName = ""
                                         UIApplication.shared.endEditing()
                                     }) {
                                         CloseButtonView()
@@ -33,7 +33,7 @@ struct TimerCardView: View {
                             Rectangle().fill(Color.gray).frame(height: 1).padding(.horizontal, 50)
                             
                             if !taskName.isEmpty && tasks.currentSelectedTask == nil {
-                                Button(action: { self.buttonPressed() }) {
+                                Button(action: { buttonPressed() }) {
                                     ButtonView(buttonText: "Start timer", backgroundColour: Color(Colours.midnightBlue), maxWitdh: 120)
                                 }
                                 .animation(.default)
@@ -60,13 +60,13 @@ struct TimerCardView: View {
                     
                     HStack {
                         if !tasks.showingPomodoroTimer {
-                            Button(action: { withAnimation { self.tasks.showingPomodoroTimer.toggle() } }) {
+                            Button(action: { withAnimation { tasks.showingPomodoroTimer.toggle() } }) {
                                 ButtonView(buttonText: "Add pomodoro", backgroundColour: Color(Colours.midnightBlue), maxWitdh: 120)
                             }
                             .padding(.leading, 45)
                             Spacer()
                         }
-                        Button(action: { self.buttonPressed() }) {
+                        Button(action: { buttonPressed() }) {
                             ButtonView(buttonText: "End timer", backgroundColour: Color(Colours.hotCoral), maxWitdh: 120)
                         }
                         .padding(.trailing, tasks.showingPomodoroTimer ? 0 : 45)
@@ -94,15 +94,15 @@ struct TimerCardView: View {
         .background(Color(Colours.cardViewColour).opacity(1)).cornerRadius(16)
         .padding(.horizontal, 16)
         .onReceive(NotificationCenter.default.publisher(for: UIApplication.didEnterBackgroundNotification)) { _ in
-            if self.tasks.isLogging {
-                if let currentTask = self.tasks.currentSelectedTask {
+            if tasks.isLogging {
+                if let currentTask = tasks.currentSelectedTask {
                     NotificationManager.shared.scheduleTimerStillRunningNotification(for: currentTask.name)
                 }
             }
         }
         .onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)) { _ in
             NotificationManager.shared.cancelAllNotificaitons()
-            if let currentTask = self.tasks.currentSelectedTask {
+            if let currentTask = tasks.currentSelectedTask {
                 guard let currentLoggingRecord = currentTask.loggingHistory.last else { return }
                 guard currentLoggingRecord.endTime == nil else { return }
             }
@@ -118,8 +118,8 @@ struct TimerCardView: View {
             }
         } else {
             if tasks.currentSelectedTask == nil {
-                withAnimation { tasks.startLoggingForNewTask(named: self.taskName) }
-                self.taskName = ""
+                withAnimation { tasks.startLoggingForNewTask(named: taskName) }
+                taskName = ""
             } else {
                 withAnimation { tasks.startLoggingForCurrentTask() }
             }

@@ -39,9 +39,9 @@ struct EditLogRecordView: View {
             .navigationBarTitle("Edit record", displayMode: .inline)
             .navigationBarItems(
                 leading:
-                Button("Cancel") { self.presentationMode.wrappedValue.dismiss() },
+                Button("Cancel") { presentationMode.wrappedValue.dismiss() },
                 trailing:
-                Button("Save") { self.saveChanges() }.disabled(self.startTime > self.endTime)
+                Button("Save") { saveChanges() }.disabled(startTime > endTime)
             )
                 .onAppear(perform: configureUI)
         }
@@ -50,17 +50,17 @@ struct EditLogRecordView: View {
     func configureUI() {
         
         if let index = tasks.allTasks.firstIndex(where: { $0.id == logRecord.taskID }) {
-            self.taskName = tasks.allTasks[index].name
+            taskName = tasks.allTasks[index].name
         }
-        self.startTime = self.logRecord.startTime
-        if let endTime = self.logRecord.endTime {
+        startTime = logRecord.startTime
+        if let endTime = logRecord.endTime {
             self.endTime = endTime
         }
     }
     
     func saveChanges() {
-        tasks.update(logRecord: self.logRecord, startTime: self.startTime, endTime: self.endTime)
-        self.presentationMode.wrappedValue.dismiss()
+        tasks.update(logRecord: logRecord, startTime: startTime, endTime: endTime)
+        presentationMode.wrappedValue.dismiss()
     }
     
 }

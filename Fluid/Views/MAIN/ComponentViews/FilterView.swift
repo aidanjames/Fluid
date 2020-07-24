@@ -22,17 +22,17 @@ struct FilterView: View {
                     .overlay(Capsule().stroke(Color(Colours.midnightBlue).opacity(0.5)))
                 HStack {
                     SFSymbols.magnifyingGlass.foregroundColor(Color(Colours.midnightBlue).opacity(0.5)).padding(.leading)
-                    TextField("Search", text: self.$searchText)
+                    TextField("Search", text: $searchText)
                 }
             }
             .animation(.default)
             .padding(.leading)
             .padding(.trailing, searchText.isEmpty ? 16 : 0)
             
-            if self.isFiltering {
+            if isFiltering {
                 Button(action: {
-                    self.isFiltering = false
-                    self.searchText = ""
+                    isFiltering = false
+                    searchText = ""
                     UIApplication.shared.endEditing()
                 } ) {
                     CloseButtonView()
@@ -41,10 +41,10 @@ struct FilterView: View {
         }
             
         .onTapGesture {
-            self.isFiltering = true
+            isFiltering = true
         }
         .padding(.bottom, 10)
-        .padding(.top, self.isFiltering ? 10 : 0)
+        .padding(.top, isFiltering ? 10 : 0)
         
     }
 }

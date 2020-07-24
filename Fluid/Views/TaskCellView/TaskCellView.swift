@@ -25,7 +25,7 @@ struct TaskCellView: View {
         
         Group {
             if showingFront {
-                TaskCellFrontView(task: task, tasks: self.tasks, showingFront: $showingFront, hideEverything: $hideEverything, isFiltering: $isFiltering, searchText: $searchText, taskName: $taskName)
+                TaskCellFrontView(task: task, tasks: tasks, showingFront: $showingFront, hideEverything: $hideEverything, isFiltering: $isFiltering, searchText: $searchText, taskName: $taskName)
             } else {
                 TaskCellBackView(tasks: tasks, task: task, showingFront: $showingFront)
             }

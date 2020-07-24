@@ -23,7 +23,7 @@ struct LogRecordListItemView: View {
             Text("\(record.startTime...record.startTime.addingTimeInterval(TimeInterval(record.lengthInSeconds))) (\(record.lengthInSeconds.secondsToHoursMins()))")
                 .font(Font.system(.caption).monospacedDigit()).foregroundColor(Color(Colours.midnightBlue))
             Spacer()
-            Button(action: { self.showingEditRecord.toggle() }) {
+            Button(action: { showingEditRecord.toggle() }) {
                 Text("Edit")
                     .font(.caption)
                     .foregroundColor(colorScheme == .dark ? .black : .white)
@@ -33,9 +33,9 @@ struct LogRecordListItemView: View {
                     .cornerRadius(16)
             }
             .sheet(isPresented: $showingEditRecord) {
-                EditLogRecordView(logRecord: self.record, tasks: self.tasks)
+                EditLogRecordView(logRecord: record, tasks: tasks)
             }
-            Button(action: { self.showingAlert.toggle() }) {
+            Button(action: { showingAlert.toggle() }) {
                 Text("Delete")
                     .font(.caption)
                     .foregroundColor(colorScheme == .dark ? .black : .white)
@@ -46,7 +46,7 @@ struct LogRecordListItemView: View {
             }
             .alert(isPresented: $showingAlert) {
                 Alert(title: Text("Delete record?"), message: Text("Are you sure you want to delete this record? This cannot be undone."),
-                      primaryButton: .destructive(Text("Delete")) { self.tasks.delete(loggingRecord: self.record)},
+                      primaryButton: .destructive(Text("Delete")) { tasks.delete(loggingRecord: record)},
                       secondaryButton: .cancel()
                 )
             }

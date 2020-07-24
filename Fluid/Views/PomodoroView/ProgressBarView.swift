@@ -25,16 +25,16 @@ struct ProgressBarView: View {
                     .cornerRadius(5)
                     .opacity(0.3)
                     .foregroundColor(Color(UIColor.systemTeal))
-                Rectangle().frame(width: self.ajpProgress * geometry.size.width, height: geometry.size.height)
+                Rectangle().frame(width: ajpProgress * geometry.size.width, height: geometry.size.height)
                     .cornerRadius(5)
                     .foregroundColor(Color(UIColor.green))
                     .opacity(0.5)
                     .animation(.linear)
-                if self.ajpProgress < 0.8 {
-                    Text("\(self.counter.secondsToHoursMinsSecs())").font(.caption)
-                        .offset(x: (self.ajpProgress * geometry.size.width) - 10, y: 12)
+                if ajpProgress < 0.8 {
+                    Text("\(counter.secondsToHoursMinsSecs())").font(.caption)
+                        .offset(x: (ajpProgress * geometry.size.width) - 10, y: 12)
                 }
-                Text(self.counter >= self.maxCounter ? "0:00" : "\(self.counter < self.maxCounter ? "-" : "")\((self.maxCounter - self.counter).secondsToHoursMinsSecs())").font(.caption)
+                Text(counter >= maxCounter ? "0:00" : "\(counter < maxCounter ? "-" : "")\((maxCounter - counter).secondsToHoursMinsSecs())").font(.caption)
                     .offset(x: geometry.size.width - 30, y: 12)
             }
         }
