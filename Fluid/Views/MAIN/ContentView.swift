@@ -6,6 +6,7 @@
 //  Copyright © 2020 Aidan Pendlebury. All rights reserved.
 //
 
+import AVFoundation
 import SwiftUI
 
 struct ContentView: View {

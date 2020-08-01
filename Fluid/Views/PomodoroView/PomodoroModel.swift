@@ -6,6 +6,7 @@
 //  Copyright © 2020 Aidan Pendlebury. All rights reserved.
 //
 
+import AVFoundation
 import SwiftUI
 
 enum PomodoroSettings {
@@ -53,6 +54,7 @@ class PomodoroSession: ObservableObject {
             if pomodoros[currentPomodoro].state == .toDo { pomodoros[currentPomodoro].state = .active }
             pomodoros[currentPomodoro].counter += 1
         } else if currentPomodoro < (pomodoros.count - 1) && PomodoroSettings.autoRollover {
+            AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
             pomodoros[currentPomodoro].state = .done
             currentPomodoro += 1
             pomodoros[currentPomodoro].state = .active
@@ -61,6 +63,7 @@ class PomodoroSession: ObservableObject {
             pomodoros[currentPomodoro].endTime = Calendar.current.date(byAdding: .second, value: pomodoros[currentPomodoro].pomodoroType == .focusSession ? PomodoroSettings.sessionLength : pomodoros[currentPomodoro].pomodoroType == .shortBreak ? PomodoroSettings.shortBreakLength : PomodoroSettings.longBreakLength, to: Date())
             persistInFlightPomodoroState()
         } else {
+            AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
             currentPomodoro = 0
             // Not sure why I can't use map here.
             for i in 0..<pomodoros.count {
