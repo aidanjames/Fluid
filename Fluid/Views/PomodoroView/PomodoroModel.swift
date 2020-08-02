@@ -55,6 +55,7 @@ class PomodoroSession: ObservableObject {
             pomodoros[currentPomodoro].counter += 1
         } else if currentPomodoro < (pomodoros.count - 1) && PomodoroSettings.autoRollover {
             AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
+            AudioServicesPlaySystemSound(1016)
             pomodoros[currentPomodoro].state = .done
             currentPomodoro += 1
             pomodoros[currentPomodoro].state = .active
@@ -64,6 +65,7 @@ class PomodoroSession: ObservableObject {
             persistInFlightPomodoroState()
         } else {
             AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
+            AudioServicesPlaySystemSound(1016)
             currentPomodoro = 0
             // Not sure why I can't use map here.
             for i in 0..<pomodoros.count {
