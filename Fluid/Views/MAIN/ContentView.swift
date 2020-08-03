@@ -18,6 +18,7 @@ struct ContentView: View {
     @State private var searchText = ""
     @State private var taskName = ""
     @State private var isFiltering = false
+    @State private var showingSettingsView = false
     
     @Environment(\.colorScheme) var colorScheme
     
@@ -40,6 +41,17 @@ struct ContentView: View {
                 Color(Colours.midnightBlue).opacity(0.1).edgesIgnoringSafeArea(.all)
                 
                 ScrollView {
+                    
+                    HStack {
+                        Button(action: { showingSettingsView.toggle() }, label: {
+                            Images.cog.renderingMode(.original).padding(.horizontal)
+                        })
+                        .sheet(isPresented: $showingSettingsView, content: {
+                            SettingsView(tasks: tasks)
+                        })
+                        
+                        Spacer()
+                    }
                     
                     LazyVStack(spacing: 7) {
                         if !isFiltering{
@@ -84,7 +96,7 @@ struct ContentView: View {
                     }
                     .frame(width: bounds.size.width)
                     .onAppear {
-                        UIApplication.shared.isIdleTimerDisabled = tasks.isLogging
+                        UIApplication.shared.isIdleTimerDisabled = tasks.isLogging && tasks.preventScreenLock
                         NotificationManager.shared.requestPermission()
                         NotificationManager.shared.cancelAllNotificaitons()
                     }

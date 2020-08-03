@@ -14,6 +14,13 @@ class TasksViewModel: ObservableObject {
     @Published var currentSelectedTask: Task?
     @Published var isLogging = false
     
+    @Published var preventScreenLock = false {
+        didSet {
+            print("didSet being called on preventScreenLock")
+            GeneralSettings.persistSettings()
+        }
+    }
+    
     // Test to see if I can store the presence (or absence of the pomodoro timer)
     @Published var showingPomodoroTimer = false {
         didSet {
@@ -42,6 +49,11 @@ class TasksViewModel: ObservableObject {
                 }
                 if let showingPomodoroTimer: Bool = FileManager.default.fetchData(from: FMKeys.showingPomodoroTimer) {
                     self.showingPomodoroTimer = showingPomodoroTimer
+                }
+                if let generalSettings: [Bool] = FileManager.default.fetchData(from: FMKeys.generalSettings) {
+                    if let preventScreenLock = generalSettings.first {
+                        self.preventScreenLock = preventScreenLock
+                    }
                 }
             }
         }
@@ -135,6 +147,7 @@ class TasksViewModel: ObservableObject {
         FileManager.default.writeData(allTasks, to: FMKeys.allTasks)
         FileManager.default.writeData(currentSelectedTask, to: FMKeys.currentTask)
     }
+
     
     
 }
