@@ -97,6 +97,12 @@ struct ContentView: View {
                     .frame(width: bounds.size.width)
                     .onAppear {
                         UIApplication.shared.isIdleTimerDisabled = tasks.isLogging && tasks.preventScreenLock
+                        if tasks.isLogging && tasks.preventScreenLock {
+                            print("We should prevent screenlock")
+                            
+                        } else {
+                            print("Screen lock will be a no-go.")
+                        }
                         NotificationManager.shared.requestPermission()
                         NotificationManager.shared.cancelAllNotificaitons()
                     }

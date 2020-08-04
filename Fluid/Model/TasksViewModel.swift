@@ -17,6 +17,7 @@ class TasksViewModel: ObservableObject {
     @Published var preventScreenLock = false {
         didSet {
             print("didSet being called on preventScreenLock")
+            GeneralSettings.preventScreenLock = preventScreenLock
             GeneralSettings.persistSettings()
         }
     }

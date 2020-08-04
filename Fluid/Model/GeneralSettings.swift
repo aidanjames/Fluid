@@ -12,7 +12,8 @@ enum GeneralSettings {
     static var preventScreenLock: Bool = false
     
     static func persistSettings() {
-        print("I'm about to save the settings")
+        print("I'm about to save the settings, which are - \(GeneralSettings.preventScreenLock) or \(self.preventScreenLock)")
+        
         let settings = [self.preventScreenLock]
         FileManager.default.writeData(settings, to: FMKeys.generalSettings)
     }
