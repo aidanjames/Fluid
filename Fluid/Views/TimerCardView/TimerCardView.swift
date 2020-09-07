@@ -96,16 +96,20 @@ struct TimerCardView: View {
         .onReceive(NotificationCenter.default.publisher(for: UIApplication.didEnterBackgroundNotification)) { _ in
             if tasks.isLogging {
                 if let currentTask = tasks.currentSelectedTask {
-                    NotificationManager.shared.scheduleTimerStillRunningNotification(for: currentTask.name)
+                    // If there's an active pomodoro session, we'll send a notification when the session finishes so no need to send another reminder.
+                    if !tasks.showingPomodoroTimer {
+                        NotificationManager.shared.scheduleTimerStillRunningNotification(for: currentTask.name)
+                    }
                 }
             }
         }
         .onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)) { _ in
             NotificationManager.shared.cancelAllNotificaitons()
-            if let currentTask = tasks.currentSelectedTask {
-                guard let currentLoggingRecord = currentTask.loggingHistory.last else { return }
-                guard currentLoggingRecord.endTime == nil else { return }
-            }
+//            if let currentTask = tasks.currentSelectedTask {
+//                guard let currentLoggingRecord = currentTask.loggingHistory.last else { return }
+//                guard currentLoggingRecord.endTime == nil else { return }
+//            }
+            UIApplication.shared.isIdleTimerDisabled = tasks.isLogging && tasks.preventScreenLock
         }
     }
     
