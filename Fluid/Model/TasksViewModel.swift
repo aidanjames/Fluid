@@ -34,6 +34,20 @@ class TasksViewModel: ObservableObject {
     // of the observed objects. I'm sure there's a more elegant way to do this but here we are.
     @Published var manualRefresh: Bool = false
     
+    
+    var timeLoggedToday: String {
+        var totalTimeInSeconds = 0
+        // Get tasks for today
+        for task in allTasks {
+            let loggingRecordsFromToday = task.loggingHistory.filter { $0.startTime.dateAsFriendlyString == "Today" }
+            for record in loggingRecordsFromToday {
+                totalTimeInSeconds += record.lengthInSeconds
+            }
+        }
+//        let today = loggingHistory.filter { calendar.component(.weekday, from: $0.startTime) == 2 }
+        
+        return totalTimeInSeconds.secondsToHoursMins()
+    }
 
     
     init() {

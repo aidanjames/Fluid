@@ -51,6 +51,9 @@ struct ContentView: View {
                         })
                         
                         Spacer()
+                        Text("Today: \(tasks.timeLoggedToday)")
+                            .padding(.trailing)
+                            .foregroundColor(Color(Colours.midnightBlue))
                     }
                     
                     LazyVStack(spacing: 7) {
