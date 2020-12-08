@@ -37,18 +37,21 @@ class TasksViewModel: ObservableObject {
     
     var timeLoggedToday: String {
         var totalTimeInSeconds = 0
-        // Get tasks for today
         for task in allTasks {
             let loggingRecordsFromToday = task.loggingHistory.filter { $0.startTime.dateAsFriendlyString == "Today" }
             for record in loggingRecordsFromToday {
                 totalTimeInSeconds += record.lengthInSeconds
             }
         }
-//        let today = loggingHistory.filter { calendar.component(.weekday, from: $0.startTime) == 2 }
-        
+        if isLogging {
+            if let startDate = currentSelectedTask?.loggingHistory.last!.startTime {
+                let timeCurrentTask = Date().timeIntervalSince(startDate)
+                totalTimeInSeconds += Int(timeCurrentTask)
+            }
+        }
         return totalTimeInSeconds.secondsToHoursMins()
     }
-
+    
     
     init() {
         if let savedTasks: [Task] = FileManager.default.fetchData(from: FMKeys.allTasks) {
@@ -60,7 +63,7 @@ class TasksViewModel: ObservableObject {
                     if currentSelectedTask?.loggingHistory.last?.endTime == nil {
                         self.isLogging = true
                     }
-
+                    
                 }
                 if let showingPomodoroTimer: Bool = FileManager.default.fetchData(from: FMKeys.showingPomodoroTimer) {
                     self.showingPomodoroTimer = showingPomodoroTimer
@@ -72,7 +75,7 @@ class TasksViewModel: ObservableObject {
                 }
             }
         }
-
+        
     }
     
     
@@ -97,6 +100,9 @@ class TasksViewModel: ObservableObject {
         UIApplication.shared.isIdleTimerDisabled = true
         currentSelectedTask!.loggingHistory.append(LoggingRecord(taskID: currentSelectedTask!.id))
         persistTaskViewModelState()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 65) {
+            self.manualRefresh.toggle()
+        }
     }
     
     
@@ -111,6 +117,8 @@ class TasksViewModel: ObservableObject {
         persistTaskViewModelState()
     }
     
+    
+
     
     func delete(task: Task) {
         if let index = allTasks.firstIndex(where: { $0.id == task.id }) {
@@ -162,7 +170,7 @@ class TasksViewModel: ObservableObject {
         FileManager.default.writeData(allTasks, to: FMKeys.allTasks)
         FileManager.default.writeData(currentSelectedTask, to: FMKeys.currentTask)
     }
-
+    
     
     
 }
