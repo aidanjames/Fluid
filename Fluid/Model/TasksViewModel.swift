@@ -34,7 +34,6 @@ class TasksViewModel: ObservableObject {
     // of the observed objects. I'm sure there's a more elegant way to do this but here we are.
     @Published var manualRefresh: Bool = false
     
-    
     var timeLoggedToday: String {
         var totalTimeInSeconds = 0
         for task in allTasks {

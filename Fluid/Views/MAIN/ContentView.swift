@@ -19,6 +19,9 @@ struct ContentView: View {
     @State private var taskName = ""
     @State private var isFiltering = false
     @State private var showingSettingsView = false
+    @State private var timeLoggedToday = "0m"
+    
+    let timer = Timer.publish(every: 30, on: .main, in: .common).autoconnect()
     
     @Environment(\.colorScheme) var colorScheme
     
@@ -54,6 +57,12 @@ struct ContentView: View {
                         Text("Today: \(tasks.timeLoggedToday)")
                             .padding(.trailing)
                             .foregroundColor(Color(Colours.midnightBlue))
+                            .onAppear {
+                                timeLoggedToday = tasks.timeLoggedToday
+                            }
+                            .onReceive(timer) { _ in
+                                timeLoggedToday = tasks.timeLoggedToday
+                            }
                     }
                     
                     LazyVStack(spacing: 7) {
