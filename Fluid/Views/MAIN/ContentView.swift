@@ -20,8 +20,7 @@ struct ContentView: View {
     @State private var isFiltering = false
     @State private var showingSettingsView = false
     @State private var timeLoggedToday = "0m"
-    
-    let timer = Timer.publish(every: 30, on: .main, in: .common).autoconnect()
+    @State private var timer = 0
     
     @Environment(\.colorScheme) var colorScheme
     
@@ -57,17 +56,17 @@ struct ContentView: View {
                         Text("Today: \(tasks.timeLoggedToday)")
                             .padding(.trailing)
                             .foregroundColor(Color(Colours.midnightBlue))
-                            .onAppear {
+                            .onChange(of: timer) { _ in
                                 timeLoggedToday = tasks.timeLoggedToday
                             }
-                            .onReceive(timer) { _ in
+                            .onAppear {
                                 timeLoggedToday = tasks.timeLoggedToday
                             }
                     }
                     
                     LazyVStack(spacing: 7) {
                         if !isFiltering{
-                            TimerCardView(tasks: tasks, taskName: $taskName)
+                            TimerCardView(tasks: tasks, taskName: $taskName, hackTimer: $timer)
                                 .shadow(color: tasks.isLogging ? Color(Colours.hotCoral).opacity(0.3) : Color(Colours.shadow).opacity(0.5), radius: 10, x: 0, y: 10)
                         }
                         

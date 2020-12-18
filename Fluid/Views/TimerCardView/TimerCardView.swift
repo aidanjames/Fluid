@@ -12,6 +12,7 @@ struct TimerCardView: View {
     
     @ObservedObject var tasks: TasksViewModel
     @Binding var taskName: String
+    @Binding var hackTimer: Int
     
     var body: some View {
         VStack {
@@ -54,7 +55,7 @@ struct TimerCardView: View {
                 if tasks.isLogging {
                     
                     ZStack {
-                        TimeDisplay(logRecordStartTime: tasks.currentSelectedTask?.loggingHistory.last?.startTime ?? Date())
+                        TimeDisplay(logRecordStartTime: tasks.currentSelectedTask?.loggingHistory.last?.startTime ?? Date(), hackTimer: $hackTimer)
                         LottieView(filename: "clockCoral").frame(width: 80, height: 80).offset(x: 80, y: -8)
                     }
                     
@@ -135,7 +136,7 @@ struct TimerCardView: View {
 
 struct TimerCardView_Previews: PreviewProvider {
     static var previews: some View {
-        TimerCardView(tasks: TasksViewModel(), taskName: .constant(""))
+        TimerCardView(tasks: TasksViewModel(), taskName: .constant(""), hackTimer: .constant(0))
             .previewLayout(.sizeThatFits)
     }
 }

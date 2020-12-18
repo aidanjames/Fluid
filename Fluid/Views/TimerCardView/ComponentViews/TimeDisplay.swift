@@ -14,6 +14,7 @@ struct TimeDisplay: View {
     
     @State private var hoursSinceStart = "00"
     @State private var minutesSinceStart = "00"
+    @Binding var hackTimer: Int
     
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
@@ -33,6 +34,7 @@ struct TimeDisplay: View {
         }
         .onReceive(timer) { _ in
             setTimeDisplay()
+            hackTimer += 1
         }
         .onAppear {
             setTimeDisplay()
@@ -49,6 +51,6 @@ struct TimeDisplay: View {
 
 struct TimeDisplay_Previews: PreviewProvider {
     static var previews: some View {
-        TimeDisplay(logRecordStartTime: Date().startOfToday)
+        TimeDisplay(logRecordStartTime: Date().startOfToday, hackTimer: .constant(0))
     }
 }
